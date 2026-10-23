@@ -1,0 +1,1741 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="『ダン・カウの書（Lebor na hUidre）』所収の物語を、中世アイルランド語原典から日本語に訳した読み物集。">
+<title>ダン・カウの書 物語集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500&family=EB+Garamond:ital@0;1&display=swap">
+<style>
+/* Layout: a single reading column like a printed bunko page, with a quiet contents list on top and notes gathered at the end of each tale. */
+:root{
+  --paper:#f3f4f1;      /* pale stone, slightly green-grey like dried vellum */
+  --ink:#1f2224;        /* iron-gall ink */
+  --muted:#5f6a68;
+  --rule:#cfd5d1;
+  --woad:#2f4f7a;       /* woad blue, the accent */
+  --panel:#e8ebe7;
+  --font-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --font-body:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --font-ui:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --font-irish:"EB Garamond","Garamond","Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#15191d;--ink:#e3e5e2;--muted:#9aa6a4;--rule:#2d353a;--woad:#8fb0dd;--panel:#1d2328;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#15191d;--ink:#e3e5e2;--muted:#9aa6a4;--rule:#2d353a;--woad:#8fb0dd;--panel:#1d2328;color-scheme:dark}
+
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.95;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 4rem}
+.wrap{max-width:38em;margin:0 auto}
+a{color:var(--woad)}
+a:focus-visible{outline:2px solid var(--woad);outline-offset:2px}
+i.ga,.ga{font-family:var(--font-irish);font-style:italic;letter-spacing:.01em}
+
+header.book{padding-block:3.5rem 2rem;border-bottom:1px solid var(--rule)}
+.kicker{font-family:var(--font-ui);font-size:.78rem;letter-spacing:.12em;color:var(--muted)}
+h1{font-family:var(--font-display);font-weight:700;font-size:2.1rem;line-height:1.35;margin:.4rem 0 .6rem;text-wrap:balance}
+.sub{color:var(--muted);font-size:.95rem;margin:0}
+
+section.toc{padding-block:2rem 1rem}
+h2.label{font-family:var(--font-ui);font-weight:500;font-size:.8rem;letter-spacing:.14em;color:var(--muted);margin:0 0 .8rem}
+ol.order{list-style:none;padding:0;margin:0;display:grid;gap:.15rem}
+ol.order li{display:grid;grid-template-columns:2.2em 1fr auto;gap:.6em;align-items:baseline;padding:.35rem 0;border-bottom:1px dotted var(--rule)}
+ol.order .n{font-family:var(--font-ui);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+ol.order .t{min-width:0}
+ol.order .t small{display:block;font-family:var(--font-irish);font-style:italic;color:var(--muted);font-size:.85rem;line-height:1.4}
+.st{font-family:var(--font-ui);font-size:.72rem;white-space:nowrap;padding:.05rem .55rem;border-radius:999px;border:1px solid var(--rule);color:var(--muted)}
+.st.on{border-color:var(--woad);color:var(--woad)}
+.order-note{font-size:.85rem;color:var(--muted);margin-top:.8rem;line-height:1.7}
+section.biblio{padding-block:1.6rem 0;margin-top:1rem;border-top:1px solid var(--rule)}
+.biblio p{font-size:.92rem;line-height:1.85;margin:0 0 .9em}
+.biblio dl{display:grid;grid-template-columns:7.5em 1fr;gap:.5rem 1rem;margin:0 0 1.4rem;font-size:.9rem;line-height:1.7}
+.biblio dt{font-family:var(--font-ui);font-size:.78rem;letter-spacing:.06em;color:var(--muted);padding-top:.2em}
+.biblio dd{margin:0;min-width:0}
+.biblio h3{font-family:var(--font-display);font-weight:600;font-size:1.05rem;margin:1.6rem 0 .6rem}
+.biblio ul.refs{padding-left:1.2em;margin:0;font-size:.85rem;line-height:1.75}
+.biblio ul.refs li{margin-bottom:.4em}
+@media (max-width:480px){.biblio dl{grid-template-columns:1fr;gap:.1rem}.biblio dd{margin-bottom:.6rem}}
+
+article.tale{padding-block:3rem 0;border-top:1px solid var(--rule);margin-top:2rem}
+.tale h2{font-family:var(--font-display);font-weight:700;font-size:1.8rem;line-height:1.4;margin:.3rem 0 .2rem;text-wrap:balance}
+.tale .orig{font-family:var(--font-irish);font-style:italic;color:var(--muted);font-size:1.05rem;margin:0 0 1.6rem}
+.intro{font-size:.92rem;color:var(--muted);line-height:1.8;margin-bottom:2rem}
+
+.persons{margin:0 0 2rem}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.6}
+th,td{text-align:left;vertical-align:top;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-family:var(--font-ui);font-weight:500;font-size:.75rem;letter-spacing:.08em;color:var(--muted)}
+td:first-child{white-space:nowrap;font-weight:600}
+td .ga{font-weight:400;color:var(--muted);font-size:.85rem;display:block}
+
+.tree{background:var(--panel);border-radius:6px;padding:1.1rem 1.2rem;margin:0 0 2.4rem;font-family:var(--font-ui);font-size:.88rem;line-height:1.6}
+.tree .cap{font-size:.72rem;letter-spacing:.12em;color:var(--muted);margin-bottom:.6rem}
+.tree ul{list-style:none;margin:0;padding:0}
+.tree ul ul{margin-left:.6rem;padding-left:1.1rem;border-left:1px solid var(--muted)}
+.tree ul ul li{position:relative;padding:.25rem 0}
+.tree ul ul li::before{content:"";position:absolute;left:-1.1rem;top:1.05em;width:.9rem;border-top:1px solid var(--muted)}
+.tree .who{font-weight:500}
+.tree .fate{color:var(--muted)}
+
+.text p{margin:0 0 1.1em;text-indent:1em}
+.text p.open{text-indent:0}
+.text blockquote{margin:1.2em 0 1.4em;padding:.2em 0 .2em 1.2em;border-left:2px solid var(--woad)}
+.text blockquote p{text-indent:0;margin:0 0 .7em}
+.text .scene{text-align:center;color:var(--muted);letter-spacing:1em;margin:1.6em 0;text-indent:0}
+sup.fn a{font-family:var(--font-ui);font-size:.68em;text-decoration:none;padding:0 .1em}
+
+.notes{margin-top:2.4rem;padding-top:1.4rem;border-top:1px solid var(--rule)}
+.notes ol{padding-left:1.6em;margin:0;font-size:.88rem;line-height:1.8}
+.notes li{margin-bottom:.8em}
+.notes li::marker{font-family:var(--font-ui);color:var(--muted)}
+.back{font-family:var(--font-ui);font-size:.75rem;text-decoration:none;margin-left:.3em}
+
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:var(--panel);border-radius:6px;padding:1.1rem 1.2rem;margin:0 0 2.4rem;font-family:var(--font-ui);font-size:.86rem;line-height:1.65}
+.sides .cap{grid-column:1/-1;font-size:.72rem;letter-spacing:.12em;color:var(--muted)}
+.sides h4{margin:0 0 .4rem;font-size:.9rem;font-weight:500;color:var(--woad)}
+.sides ul{margin:0;padding-left:1.1em}
+.sides > div{min-width:0}
+@media (max-width:520px){.sides{grid-template-columns:1fr}}
+.chapter{font-family:var(--font-display);font-weight:600;font-size:1.25rem;margin:2.6rem 0 1.2rem;text-wrap:balance}
+.chapter small{display:block;font-family:var(--font-ui);font-weight:400;font-size:.72rem;letter-spacing:.14em;color:var(--muted)}
+details.route{background:var(--panel);border-radius:6px;padding:.8rem 1.1rem;margin:1.2em 0 1.6em;font-size:.88rem;line-height:1.7}
+details.route summary{cursor:pointer;font-family:var(--font-ui);font-size:.85rem;color:var(--woad)}
+details.route ol{margin:.8rem 0 0;padding-left:1.6em;columns:2 12em;column-gap:2em}
+details.route li{break-inside:avoid;font-family:var(--font-irish)}
+details.route li span{font-family:var(--font-body);color:var(--muted);font-size:.85em}
+.text .verse p{text-indent:0;margin:0 0 .9em}
+.rosc{margin:1.2em 0 1.4em;padding:.7em 1em;border:1px dashed var(--rule);border-radius:6px;font-size:.92rem;line-height:1.8}
+.text .rosc p{text-indent:0;margin:0}
+.rosc .tag{display:block;font-family:var(--font-ui);font-size:.72rem;letter-spacing:.1em;color:var(--muted);margin-bottom:.3em}
+.lacuna{text-align:center;color:var(--muted);font-family:var(--font-ui);font-size:.82rem;margin:1.6em 0}
+.cont{font-family:var(--font-ui);font-size:.82rem;color:var(--muted);border-top:1px dotted var(--rule);padding-top:.8rem;margin-top:1.6rem}
+footer.colophon{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--rule);font-size:.8rem;line-height:1.8;color:var(--muted)}
+@media (max-width:480px){body{font-size:16px}h1{font-size:1.7rem}.tale h2{font-size:1.5rem}}
+</style>
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="book">
+  <div class="kicker">LEBOR NA HUIDRE ・ 十二世紀アイルランドの写本より</div>
+  <h1>ダン・カウの書 物語集</h1>
+  <p class="sub">中世アイルランド語原典からの日本語訳。読み物として通読できるように訳し、注で原語と解釈の揺れを示しています。底本と写本の書誌は<a href="#biblio">こちら</a>。</p>
+</header>
+
+<section class="toc" aria-labelledby="toc-h">
+  <h2 class="label" id="toc-h">収録予定（おもしろい順）</h2>
+  <ol class="order">
+    <li><span class="n">1</span><span class="t"><a href="#tain">クアルンゲの牛捕り</a><small>Táin Bó Cúailnge</small></span><span class="st on">掲載済み（全25章）</span></li>
+    <li><span class="n">2</span><span class="t">ブリクリウの饗宴<small>Fled Bricrenn</small></span><span class="st">準備中</span></li>
+    <li><span class="n">3</span><span class="t">ダ・デルガの館の崩壊<small>Togail Bruidne Da Derga</small></span><span class="st">準備中</span></li>
+    <li><span class="n">4</span><span class="t">クー・フリンの病<small>Serglige Con Culaind</small></span><span class="st">準備中</span></li>
+    <li><span class="n">5</span><span class="t">マール・ドゥーンの航海<small>Immram curaig Máele Dúin</small></span><span class="st">準備中</span></li>
+    <li><span class="n">6</span><span class="t">エーダインへの求婚<small>Tochmarc Étaíne</small></span><span class="st">準備中</span></li>
+    <li><span class="n">7</span><span class="t"><a href="#condla">コンラの冒険</a><small>Echtra Condla</small></span><span class="st on">掲載中</span></li>
+    <li><span class="n">8</span><span class="t">クー・フリンの霊の戦車<small>Siaburcharpat Con Culaind</small></span><span class="st">準備中</span></li>
+    <li><span class="n">9</span><span class="t">エオヒズの死とリー・バン<small>Aided Echach meic Maireda</small></span><span class="st">準備中</span></li>
+    <li><span class="n">10</span><span class="t">アダウナーンの幻視<small>Fís Adamnáin</small></span><span class="st">準備中</span></li>
+    <li><span class="n">11</span><span class="t">ウラドの酩酊<small>Mesca Ulad</small></span><span class="st">準備中</span></li>
+    <li><span class="n">12</span><span class="t">フリディシュの牛捕り<small>Táin Bó Flidais</small></span><span class="st">準備中</span></li>
+  </ol>
+  <p class="order-note">1の「牛捕り」から順に訳し、できた分から追加しています。「コンラの冒険」は体裁の見本として先に載せたものです。写本の欠損で途中が失われている話（5、6、11など）は、欠けている箇所をその場で示します。</p>
+</section>
+
+<section class="biblio" id="biblio" aria-labelledby="bib-h">
+  <h2 class="label" id="bib-h">底本と写本について</h2>
+  <p>この訳は、ダブリンのロイヤル・アイリッシュ・アカデミーが所蔵する写本『レヴァル・ナ・フイドレ』の本文に基づいています。写本そのものではなく、その本文を活字に起こした Best と Bergin の校訂版（1929年）を底本にしています。</p>
+
+  <h3>写本</h3>
+  <dl>
+    <dt>名称</dt><dd><i class="ga">Lebor na hUidre</i>（レヴァル・ナ・フイドレ）。英語では <i class="ga">Book of the Dun Cow</i>（ダン・カウの書）と呼ばれます。<span class="ga">odar</span> は「灰褐色の（牛）」の意で、聖キアラーンの愛した灰褐色の牝牛の皮に書かれたという伝承に由来します。</dd>
+    <dt>所蔵</dt><dd>ダブリン、ロイヤル・アイリッシュ・アカデミー（Royal Irish Academy）</dd>
+    <dt>請求記号</dt><dd>MS 1229（旧番号 23 E 25）</dd>
+    <dt>年代</dt><dd>11世紀末から12世紀初め頃。主要な書き手の一人とされるマール・ムレ・マク・ケーレハルは、1106年にクロンマクノイズで略奪者に殺されたと年代記に記録されています。</dd>
+    <dt>成立地</dt><dd>クロンマクノイズ（アイルランド中部、シャノン川沿いの修道院）と考えられています。</dd>
+    <dt>素材</dt><dd>羊皮紙。現存するのは一部で、多くの葉が失われています。そのため、収録された物語の多くが途中で途切れています。</dd>
+    <dt>言語</dt><dd>大部分が古・中期アイルランド語です。ラテン語は約670語で、その大半は「コルム・キレ讃歌」の注釈に含まれます。余白の書き込みには、初期近代アイルランド語のものもあります。</dd>
+    <dt>書き手</dt><dd>
+      校訂者は筆跡を次のように区別しています。<br>
+      ・A、M：主要な二人の書き手<br>
+      ・H：のちに本文を補筆・改訂した書き手。CELT版はこれをマール・ムレ・マク・ケーレハル（<span class="ga">Máel Muire mac Célechair</span>）とする<br>
+      ・L：後世の注記者たち<br>
+      ・SC：シグラド・ウア・クイルンディーン（<span class="ga">Sigraid Ua Cuirrndín</span>）。後代にインクの薄れた箇所をなぞり直した人物<br>
+      どの筆跡を誰に当てるかについては、研究者のあいだで議論が続いています。
+    </dd>
+    <dt>来歴</dt><dd>写本の末尾近くに、後世の書き込みが二つ残っています。一つは、ドウナル・マク・ムルヘルタグの依頼でシグラド・ウア・クイルンディーンが写本を「新たにした」と記すものです。もう一つは、アイ・ルーアド・オ・ドウナル（<span class="ga">Aodh Ruadh Ó Domhnaill</span>）が、この書を『レヴァル・ゲル（短い書）』とともにコナハタの人々から取り戻したと記すものです。それによると、この書はそれ以前、身代金の担保としてコナハタ側に渡っていました。19世紀にロイヤル・アイリッシュ・アカデミーの所蔵となりました。</dd>
+    <dt>目録</dt><dd>Kathleen Mulchrone and Elizabeth FitzPatrick, <i class="ga">Catalogue of Irish Manuscripts in the Royal Irish Academy</i>, fasc. xxvi–xxvii (Dublin 1943), pp. 3367–3379.</dd>
+  </dl>
+
+  <h3>底本とした校訂版</h3>
+  <dl>
+    <dt>校訂版</dt><dd>Richard Irvine Best and Osborn Bergin (eds), <i class="ga">Lebor na hUidre: Book of the Dun Cow</i> (Dublin: Royal Irish Academy, 1929). 1953年に再版。1992年にダブリン高等研究所ケルト研究部門から再版され、正誤表（pp. 339–341）が加えられました。</dd>
+    <dt>性格</dt><dd>写本の綴りや句読点をできるだけ残す「半外交的（semi-diplomatic）」校訂版です。書き手ごとに活字を変えて区別し、余白や行間の注記は各ページの下にまとめています。語の切れ目と固有名詞の大文字化は校訂者によるものです。</dd>
+    <dt>電子版</dt><dd><i class="ga">CELT: Corpus of Electronic Texts</i>（ユニバーシティ・カレッジ・コーク）、テキスト番号 G301900。Donnchadh Ó Corráin と Hildegard L. C. Tristram の編集で、1996年に初版、2012年まで改訂が続けられました。正誤表の訂正は本文に組み込まれています。</dd>
+    <dt>訳の方針</dt><dd>本文の読みは校訂版に従っています。写本の画像との照合はしていません。校訂者が補った語や訂正した語も、校訂版の判断に従って訳しています。写本の欠損で本文が失われている箇所は、訳文中にその旨を示します。</dd>
+  </dl>
+
+  <h3>主な参考文献</h3>
+  <ul class="refs">
+    <li>R. I. Best, &ldquo;Notes on the script of Lebor na hUidre&rdquo;, <i class="ga">Ériu</i> 6 (1912) 161–74.</li>
+    <li>H. P. A. Oskamp, &ldquo;Notes on the history of Lebor na hUidre&rdquo;, <i class="ga">Proceedings of the Royal Irish Academy</i> 65 C (1966–67) 117–37.</li>
+    <li>Tomás Ó Concheanainn, &ldquo;The reviser of Leabhar na hUidhre&rdquo;, <i class="ga">Éigse</i> 15 (1974) 277–88.</li>
+    <li>David Greene, &ldquo;Leabhar na hUidhre&rdquo;, in Liam de Paor (ed.), <i class="ga">Great Books of Ireland</i> (Dublin 1967) 64–76.</li>
+  </ul>
+</section>
+
+<article class="tale" id="tain">
+  <div class="kicker">第一話 ・ 全二十五章（写本の欠損まで）</div>
+  <h2>クアルンゲの牛捕り</h2>
+  <p class="orig">Táin Bó Cúailnge</p>
+  <p class="intro">アイルランド西部コナハトの女王メドヴと王アリルが、アイルランドじゅうの軍勢を集めて北のウラド（アルスター）へ攻め込み、クアルンゲの名高い褐色の牡牛を奪おうとする話です。ウラドの男たちは呪いのために戦えない状態にあり、まだ少年の英雄クー・フリンがただ一人で国境を守ります。アイルランド叙事文学の中心をなす作品で、この写本に残るのは現存最古の版の一つです。写本の「牛捕り」は、義兄弟フェル・ディアドとの一騎打ちの手前で、葉の欠落のために途切れています。</p>
+
+  <section class="persons" aria-labelledby="tp-h">
+    <h3 class="label" id="tp-h" style="font-family:var(--font-ui);font-weight:500;font-size:.8rem;letter-spacing:.14em;color:var(--muted)">ここまでの主な登場人物</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>人物</th><th>説明</th></tr></thead>
+      <tbody>
+        <tr><td>メドヴ<span class="ga">Medb</span></td><td>コナハトの女王。遠征の首謀者。</td></tr>
+        <tr><td>アリル<span class="ga">Ailill</span></td><td>メドヴの夫で、コナハトの王。</td></tr>
+        <tr><td>フィンダヴィル<span class="ga">Findabair</span></td><td>アリルとメドヴの娘。</td></tr>
+        <tr><td>七人のマネ<span class="ga">na secht Maine</span></td><td>アリルとメドヴの七人の息子。全員が「マネ」という名を持ち、あだ名で区別される。</td></tr>
+        <tr><td>マーガハの七人の息子<span class="ga">secht maicc Mágach</span></td><td>アリルの兄弟たち。それぞれ三千の兵を率いて加わる。</td></tr>
+        <tr><td>フェルグス<span class="ga">Fergus mac Róich</span></td><td>ウラドから亡命してコナハトに身を寄せている勇士。コナハト軍の道案内を務めるが、故国への情も捨てていない。</td></tr>
+        <tr><td>コルマク・コン・ロンガス<span class="ga">Cormac Cond Longas</span></td><td>ウラドの王コンホヴァルの息子。父と仲違いして、亡命者の一団とともにコナハトにいる。</td></tr>
+        <tr><td>ドゥフタハ<span class="ga">Dubthach Dóeltenga</span></td><td>ウラドからの亡命者。「黒甲虫の舌」というあだ名のとおり、毒舌で知られる。</td></tr>
+        <tr><td>フェデルム<span class="ga">Fedelm</span></td><td>コナハトの女詩人で、予言者。</td></tr>
+        <tr><td>コンホヴァル<span class="ga">Conchobar</span></td><td>ウラドの王。都はエウィン・ヴァハ（<span class="ga">Emain Macha</span>）。</td></tr>
+        <tr><td>クー・フリン<span class="ga">Cú Chulainn</span></td><td>ウラドの若い英雄。十七歳。呪いを受けておらず、ただ一人戦うことができる。</td></tr>
+        <tr><td>スアルティウ<span class="ga">Sualtaim</span></td><td>クー・フリンの父（人間の側の父）。</td></tr>
+        <tr><td>ロイグ<span class="ga">Lóeg</span></td><td>クー・フリンの御者。（第三章から）</td></tr>
+        <tr><td>エル、イネル、フォイフ、フォフラム</td><td>軍勢の前を進む四人の若者。（第三章）</td></tr>
+        <tr><td>デヒティレ<span class="ga">Dechtire</span></td><td>コンホヴァルの姉妹で、クー・フリンの母。（第四章）</td></tr>
+        <tr><td>フォラマン<span class="ga">Follomon</span></td><td>コンホヴァルの息子。エウィンの少年たちの一人。（第四章）</td></tr>
+        <tr><td>コナル・ケルナハ<span class="ga">Conall Cernach</span></td><td>ウラドの英雄。クー・フリンの養い親の一人として、その少年時代を語る。（第六章）</td></tr>
+        <tr><td>クラン<span class="ga">Culann</span></td><td>ウラドの鍛冶屋。その番犬が、クー・フリンの名の由来となる。（第六章）</td></tr>
+        <tr><td>カトヴァド<span class="ga">Cathbad</span></td><td>コンホヴァルに仕えるドルイド。（第六章）</td></tr>
+        <tr><td>クスクラド<span class="ga">Cúscraid</span></td><td>コンホヴァルの息子。（第五章）</td></tr>
+        <tr><td>フィアハ<span class="ga">Fiacha mac Fir Febe</span></td><td>コンホヴァルの娘の子で、ウラドからの亡命者。少年時代の武勲の三人目の語り手。（第七章）</td></tr>
+        <tr><td>イヴァル<span class="ga">Ibor</span></td><td>コンホヴァルの御者。（第七・八章）</td></tr>
+        <tr><td>ネフタ・スケーネの息子たち</td><td>フォイル、ファンダル、トゥアヘルの三兄弟。ウラドの宿敵。（第八章）</td></tr>
+        <tr><td>ムガン<span class="ga">Mugain</span></td><td>コンホヴァルの妃。（第八章）</td></tr>
+        <tr><td>フラーイフ<span class="ga">Fráech</span></td><td>コナハトの若い戦士。母は異界の女。（第九章）</td></tr>
+        <tr><td>オルラウ<span class="ga">Orlám</span></td><td>アリルとメドヴの息子。（第九章）</td></tr>
+        <tr><td>モリーガン<span class="ga">in Mórrígan</span></td><td>戦いと運命の女神。鳥の姿で牛牛に警告する。（第十章）</td></tr>
+        <tr><td>クアルンゲの褐色の牛牛<span class="ga">Donn Cúailnge</span></td><td>この遠征の目的。背に百五十人の少年を乗せるほどの巨大な牛。（第十章）</td></tr>
+        <tr><td>ローハル<span class="ga">Lóthar</span></td><td>牛飼い。牛牛に突き殺される。（第十章）</td></tr>
+        <tr><td>クリウス<span class="ga">Cuillius</span></td><td>アリルの御者。フェルグスの剣を盗む。（第十一・十二章）</td></tr>
+        <tr><td>ルギド<span class="ga">Lugaid mac Nóis</span></td><td>マンスターの王。クー・フリンの友で、交渉役。（第十二章）</td></tr>
+        <tr><td>マク・ロト<span class="ga">Mac Roth</span></td><td>アリルとメドヴの使者。（第十二章）</td></tr>
+        <tr><td>エタルコウォル<span class="ga">Etarcomol</span></td><td>アリルとメドヴの養い子。一騎打ちの最初の相手。（第十三章）</td></tr>
+        <tr><td>ナト・クランタル<span class="ga">Nath Crantail</span></td><td>コナハトの戦士。フィンダヴィルを報酬に約束されて挑む。（第十四章）</td></tr>
+        <tr><td>レーグ<span class="ga">Redg</span></td><td>アリルの風刺詩人。（第十五章）</td></tr>
+        <tr><td>クー・ロイ<span class="ga">Cú Roí mac Dáire</span></td><td>マンスターの王。コナハト側に加勢する。（第十六章）</td></tr>
+        <tr><td>ムンレウァル<span class="ga">Munremar mac Gerrcind</span></td><td>ウラドの勇士。（第十六章）</td></tr>
+        <tr><td>ロハド<span class="ga">Rochad mac Fathemon</span></td><td>ウラドでいちばん美しい戦士。フィンダヴィルの恋する相手。（第十七章）</td></tr>
+        <tr><td>カウル<span class="ga">Cáur mac Da Láth</span></td><td>流させた血が九日で相手を死なせる勇士。（第十七章）</td></tr>
+        <tr><td>フェル・バイト<span class="ga">Fer Báeth</span></td><td>スカータハのもとでともに学んだ、クー・フリンの義兄弟。（第十八章）</td></tr>
+        <tr><td>ラーリネ<span class="ga">Láríne mac Nóis</span></td><td>ルギドの兄弟。（第十八章）</td></tr>
+        <tr><td>ロッホ<span class="ga">Lóch mac Emonis</span></td><td>角のように硬い皮を持つ強敵。弟ロングの仇を討とうとする。（第二十章）</td></tr>
+        <tr><td>ブリクリウ<span class="ga">Bricriu Nemthenga</span></td><td>毒舌の人。クー・フリンをけしかける。（第二十章）</td></tr>
+        <tr><td>ルグ<span class="ga">Lug mac Ethlend</span></td><td>光と技芸の神。クー・フリンの神の父。（第二十一章）</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <div class="sides" role="figure" aria-label="両軍の顔ぶれ">
+    <div class="cap">両軍の顔ぶれ</div>
+    <div>
+      <h4>攻める側（アイルランド四州の連合軍）</h4>
+      <ul>
+        <li>コナハト：アリル、メドヴ、七人のマネ、マーガハの七人の息子</li>
+        <li>ウラドからの亡命者：フェルグス、コルマク・コン・ロンガス、ドゥフタハ（三千）</li>
+        <li>レンスターのガリオーン族（三千）</li>
+        <li>マンスターの七人の王（各三千）</li>
+      </ul>
+    </div>
+    <div>
+      <h4>守る側（ウラド）</h4>
+      <ul>
+        <li>王コンホヴァルと戦士たち：呪いのため、衰弱して戦えない</li>
+        <li>クー・フリン：ただ一人戦える</li>
+        <li>スアルティウ：クー・フリンの父</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text">
+    <h3 class="chapter"><small>第一章</small>出陣と女詩人の予言</h3>
+    <p class="open">コナハトの人々、すなわちアリルとメドヴのもとで大軍勢が召集され、他の三つの州へも使者が送られた。アリルはマーガハの七人の息子たちのもとへも使者を遣わした。アリル、アーンルーアン、モッコルブ、ケト、エーン、バスカル、ドーヘの七人で、それぞれが三千の兵を率いていた<sup class="fn" id="tr1"><a href="#tn1">1</a></sup>。またコンホヴァルの息子コルマク・コン・ロンガスのもとへも使者が送られた。コルマクは三百の兵とともに、コナハトに客として身を寄せていたのである。こうして皆がやって来て、アイのクルーアハン<sup class="fn" id="tr2"><a href="#tn2">2</a></sup>に集った。</p>
+    <p>コルマクは三つの隊を率いてクルーアハンへ進んで来た。</p>
+    <p>第一の隊は、ひだを取った斑の外套を身に巻きつけていた。頭は短く刈り込まれ<sup class="fn" id="tr3"><a href="#tn3">3</a></sup>、膝まで届く下衣を着け、長い盾を持ち、各人の手には細い柄に付けた幅広で灰緑色の槍があった。</p>
+    <p>第二の隊は暗い灰色の外套をまとい、足首まで届く赤い縫い取りの下衣を着ていた。髪は頭の後ろへ長く垂らし、白い盾を持ち、手には五叉の槍を携えていた。</p>
+    <p>「あれもまだコルマクではない」とメドヴは言った。</p>
+    <p>そこへ第三の隊がやって来た。紫の外套をまとい、赤い縫い取りのある頭巾つきの下衣を足先まで垂らし、髪は肩まで切りそろえていた。縁を波形に刻んだ曲面の盾を持ち、各人の手には王宮の柱ほどもある槍があった。</p>
+    <p>「今度こそコルマクだ」とメドヴは言った。</p>
+    <p>こうしてアイルランドの四つの州の軍勢がアイのクルーアハンに集まった。しかし占い師やドルイドたちは、良い兆しを待って、彼らを二週間そこから出発させなかった。</p>
+    <p>いよいよ出発するという日、メドヴは御者に言った。「今日ここで仲間や友と別れる者は、皆わたしを呪うだろう。この遠征を呼び集めたのはわたしなのだから。」</p>
+    <p>御者は言った。「それではお待ちください。戦車を右回りに回して<sup class="fn" id="tr4"><a href="#tn4">4</a></sup>、良い兆しの力が働くようにいたしましょう。そうすれば、わたしたちはまた戻って来られます。」</p>
+    <p>御者が戦車を回し、二人がいざ出かけようとすると、目の前に一人の乙女がいた。</p>
+    <p>乙女の髪は黄金色で、斑の外套をまとい、外套には黄金のブローチが留めてあった。赤い縫い取りのある頭巾つきの下衣を着て、黄金の留め金のついた靴を履いていた。顔は顎が細く、額が広かった。眉は黒々として、黒いまつげが頬の半ばまで影を落としていた。唇は紅の染料で描いたかと思うほど赤く、口の中には真珠をこぼしたように歯が並んでいた。髪は三つ編みにして、二本は頭の上に巻き上げ、一本は背に垂らして、ふくらはぎに届いていた。手には白銅に黄金を象嵌した機織りの刀<sup class="fn" id="tr5"><a href="#tn5">5</a></sup>を持っていた。両の目には、それぞれ三つの瞳があった。乙女は武装しており、戦車には二頭の黒い馬がつながれていた。</p>
+    <p>「おまえの名は何という」とメドヴは乙女に言った。</p>
+    <p>「わたしはコナハトの女詩人フェデルムです。」</p>
+    <p>「どこから来たのか。」</p>
+    <p>「アルバ<sup class="fn" id="tr6"><a href="#tn6">6</a></sup>で詩の道を修めて、帰ってきたところです。」</p>
+    <p>「おまえは〈照らす霊感〉<sup class="fn" id="tr7"><a href="#tn7">7</a></sup>を持っているのか」とメドヴは言った。</p>
+    <p>「持っております。」</p>
+    <p>「それなら、わたしの遠征がどうなるか、見ておくれ。」</p>
+    <p>乙女は見た。メドヴは言った。「予言者フェデルムよ、この軍勢がどう見える。」</p>
+    <p>フェデルムは答えた。「紅に見えます。赤く見えます。」</p>
+    <p>「そんなはずはない」とメドヴは言った。「コンホヴァルはエウィンで病に臥せっていて<sup class="fn" id="tr8"><a href="#tn8">8</a></sup>、ウラドの選りすぐりの戦士たちも皆その周りにいる。わたしの使者たちが向こうへ行って、確かな知らせを持ち帰ったのだ。」</p>
+    <p>「予言者フェデルムよ、軍勢がどう見える。」</p>
+    <p>「紅に見えます。赤く見えます。」</p>
+    <p>「そんなはずはない。ケルトハル・マク・ウテヒルは、ウラドの三分の一の兵とともにダーン・レスグラス<sup class="fn" id="tr9"><a href="#tn9">9</a></sup>にいる。それに、エオヒズの孫、ロイヒの子フェルグスは、三千の兵を連れてここに亡命しているのだ。」</p>
+    <p>「予言者フェデルムよ、どう見える。」</p>
+    <p>「紅に見えます。赤く見えます。」</p>
+    <p>「それならかまわぬ」とメドヴは言った。「どんな軍勢にも、どんな大きな陣営の集まりにも、怒りの争いや激しい諍いはつきもので、紅の血も流れるものだ。もう一度見て、本当のことを言っておくれ。予言者フェデルムよ、どう見える。」</p>
+    <p>「紅に見えます。赤く見えます」とフェデルムは言い、こう歌った。</p>
+    <blockquote class="verse">
+      <p>色白の男が見えます。勇者の技を振るう男。<br>その白い肌には、いくつもの傷。<br>額には英雄の光が燃え、<br>その額は勝利の集う場所。</p>
+      <p>両の目の真ん中には、<br>勇者の七つの宝玉<sup class="fn" id="tr10"><a href="#tn10">10</a></sup>。<br>その武具はあらわに抜かれ、<br>留め金のついた赤い衣をまとっています。</p>
+      <p>なんと美しい顔立ちでしょう。<br>女たちは目を奪われます。<br>色の美しい若者ですが、<br>戦いのときには竜の姿を見せます。</p>
+      <p>その武勇は、ムルテヴネの<br>クー・フリンに似ています。<br>名の高いクー・フリンとは何者か、わたしは知りません。<br>けれども、これだけは知っています。<br>この軍勢は、その男のために血に染まるのです。</p>
+      <p>野に背の高い男が見えます。<br>男は軍勢に戦いを挑みます。<br>両の手に、それぞれ四振りの小さな剣を持ち、<br>見事な技を見せます。</p>
+      <p>男は二本の〈ガイ・ボルガ〉<sup class="fn" id="tr11"><a href="#tn11">11</a></sup>を振るい、<br>そのうえ象牙の柄の剣と槍も携えて、<br>わたしの軍勢に打ちかかります。<br>男の手を離れる武器は、どれも独自の技を見せます。</p>
+      <p>赤い外套をまとって戦いに臨む男が、<br>どの丘にも足を踏みしめます。<br>戦車の左の縁越しに<sup class="fn" id="tr12"><a href="#tn12">12</a></sup>彼らを斬り倒し、<br>〈姿の歪む者〉<sup class="fn" id="tr13"><a href="#tn13">13</a></sup>が彼らを討ちます。</p>
+      <p>いままで見えていたその姿が、<br>変わってゆくのが見えます。<br>男は戦いに向かいました。<br>用心しなければ、破滅が訪れます。</p>
+      <p>あなたがたを捜し求めているのは、<br>スアルティウの子クー・フリンに違いありません。</p>
+      <p>男は軍勢をまるごと打ち倒し、<br>屍を山と積み上げるでしょう。<br>あなたがたは、千の首を男のもとに残してゆくでしょう。<br>予言者フェデルムは、何も隠しません。</p>
+      <p>戦士の手によって、勇者たちの肌から血が流れます。<br>若者たちは討たれ、<br>デダの子シンの一族<sup class="fn" id="tr14"><a href="#tn14">14</a></sup>の男たちも倒れます。</p>
+      <p>体は切り刻まれ、女たちは泣くでしょう。<br>わたしに見える、鍛冶屋の猛犬によって。」</p>
+    </blockquote>
+    <p>サウィン<sup class="fn" id="tr15"><a href="#tn15">15</a></sup>の後の月曜日に、軍勢は出発した。一行はアイのクルーアハンから南東へ進み、次の土地を通っていった。</p>
+    <details class="route">
+      <summary>進軍の道程（原典の地名を順に掲げる）</summary>
+      <ol>
+        <li>Mucc Cruimb</li><li>Terloch Teora Crích</li><li>Túaim Mona</li>
+        <li>Cúil Sibrinne <span>（現在のロッホ・カルキン。マドハルの娘シレンにちなむ名）</span></li>
+        <li>Fid</li><li>Bolga</li><li>Coltain</li><li>Glúne Gabair</li><li>Mag Trego</li>
+        <li>Tethba 北部 <span>（すなわちカルブレ）</span></li><li>Tethba 南部</li><li>Tíarthechta</li><li>Ord</li>
+        <li>Slaís（南へ）</li><li>Indiuind</li><li>Carnd</li><li>Ochtrach</li><li>Mide</li><li>Findglassa Assail</li>
+        <li>Deilt</li><li>Delind</li><li>Sailig</li><li>Slaibre</li><li>Slechta <span>（彼らが森を切り開いたところ）</span></li>
+        <li>Cúil Sibrinne</li><li>Ochuind（南へ）</li><li>Úatu（北へ）</li><li>Dub</li><li>Comur（南へ）</li>
+        <li>Tromma</li><li>Othromma（東へ）</li><li>Slane</li><li>Gort Slane</li><li>Druim Licce（南へ）</li>
+        <li>Áth nGabla</li><li>Ardachad</li><li>Féraind（北へ）</li><li>Findabair</li><li>Assi（南へ）</li>
+        <li>Druim Sálfind</li><li>Druim Caín</li><li>Druim mac nDega</li><li>Eódond Mór</li><li>Eódond Bec</li>
+        <li>Methe Tog</li><li>Methe nEóin</li><li>Druim Cáemtechta</li><li>Scúaip</li><li>Imscúaip</li>
+        <li>Cend Ferna</li><li>Baile</li><li>Aile</li><li>Báil Scena</li><li>Dáil Scena</li><li>Fertse</li>
+        <li>Ross Lochad</li><li>Sále</li><li>Lochmach</li><li>Ánmag</li><li>Deind</li><li>Deilt</li>
+        <li>Dubglaiss</li><li>Fid Mór <span>（すなわちトルーアリ）</span></li><li>Colbtha</li><li>Crond（クアルンゲ）</li>
+      </ol>
+    </details>
+    <p>アイルランドの軍勢は、クアルンゲのフィンダヴィル<sup class="fn" id="tr16"><a href="#tn16">16</a></sup>から州じゅうに散らばって、牡牛を捜した。フィンダヴィルに着くまでは、皆がこの牡牛を目指して進んできたのである。</p>
+    <p>ここで道程の一覧は終わる。ここから、物語を順を追って語る<sup class="fn" id="tr17"><a href="#tn17">17</a></sup>。</p>
+
+    <h3 class="chapter"><small>第二章</small>ガリオーン族とドゥフタハの歌</h3>
+    <p class="open">一行はクルーアハンから最初の一日の道のりを進み、クール・シヴリンネ（いまロッホ・カルキンのあるところ）に着いた。メドヴは御者に、自分の九台の戦車を支度させた。メドヴは大軍の土埃に汚れないよう、いつも九台の戦車を連ねて軍勢から離れて進んでいたのである。メドヴは陣営をひと回りして、誰がこの遠征を渋っており、誰が勇んでいるかを見ようとした。</p>
+    <p>そのあいだにアリルの天幕が張られ、寝床の用意が整えられた。天幕では、アリルの隣にロイヒの子フェルグスが座った。その隣にコンホヴァルの子コルマク・コン・ロンガス、その隣にコナル・ケルナハ<sup class="fn" id="tr18"><a href="#tn18">18</a></sup>、その隣にコンホヴァルの娘の子フィアハ・マク・フィル・フェヴェが座った。アリルのもう一方の隣には、エオヒズ・フェドレフの娘メドヴが座り、その隣にアリルとメドヴの娘フィンダヴィルが座った。このほかに召使いや給仕の者たちがいた。</p>
+    <p>メドヴは軍勢を見て回って帰ってくると、言った。「あのガリオーン族<sup class="fn" id="tr19"><a href="#tn19">19</a></sup>の三千が行くのなら、他の者たちが行くのは無駄なことです。」</p>
+    <p>「なぜあの者たちをけなすのだ」とアリルは言った。</p>
+    <p>「けなしているのではありません」とメドヴは言った。「あれは見事な戦士たちです。皆が野営の小屋を作っているあいだに、あの者たちはもう小屋を作り終え、食事を煮ていました。皆が食事をしているあいだに、あの者たちはもう食べ終わって、竪琴弾きに歌を奏でさせていました。あの者たちを連れて行っても無駄です。この遠征の手柄は、すべてあの者たちのものになってしまうでしょう。」</p>
+    <p>「だが、あの者たちはわたしたちのために戦うのだぞ」とアリルは言った。</p>
+    <p>「わたしたちと一緒に行かせはしません」とメドヴは言った。</p>
+    <p>「それなら残しておけばよい」とアリルは言った。</p>
+    <p>「残しておくこともできません」とメドヴは言った。「わたしたちが出かけたあとで襲いかかってきて、わたしたちの国を奪ってしまうでしょう。」</p>
+    <p>「では、どうするのだ」とアリルは言った。「行かせるのもだめ、残すのもだめだというのなら。」</p>
+    <p>「殺すのです」とメドヴは言った。</p>
+    <p>「いかにも女の考えることだ」とアリルは言った。「おまえの言うことはよくない。」</p>
+    <p>「まあ、待て」とフェルグスが言った。「そんなことはさせない。あの者たちはわれらウラドの者の盟友だ。殺すというなら、われら全員を殺してからにするがいい。」</p>
+    <p>「できないことではありません」とメドヴは言った。「ここにはわたし直属の兵が二つの三千<sup class="fn" id="tr20"><a href="#tn20">20</a></sup>、つまり六千いるのです。それに七人のマネ、わたしの七人の息子が、七つの三千を率いています。マネ・マーハルウィル（母に似た者）、マネ・アハルウィル（父に似た者）、マネ・モールゴル（大いなる孝行者）、マネ・ミーンゴル（穏やかな孝行者）、マネ・モー・エペルト（すなわちマネ・ミルスコタハ、甘い言葉の者）、マネ・アンドーイ、そしてマネ・コターゲヴ・ウレ（すべてを備える者）。この最後の子は、母の姿と父の姿、そして二人の威厳をそっくり受け継いでいるのです。」</p>
+    <p>「そうはさせない」とフェルグスは言った。「ここにはマンスターの王が七人いて、それぞれ三千を率いている。わしらウラドの者の盟友だ。この陣営のただ中で、おまえに戦いを挑んでもよい。わしにはその七つの三千と、わし自身の三千、それにガリオーン族の三千がついている。だが、そこまではすまい。ガリオーン族を軍勢じゅうに散らして、軍勢を牛耳ることのないようにしよう。</p>
+    <p>われらの陣営は十七の三千だ。そのほかに、雑兵と女たちがいる。ここにいる王は皆、王妃を連れて来ていて、メドヴのお供をしているのだからな。それに少年たちもいる。そしてガリオーン族の三千が、十八番目の三千になる。これを軍勢じゅうに分けて配ればよい。」</p>
+    <p>「それでかまいません」とメドヴは言った。「いまのようにひとかたまりになっていなければ。」</p>
+    <p>そこで、ガリオーン族は軍勢じゅうに分けて配られた。</p>
+    <p>翌日、一行はモーン・ホールトラ<sup class="fn" id="tr21"><a href="#tn21">21</a></sup>へ進んだ。そこで八十頭の鹿の群れに出くわした。一行は鹿を取り囲んで仕留めた。ところが、どこであれガリオーン族の男がいれば、鹿を仕留めるのはきまってその男だった。残りの軍勢が全部で仕留めたのは、たった五頭だった。</p>
+    <p>それから一行はマグ・トレゴへ進み、そこで馬を外して食事の支度をした。言い伝えによれば、ドゥフタハがこの歌を歌ったのはここである。</p>
+    <blockquote class="verse">
+      <p>「聞け、これまで聞いたことのない話を。<br>ドゥフタハの言葉に耳を傾けよ。<br>黒々とした軍勢が動きだした、<br>アリルの妻の白角の牡牛<sup class="fn" id="tr22"><a href="#tn22">22</a></sup>をめぐって。</p>
+      <p>あの男が来る、<br>ムルテヴネの家畜を守るために。<br>鴉どもが乳を飲むだろう<sup class="fn" id="tr23"><a href="#tn23">23</a></sup>、<br>豚飼いたちの慣わしのとおりに。</p>
+      <p>クロン川が逆巻いて彼らを阻み、<br>ムルテヴネへは入らせぬ。<br>フェーネの戦士たちの働きが、<br>北のオハネの山で終わるまで<sup class="fn" id="tr24"><a href="#tn24">24</a></sup>。</p>
+      <p>急げ、とアリルはコルマクに言う。<br>来て、おまえの息子を守れ<sup class="fn" id="tr25"><a href="#tn25">25</a></sup>。<br>家畜の野から、軍勢のどよめきを<br>聞かずに帰ってくる者はない。</p>
+      <p>このあとには戦いが起こるだろう、<br>軍勢の三分の一を率いるメドヴのもとで。<br>屍がいくつも転がるだろう、<br>〈姿の歪む者〉がおまえたちのもとへ来るなら。」</p>
+    </blockquote>
+    <p>するとネウィン<sup class="fn" id="tr26"><a href="#tn26">26</a></sup>、すなわち戦いの女神ヴォドヴが、彼らに襲いかかった。その夜は、彼らにとって安らかな夜ではなかった。ドゥフタハが眠りながら、恐ろしさのあまりうなされていたのである。軍勢はたちまち乱れ、大軍は大騒ぎになり、メドヴが出ていって鎮めなければならなかった。</p>
+    <p>一行はそれから進んで、北テフヴァのグラーナルド（いまのグラナード）で夜を過ごした。それまでにフェルグスは、沼地や川を越える回り道をさせて、軍勢を惑わせていた。</p>
+    <p>フェルグスはその間に、ウラドの人々への情から、彼らに警告を送った<sup class="fn" id="tr27"><a href="#tn27">27</a></sup>。ウラドの人々は衰弱の呪いのさなかにあった。呪いを免れていたのは、クー・フリンとその父スアルティウだけだった。</p>
+    <p>フェルグスの警告が届くと、クー・フリンと父はやって来て、イラルド・クリン（いまのクロス・カイール）で軍勢を見張った。</p>
+    <p>「今夜、軍勢がすぐ近くまで来ている気配がします」とクー・フリンは父に言った。「父上はウラドの人々に知らせに行ってください。わたしはフェデルム・ノイフリデ<sup class="fn" id="tr28"><a href="#tn28">28</a></sup>との約束があるので、どうしても会いに行かなければなりません。」</p>
+    <p>出かける前に、クー・フリンは若木で輪を作り、その軸にオガム文字<sup class="fn" id="tr29"><a href="#tn29">29</a></sup>を刻んで、立石の頂にかけておいた。</p>
+
+    <h3 class="chapter"><small>第三章</small>若木の輪と二股の枝</h3>
+    <p class="open">道案内は、軍勢の先頭に立つフェルグスに任されていた。ところがフェルグスは、南へ大きく回り道をした。ウラドの人々が軍勢を集める暇を稼ごうとしたのである。故国への情から、フェルグスはそうしたのだった。アリルとメドヴはそれに気づき、メドヴがこう言った。</p>
+    <blockquote class="verse">
+      <p>「フェルグスよ、おかしなことです。<br>わたしたちはいったい、どんな道を進んでいるのでしょう。<br>南へ北へと回り道をして、<br>よその国ばかりを越えてゆく。</p>
+      <p>アイのアリルは、軍勢もろとも<br>裏切られるのではと恐れています。<br>あなたはこれまで、<br>道の先導に心を向けてこなかった。</p>
+      <p>情けにほだされてそうしているのなら、<br>馬の先頭に立つのはおやめなさい。<br>道の先導なら、<br>ほかの誰かが見つかるでしょうから。」</p>
+    </blockquote>
+    <p>フェルグスは答えた。</p>
+    <blockquote class="verse">
+      <p>「メドヴよ、なぜそう苛立つのだ。<br>これは裏切りなどではない。<br>女よ、わしが踏み入ってきたこの国は、<br>ウラドの国なのだ。</p>
+      <p>わしが回り道を重ねるのは、<br>軍勢を害するためではない。<br>マグ・ムルテヴネを守る<br>あの大いなる若者を避けるためだ。</p>
+      <p>わしが回り道をするのは、<br>正気を失ったからではない。<br>スアルティウの子クー・フリンを、<br>この先どうにかして避けられぬかと思うからだ。」</p>
+    </blockquote>
+    <p>軍勢はイラルド・クリン（いまのクロス・カイール）に着いた。エル、イネル、フォイフ、フォフラム<sup class="fn" id="tr30"><a href="#tn30">30</a></sup>の四人と、その御者二人が、いつも軍勢の前を進んでいた。大軍の土埃で、主人たちの外套や敷物や上掛けが汚れないようにするためである。この四人が、クー・フリンの置いていった輪を見つけた。</p>
+    <p>そして四人は、馬が草を食んだ跡に気づいた。スアルティウの二頭の馬は、草を根こそぎ地面から食いちぎっていた。ところがクー・フリンの二頭の馬は、草を食べ尽くしたうえ、その下の土まで、石が出るほど舐め取っていたのである。</p>
+    <p>四人はそこに腰を下ろして、軍勢が来るのを待った。楽人たちは楽を奏でた。四人は輪を、ロイヒの子フェルグスの手に渡した。フェルグスは、輪に刻まれたオガム文字を読んだ。</p>
+    <p>やって来たメドヴが言った。「なぜここで待っているのです。」</p>
+    <p>「この輪のためだ」とフェルグスは言った。「この輪の軸にはオガムが刻まれていて、こう書いてある。〈このように輪をかけた男と同じことをする者が現れるまでは、ここを通ってはならない。その者は、ただ一本の若木で、片手で輪を作らねばならない。ただし、わが友フェルグスはこの定めを免れる〉。」</p>
+    <p>フェルグスは続けた。「まちがいない。これをかけたのはクー・フリンだ。この野の草を食んだのも、あの男の馬だ。」</p>
+    <p>フェルグスは輪をドルイドの手に渡し、この歌を歌った。</p>
+    <blockquote class="verse">
+      <p>「この輪は何を告げているのか。<br>この輪の秘めた意味は何なのか。<br>これをかけたのは何人か。<br>一人か、それとも大勢か。</p>
+      <p>この輪を越えて進めば、<br>軍勢に災いがあるのか。<br>ドルイドたちよ、それを見定めよ。<br>この輪は何のために置かれたのか。」</p>
+    </blockquote>
+    <p>ドルイドが答えた。</p>
+    <blockquote class="verse">
+      <p>「勇者の輪です。英雄がかけたのです。<br>戦士たちを苦しめるもの、<br>君主たちを足止めするもの<sup class="fn" id="tr31"><a href="#tn31">31</a></sup>。<br>ただ一人の男が、片手でかけたのです。</p>
+      <p>王の軍勢は、これに従わねばなりません。<br>誰かがこの定めを果たすのでないかぎり。<br>あなたがたの中から、ただ一人、<br>これをかけた男と同じことをする男が現れるのでないかぎり。</p>
+      <p>わたしにわかるのはそれだけです。<br>この輪が置かれたわけは。」</p>
+    </blockquote>
+    <p>フェルグスは皆に言った。「この輪を侮って、そのまま通り過ぎたなら、こうなる。輪をかけた男は、オガムを刻んだ者を追ってくる。たとえその者が誰かの手に守られていようと、錠をかけた家の中にいようと、必ず追ってくる。そして、おまえたちの誰かが同じような輪をかけないかぎり、夜明けまでにおまえたちのうち一人を殺すだろう。」</p>
+    <p>「すぐに仲間が殺されるのはごめんだ」とアリルは言った。「南にある大きな森の外側を回って行こう。ここは通らずにおけばよい。」</p>
+    <p>兵たちは戦車の前に立って森を切り開いた。そのため、その場所はスレフタ（切り開かれた所）と呼ばれる。いまパルトリゲ<sup class="fn" id="tr32"><a href="#tn32">32</a></sup>がある所である。</p>
+    <p>ただし別の言い伝えによれば、先に述べたメドヴと予言者フェデルムの問答が交わされたのは、実はこの場所だったという。フェデルムがメドヴに答えたのち、森が切り開かれたというのである。メドヴが「わたしの遠征がどうなるか見ておくれ」と言うと、フェデルムは「むずかしゅうございます。森に遮られて、あなたがたの姿が見えません」と答えた。「それなら森を切り払いましょう」とメドヴは言い、そのとおりにした。それでこの場所はスレフタと呼ばれるのだという。</p>
+    <p>一行はクール・シヴリレ（すなわちケナナス<sup class="fn" id="tr33"><a href="#tn33">33</a></sup>）で夜を過ごした。大雪が降って、男たちの腿まで、戦車の車輪まで積もった。</p>
+    <p>翌朝、一行は早くに起き出した。雪のせいで、その夜は誰も安らかに眠れなかったのである。その夜は食事の支度もできなかった。</p>
+    <p>一方クー・フリンは、密会からなかなか戻らなかった。身を洗い、湯を浴びるまでぐずぐずしていたのである。それから軍勢の跡を追ってきた。</p>
+    <p>「まずいことをした」とクー・フリンは言った。「ウラドの人々を裏切ってしまった。何の知らせもせずに、敵の軍勢を彼らのもとへ通してしまったのだから。」</p>
+    <p>そしてクー・フリンは、御者のロイグ<sup class="fn" id="tr34"><a href="#tn34">34</a></sup>に言った。「軍勢の数を見積もってくれ。どれほどの数か、知っておきたい。」</p>
+    <p>ロイグはやってみて、言った。「わたしには入り乱れて見えて、数えられません。」</p>
+    <p>「わたしが見れば、入り乱れて見えはしない」とクー・フリンは言った。</p>
+    <p>「では、戦車にお乗りください」とロイグは言った。</p>
+    <p>クー・フリンは戦車に乗り、しばらくのあいだ、軍勢の通った跡を見積もった。</p>
+    <p>「あなたでも、たやすくはないでしょう」とロイグは言った。</p>
+    <p>「おまえよりは、ずっとたやすい」とクー・フリンは言った。「わたしには三つの天分がある。見る力、見抜く力、見積もる力だ。もう見積もった。」</p>
+    <p>アイルランドで行われた見積もりのうち、最も巧みで最もむずかしいものが三つある。この「牛捕り」でクー・フリンがアイルランドの軍勢を数えたもの、マグ・トゥレドの戦いでルグがフォウォレ族の軍勢を数えたもの、ダ・デルガの館でインゲールが軍勢を数えたもの、の三つである。これがその三つ目である<sup class="fn" id="tr35"><a href="#tn35">35</a></sup>。</p>
+    <p>クー・フリンは言った。「十八の三千だ。ただし十八番目の三千は、軍勢じゅうに散らばっている。それで数えにくいのだ。」それは、ガリオーン族の三千のことであった。</p>
+    <p>クー・フリンは軍勢の周りを回って、アート・グレンハ<sup class="fn" id="tr36"><a href="#tn36">36</a></sup>に出た。そこで剣のひと振りで二股の木の枝を切り取り、流れの真ん中に突き立てた。こちらからもあちらからも、戦車が通り抜けられないようにしたのである。</p>
+    <p>そこへ、エル、イネル、フォイフ、フォフラムの四人が、二人の御者とともにやって来た。クー・フリンは四人の首をはね、二股の枝の四つの先端に突き刺した。そのためこの浅瀬は、アート・ガヴラ（二股の浅瀬）と呼ばれる。クノグヴァの北、ベラハ・カリレ・モールにある<sup class="fn" id="tr37"><a href="#tn37">37</a></sup>。</p>
+    <p>四人の馬は、軍勢のほうへ戻っていった。馬の敷物は血で真っ赤に染まっていた。軍勢は、浅瀬で敵が待ち構えて戦っているのだと思った。</p>
+    <p>一隊が浅瀬を見に出かけた。そこには一台の戦車の轍のほかには何もなかった。ただ、四つの首を載せた二股の枝が立っていて、その側面にはオガムの文字が刻まれていた。</p>
+    <p>やがて軍勢がそっくりやって来た。</p>
+    <p>「あれは、わたしたちの仲間の首ですか」とメドヴは言った。</p>
+    <p>「わたしたちの仲間だ。それも選りすぐりの者たちだ」とアリルは言った。</p>
+    <p>一人が、二股の枝の側面のオガムを読み上げた。「ただ一人の男が、片手でこの二股の枝を突き立てた。おまえたちのうち誰かが、片手でこれを突き立てるまでは、ここを通ってはならない。ただしフェルグスは除く。」</p>
+    <p>「四人がこんなにもたちまち殺されたとは、驚いたものだ」とアリルは言った。</p>
+    <p>「驚くべきはそこではない」とフェルグスは言った。「驚くべきは、この枝がひと振りで根元から切られていることだ。根元がひと太刀で切られているなら、それだけでもたいしたものだ。それに、この突き立て方を見よ。前もって穴を掘ったのではない。戦車の後ろから、片手で投げ込んで突き立てたのだ。」</p>
+    <p>「フェルグス、この難儀を取り除いてください」とメドヴは言った。</p>
+    <p>「では、戦車をよこせ」とフェルグスは言った。「引き抜いてみせよう。そうすれば、根元がひと太刀かどうか、おまえにもわかる。」</p>
+    <p>フェルグスは、皆の戦車を十四台も壊してしまった。最後に自分の戦車から引いて、ようやく枝を地面から抜き取った。見ると、根元はやはりひと太刀で切られていた。</p>
+    <p>「これから向かう相手がどういう者たちか、よく心にとめておかねばならぬ」とアリルは言った。「皆、食事の支度をせよ。昨夜は雪のせいで、誰も休めなかった。そして、これから向かう者たちの話や噂を、何か聞かせてもらおう。」</p>
+    <p>そこで皆に、クー・フリンのしたことが語られた。</p>
+    <p>アリルは尋ねた。「これをしたのはコンホヴァルか。」</p>
+    <p>「いや、ちがう」とフェルグスは言った。「あの男なら、戦の一隊を引き連れずに国境まで来ることはない。」</p>
+    <p>「ケルトハル・マク・ウテヒルか。」</p>
+    <p>「いや、ちがう。あの男も、戦の一隊を引き連れずに国境まで来ることはない。」</p>
+    <p>「エオガン・マク・ドゥルタハトか。」</p>
+    <p>「いや、ちがう」とフェルグスは言った。「あの男なら、槍の穂先をきらめかせた戦車を三十台も連ねずに、国境を越えることはない。</p>
+    <p>こんなことをやってのけるのは、クー・フリンだ。木をひと振りで根元から切り、あの四人をあんなにたちまち殺し、御者と二人きりで国境までやって来るのは、あの男しかいない。」</p>
+
+    <h3 class="chapter"><small>第四章</small>フェルグスの語るクー・フリン</h3>
+    <div class="tree" role="figure" aria-label="クー・フリンの系図">
+      <div class="cap">クー・フリンの系図</div>
+      <ul><li><span class="who">ファフトナ</span> <span class="fate">― ウラド王家</span>
+        <ul>
+          <li><span class="who">コンホヴァル</span> <span class="fate">― ウラドの王</span></li>
+          <li><span class="who">デヒティレ</span> <span class="fate">― コンホヴァルの姉妹。スアルティウに嫁ぐ</span>
+            <ul><li><span class="who">セーダンタ ＝ クー・フリン</span> <span class="fate">― 父はスアルティウ（神ルグの子とする伝承もある）</span></li></ul>
+          </li>
+        </ul>
+      </li></ul>
+    </div>
+    <p class="open">「ウラドにいるという、そのクー（猛犬）とやらは、どんな男なのだ」とアリルは言った。「その名高い若者は、いくつなのだ。」</p>
+    <p>「わけもないことだ」とフェルグスは言った。「あの子は五つのときに、エウィン・ヴァハへ少年たちと遊びに行った。六つのときには、スカータハ<sup class="fn" id="tr38"><a href="#tn38">38</a></sup>のもとへ武芸と技を学びに行った。七つのときには、もう武器を手にしていた。いまは十七になる。」</p>
+    <p>「その男が、ウラドで一番手ごわいのですか」とメドヴは言った。</p>
+    <p>「どこから見てもそうだ」とフェルグスは言った。「あれより手ごわい戦士に、おまえは出会うまい。あれより恐ろしく、鋭く、すばやい槍の穂先もない。あれより激しい英雄も、肉に飢えた鴉もない。あの年ごろで、あれの三分の一でも渡り合える者はない。あれより猛々しい獅子もない。戦いの盾板、打ち砕く槌、戦いの扉、軍勢の破滅、大軍の押しとどめとして、あれにまさる者はない。</p>
+    <p>あれほどの者は、どこにもいない。年齢も、背丈も、装いも、恐ろしさも、弁舌も、輝きも、名声も、声も、姿も、力も、強さも、技も、武具も、ひと打ちの重さも、怒りの炎も、勢いも、勝利も、敵を破る力も、狂おしい猛りも、その技の数々も、戦士としての誇りも、すばやさも、激しさも。九人分の技を、どの穂先にも込めることのできる者は、クー・フリンのほかにいない<sup class="fn" id="tr39"><a href="#tn39">39</a></sup>。」</p>
+    <p>「たいしたことではありません」とメドヴは言った。「体は一つきりでしょう。傷も負えば、捕らえることもできます。年ごろといえば、まだ年頃の娘と変わらないではありませんか。男としての手柄は、まだこれからでしょう。」</p>
+    <p>「そうではない」とフェルグスは言った。「今日あの男が見事な手柄を立てたとて、何の不思議もない。もっと幼かったころでさえ、あの子のすることは、すでに一人前の男のわざだったのだから。」</p>
+    <p>そしてフェルグスは、クー・フリンの少年時代の武勲を語りはじめた<sup class="fn" id="tr40"><a href="#tn40">40</a></sup>。</p>
+    <p>「あの子は、ムルテヴネの野のダルグディグ<sup class="fn" id="tr41"><a href="#tn41">41</a></sup>で、母と父に育てられた。そこであの子は、エウィンの少年たちの噂を聞いた。エウィンには、三五十人、つまり百五十人の少年がいて、遊び暮らしているのだ。</p>
+    <p>コンホヴァルは、こんなふうに王の日々を過ごしている。一日の三分の一は少年たちが遊ぶのを眺め、三分の一はフィドヘル<sup class="fn" id="tr42"><a href="#tn42">42</a></sup>を打ち、残りの三分の一は酒を飲んで、そのまま眠ってしまう。わしらは亡命の身だが、それでもアイルランドに、あれほど立派な王はいない。</p>
+    <p>クー・フリンは、少年たちのところへ行かせてほしいと母にせがんだ。</p>
+    <p>『行ってはなりません』と母は言った。『ウラドの勇士の誰かが、付き添ってくれるまでは。』</p>
+    <p>『それまで待つのは長すぎます』とクー・フリンは言った。『エウィンはどちらの方角か、教えてください。』</p>
+    <p>『北のほうです。でも、たいへんな道のりですよ。途中にスリアヴ・フアトの山があるのですから。』</p>
+    <p>『それでも、行ってみます。』</p>
+    <p>そうしてあの子は出かけた。持っていったのは、薄板の盾と、おもちゃの投げ槍と、ハーリングの棒と、球だった。あの子は投げ槍を前へ投げては、その尻が地面に着く前に、追いついてつかまえていた。</p>
+    <p>あの子はそうして少年たちのところへ行ったが、身の安全の保証を取りつけていなかった。誰であれ、少年たちの遊び場に入るには、まず少年たちに身の安全を保証してもらわねばならなかったのだ。だが、あの子はそれを知らなかった。</p>
+    <p>『あの子は、おれたちを侮っている』とコンホヴァルの息子フォラマンが言った。『ウラドの子だということはわかっているが。』</p>
+    <p>少年たちはあの子に打ちかかった。百五十本の投げ槍があの子めがけて投げられたが、一本残らず薄板の盾に突き刺さった。次に少年たちは、球をすべてあの子に投げつけた。あの子は、その球を一つ残らず胸で受け止めた。それから少年たちは、百五十本のハーリングの棒を投げつけた。あの子はそれをすべて払いのけて、一本も体に当てさせず、ひと抱えをつかんで背負ってしまった。</p>
+    <p>そのとき、あの子の姿が歪みはじめた<sup class="fn" id="tr43"><a href="#tn43">43</a></sup>。髪は逆立ち、一本一本が頭に打ち込まれた釘のようになった。どの毛先にも、火の粉が燃えているかのようだった。片方の目を閉じると、針の穴ほどの細さになった。もう一方の目を見開くと、木の椀の口ほどの大きさになった。口は耳まで裂け、顎の付け根まで開いて、喉の奥まで見えた。そして頭のてっぺんからは、英雄の光が立ちのぼった。</p>
+    <p>あの子は少年たちに打ちかかった。少年たちがエウィンの門にたどり着くまでに、五十人を打ち倒した。</p>
+    <p>九人の少年が逃げてきて、ちょうどフィドヘルを打っていたわしとコンホヴァルのそばを駆け抜けた。あの子はその九人を追って、フィドヘルの盤を跳び越えた。コンホヴァルが、あの子の手首をつかんだ。</p>
+    <p>『少年たちを、ひどい目にあわせたものだ』とコンホヴァルは言った。</p>
+    <p>『わたしのほうに理があります、コンホヴァルさま』とあの子は言った。『わたしは母と父のいる家から、遊びにやって来たのです。それなのに、皆はわたしにひどい仕打ちをしたのです。』</p>
+    <p>『おまえの名は何という』とコンホヴァルは言った。</p>
+    <p>『スアルティウの子セーダンタと申します。あなたの姉妹デヒティレの子です。ここでこんな目にあうとは思いませんでした。』</p>
+    <p>『なぜ少年たちに、身の安全を保証させなかったのだ』とコンホヴァルは言った。</p>
+    <p>『そんな決まりは知りませんでした。』</p>
+    <p>『それなら、いま少年たちに保証させるがよい。』</p>
+    <p>『承知しました。』</p>
+    <p>ところがそう言うなり、あの子はまた館じゅう少年たちを追い回しはじめた。</p>
+    <p>『今度は何の文句があるのだ』とコンホヴァルは言った。</p>
+    <p>『今度は、少年たちのほうがわたしに身を守ってもらうと、誓ってほしいのです。』</p>
+    <p>『では、それも引き受けるがよい』とコンホヴァルは言った。</p>
+    <p>『承知しました』とクー・フリンは言った。</p>
+    <p>それから皆で遊び場へ戻った。打ち倒されていた少年たちも起き上がった。乳母や養い親たちが、少年たちを介抱した。」</p>
+    <p>フェルグスはさらに語った。</p>
+    <p>「またあるとき、まだ幼かったころ、あの子はエウィンで朝まで眠れずにいた。</p>
+    <p>『なぜ眠らないのか、わけを言ってみよ』とコンホヴァルは言った。</p>
+    <p>『頭と足の両側に、同じ高さのものがないと眠れないのです』とあの子は言った。</p>
+    <p>そこでコンホヴァルは、あの子の頭のほうに立石を一つ、足のほうにもう一つ立てさせ、そのあいだにあの子だけの寝床をこしらえさせた。</p>
+    <p>またあるとき、一人の男があの子を起こしに行った。すると、あの子はその男の額を拳で殴りつけた。男の額の骨は脳まで陥没し、あの子はついでに、腕で立石を一本押し倒してしまった。」</p>
+    <p>「まったく、勇者の拳、英雄の腕だ」とアリルは言った。</p>
+    <p>「それからというもの」とフェルグスは言った。「誰もあの子を起こそうとはしなくなった。あの子は、自分で目を覚ますまで眠らせておかれたのだ。」</p>
+
+    <h3 class="chapter"><small>第五章</small>少年たちとの勝負、戦場の夜</h3>
+    <p class="open">フェルグスは語り続けた。</p>
+    <p>「またあるとき、あの子はエウィンの東の遊び場で球打ちをしていた。あの子はたった一人で一方の組となり、百五十人の少年がもう一方の組となった。それでもあの子は、どの勝負でも、いつも少年たちを打ち負かした。</p>
+    <p>やがてあの子は、少年たちに拳を振るいはじめ、五十人が命を落とした。そこであの子は逃げ出して、コンホヴァルの寝台の枕の下にもぐり込んだ<sup class="fn" id="tr44"><a href="#tn44">44</a></sup>。ウラドの者たちが、あの子を囲んで立ち上がった。わしも立ち上がり、コンホヴァルも立ち上がった。するとあの子は寝台の下から身を起こし、三十人の勇士が乗っていた寝台を、そっくり持ち上げて館の真ん中へ放り投げてしまった。</p>
+    <p>ウラドの者たちは、館の中であの子を囲んで座った。わしらはその場を収めて、少年たちとあの子を仲直りさせた。</p>
+    <p>またあるとき、ウラドとエオガン・マク・ドゥルタハト<sup class="fn" id="tr45"><a href="#tn45">45</a></sup>とのあいだに、戦が起ころうとしていた。ウラドの者たちは戦いに出かけていった。あの子は眠っていたので、置いていかれた。</p>
+    <p>戦いはウラドの負けだった。コンホヴァルは戦場に取り残され、コンホヴァルの息子クスクラド・メン・マハ<sup class="fn" id="tr46"><a href="#tn46">46</a></sup>も、ほかにも大勢が取り残された。</p>
+    <p>人々の嘆きの声で、あの子は目を覚ました。あの子が伸びをすると、両脇に置かれていた二つの石が砕けた。これは、そこにいるブリクリウ<sup class="fn" id="tr47"><a href="#tn47">47</a></sup>の目の前で起こったことだ。</p>
+    <p>あの子は起き上がった。わしは傷を負って戻ったところで、館の門のところであの子に出会った。</p>
+    <p>『神のお恵みを、フェルグスさま』とあの子は言った。『コンホヴァルさまはどこですか。』</p>
+    <p>『わからぬ』とわしは言った。</p>
+    <p>あの子は出ていった。夜は暗かった。あの子は戦場を目指して進んだ。</p>
+    <p>すると、行く手に一人の男がいた。男の頭は半分しかなく、背中にはもう一人の男の体の半分を背負っていた。</p>
+    <p>『手を貸してくれ、クー・フリン』と男は言った。『わたしは傷を負っているうえに、弟の体の半分を背負ってきたのだ。代わりに担いでくれ。』</p>
+    <p>『いやだ』とあの子は言った。</p>
+    <p>すると男は、背の荷をあの子に投げつけた。あの子はそれを振り払った。二人は取っ組み合いになり、あの子は投げ倒された。</p>
+    <p>そのとき、屍のあいだから戦いの女神ヴォドヴの声が聞こえた。『亡霊どもの足の下に転がるとは、ろくでもない戦士の卵だこと<sup class="fn" id="tr48"><a href="#tn48">48</a></sup>。』</p>
+    <p>それを聞くと、あの子はぱっと跳ね起きて、ハーリングの棒で男の首を打ち落とした。そして、その首を球のように打ちながら、戦場を進んでいった。</p>
+    <p>『コンホヴァルさまは、この戦場にいらっしゃいますか』とあの子が呼ばわると、コンホヴァルが答えた。あの子が声のほうへ行ってみると、コンホヴァルは溝の中にいて、身を隠すために周りじゅうを土で覆っていた。</p>
+    <p>『なぜ戦場になど来たのだ』とコンホヴァルは言った。『恐ろしい目にあうだけだぞ。』</p>
+    <p>あの子は、コンホヴァルを溝から引き上げた。ウラドのいちばんの勇士が六人がかりでも、あれほど力強く引き上げることはできなかっただろう。</p>
+    <p>『先に行って、あの家へ……』とコンホヴァルは言った<sup class="fn" id="tr49"><a href="#tn49">49</a></sup>。『……焼いた豚が食べられれば、わしは生き延びられようものを。』</p>
+    <p>『わたしが行って、取ってまいります』とあの子は言った。</p>
+    <p>あの子が出かけてゆくと、森の真ん中に、料理用の焼き穴のそばにいる男が見えた。男は片手に武器を持ち、もう片方の手で猪を焼いていた。男はたいそう恐ろしげだったが、それでもあの子は男に打ちかかった。そして男の首と豚を持ち帰ってきた。</p>
+    <p>コンホヴァルは猪を平らげた。</p>
+    <p>『さあ、わしらの館へ帰ろう』とコンホヴァルは言った。</p>
+    <p>帰る途中で、コンホヴァルの息子クスクラドに出会った。クスクラドもひどい傷を負っていた。あの子はクスクラドを背負った。こうして三人そろって、エウィン・ヴァハへ帰り着いたのだ。」</p>
+    <p>フェルグスはさらに語った。</p>
+    <p>「またあるとき、ウラドの者たちが衰弱の呪いにかかっていた。ただし、わしらの仲間でも、呪いにかからない者たちがいた。女たちと少年たち、ウラドの国境の外にいる者、それにクー・フリンとその父だ<sup class="fn" id="tr50"><a href="#tn50">50</a></sup>。だから誰も、あの二人に手出しをしようとはしなかった。あの二人を傷つけた者には、呪いが乗り移る。あるいはその者が衰え、短い命で終わるといわれていたからだ。</p>
+    <p>わしらが呪いに臥せっていたとき、フィアハの島々から<sup class="fn" id="tr51"><a href="#tn51">51</a></sup>二十七人の男がやって来て、館の裏手の囲いを越えて入り込んだ。囲いの中で、女たちが悲鳴を上げた。</p>
+    <p>少年たちは遊び場にいたが、悲鳴を聞いて駆けつけた。ところが、黒々とした不気味な男たちの姿を見ると、少年たちは皆逃げ出した。逃げなかったのは、クー・フリンただ一人だった。</p>
+    <p>あの子は、手で投げる石とハーリングの棒で、男たちに打ちかかった。九人を殺し、自分も五十の傷を負った。残りの男たちは逃げていった。</p>
+    <p>五つを過ぎたばかりの年でこれだけのことをした男だ。国境までやって来て、あの四人の首をはねたところで、何の不思議もあるまい。」</p>
+
+    <h3 class="chapter"><small>第六章</small>鍛冶屋クランの猛犬</h3>
+    <p class="open">「その若者のことなら、わたしたちもよく知っている」とコナル・ケルナハが言った。「あの子のことを知っていて、損をしたことはない。わたしたちの養い子なのだから<sup class="fn" id="tr52"><a href="#tn52">52</a></sup>。</p>
+    <p>いまフェルグスが話した手柄のあと、間もなく、あの子はまた別の手柄を立てた。</p>
+    <p>鍛冶屋のクランが、コンホヴァルをもてなす宴を用意したときのことだ。クランは、大勢を連れて来ないでくれと言った。この宴は、土地や財産で用意したものではない、自分の両の手と火ばさみの稼ぎで用意したものだから、というのだ。</p>
+    <p>そこでコンホヴァルは、勇士たちのうちでも最も年長で、最も名高い五十人の戦車乗りだけを連れて出かけた。</p>
+    <p>出かける前に、コンホヴァルは遊び場に立ち寄った。行き帰りに少年たちのところへ寄り、その祝福を受けるのが、コンホヴァルのいつもの習わしだった。</p>
+    <p>そこでコンホヴァルが見ると、クー・フリンが百五十人の少年を相手に球打ちをして、皆を打ち負かしていた。</p>
+    <p>穴に球を入れる遊びでは、あの子は自分の球で穴をいっぱいにしてしまい、少年たちは防ぐことができなかった。少年たちが皆で穴を狙うときには、あの子が一人で守り、球を一つも入れさせなかった。</p>
+    <p>取っ組み合いでは、あの子は一人で百五十人の少年を投げ倒した。ところが、少年たちが何人がかりでかかっても、あの子を投げ倒すことはできなかった。</p>
+    <p>互いの服を剥ぎ取り合う遊びでは、あの子は少年たちを皆まる裸にしてしまった。それなのに少年たちは、あの子の外套のブローチ一つ奪い取れなかった。</p>
+    <p>コンホヴァルはこれに驚嘆した。そして、この子が大人になったとき、その働きはこの子供時代にふさわしいものになるだろうか、と尋ねた。皆が、きっとそうなるだろうと答えた。</p>
+    <p>コンホヴァルはクー・フリンに言った。『わしと一緒に、これから行く宴に来るがよい。おまえはわしの客なのだから。』</p>
+    <p>『まだ遊び足りません、コンホヴァルさま』とあの子は言った。『あとから追いかけて行きます。』</p>
+    <p>皆が宴の場に着くと、クランはコンホヴァルに言った。『あとから誰か来ることになっていますか。』</p>
+    <p>『いや、誰も来ない』とコンホヴァルは言った。養い子があとから来ることを、すっかり忘れていたのである。</p>
+    <p>『わたしは番犬を一頭飼っております』とクランは言った<sup class="fn" id="tr53"><a href="#tn53">53</a></sup>。『三本の鎖でつないでいて、一本の鎖を三人がかりで押さえるのです。スペインから連れてきた犬です。家畜や財産を守らせるために、放してやりましょう。囲いの門も閉めさせます。』</p>
+    <p>そこへ、あの子がやって来た。番犬はあの子に襲いかかった。あの子は遊びながら歩いてきたところだった。球を投げ上げ、その後からハーリングの棒を投げて球に当てる。どちらの一打も、もう一方に劣らない。さらにその後から投げ槍を投げ、地に落ちる前につかまえる。番犬が襲いかかってきても、あの子は遊びをやめなかった。</p>
+    <p>コンホヴァルと一行は、この有様に肝をつぶし、身動きもできなかった。たとえ囲いの門を開けたところで、あの子が生きているとは思えなかったのである。</p>
+    <p>番犬がとびかかってくると、あの子は球と棒を投げ捨て、両手で犬を迎え撃った。片手で犬の喉笛をつかみ、もう片手で首の後ろをつかむと、そばの立石に叩きつけた。犬の手足は、ばらばらに関節から外れてしまった。別の言い伝えでは、あの子が球を犬の口に打ち込み、その球が犬の腸を突き抜けた、ともいう。</p>
+    <p>ウラドの者たちが、あの子を迎えに飛び出した。囲いを越える者もあれば、門から駆け出す者もあった。皆はあの子を、コンホヴァルの胸に抱かせた。王の姉妹の子が、すんでのところで死ぬところだったので、皆は大きな歓呼の声を上げ、武器を打ち鳴らした。</p>
+    <p>そこへクランが館から出てきた。</p>
+    <p>『よく来てくれた、坊や。おまえの母上の心のためにも、よく来てくれた。だが、わたしにとっては、この宴を開いたのが仇になった。番犬を失ったいま、わたしの命はないも同然、わたしの家は荒れ野も同然だ。</p>
+    <p>おまえが奪っていったのは、わたしの身内も同然の者だった。わたしの番犬は、わたしの名誉と命を守ってくれた。わたしたちの財産と家畜を守る砦であり、盾だった。野にいようと家にいようと、わたしたちの家畜を一頭残らず見張ってくれていたのだ。』</p>
+    <p>『たいしたことではありません』とあの子は言った。『同じ血筋の子犬を、わたしが育ててお返しします。それまでのあいだは、わたしが番犬になって、あなたの家畜とあなた自身をお守りします。その犬が育って、役に立つようになるまでです。わたしはムルテヴネの野をそっくり守ってみせます。わたしが血を流さずに、牛の群れも羊の群れも、一頭たりとも奪わせはしません<sup class="fn" id="tr54"><a href="#tn54">54</a></sup>。』</p>
+    <p>『それなら、おまえの名はクー・フリン（クランの猛犬）だ』とカトヴァド<sup class="fn" id="tr55"><a href="#tn55">55</a></sup>が言った。</p>
+    <p>『その名なら気に入りました』とクー・フリンは言った。</p>
+    <p>六つを過ぎたばかりの年でこんなことをした男だ。十七になったいま、立派な手柄を立てたところで、何の不思議もあるまい。」</p>
+    <p>コナル・ケルナハは、そう言って話を結んだ<sup class="fn" id="tr56"><a href="#tn56">56</a></sup>。</p>
+
+    <h3 class="chapter"><small>第七章</small>初めて武器を取った日</h3>
+    <p class="open">「あの子は、まだほかにも手柄を立てている」とフィアハ・マク・フィル・フェヴェ<sup class="fn" id="tr57"><a href="#tn57">57</a></sup>が言った。</p>
+    <p>「ドルイドのカトヴァドが、息子のコンホヴァル・マク・ネサのもとにいたときのことだ<sup class="fn" id="tr58"><a href="#tn58">58</a></sup>。カトヴァドのもとでは、熱心な弟子が百人、ドルイドの術を学んでいた。カトヴァドがいつも教えるのは、それだけの人数だった。</p>
+    <p>ある日、弟子の一人がカトヴァドに、今日はどんなことに良い日か、と尋ねた。カトヴァドは答えた。『今日武器を手にした若い戦士は、その名がアイルランドに永遠にとどろき、その武勇の物語も永遠に語り継がれるだろう。』</p>
+    <p>クー・フリンはそれを耳にした。そしてコンホヴァルのところへ行き、武器をくださいと願った。</p>
+    <p>『誰がおまえに、そう教えたのだ』とコンホヴァルは言った。</p>
+    <p>『カトヴァドさまです』とクー・フリンは言った。</p>
+    <p>『なるほど、あの方ならよく知っている』とコンホヴァルは言って、槍と盾を与えた。</p>
+    <p>クー・フリンは館の真ん中で、その武器を振り回した。武器はたちまち砕けてしまった。コンホヴァルの館には、武器が壊れたときや、誰かが初めて武器を取るときのために、十五組の予備の武器が蓄えてあったが、そのどれ一つとして残らなかった。</p>
+    <p>とうとう、コンホヴァル自身の武器が与えられた。これだけは、あの子が振り回しても持ちこたえた。あの子はそれを振り回してから、武器の持ち主である王を祝福して言った。『この武器を持つ方を王と仰ぐ民と一族は、なんと幸せなことでしょう。』</p>
+    <p>そこへカトヴァドがやって来て言った。『この子は武器を取ったのですか。』</p>
+    <p>『そうだ』とコンホヴァルは言った。</p>
+    <p>『この母の子にとっては、めでたいことではありませぬ』とカトヴァドは言った。</p>
+    <p>『なんだと。そう教えたのは、あなたではないのか』とコンホヴァルは言った。</p>
+    <p>『とんでもない』とカトヴァドは言った。</p>
+    <p>『この小僧め、よくもわしを騙したな』とコンホヴァルはクー・フリンに言った。</p>
+    <p>『フェーネの王よ、嘘ではありません』とクー・フリンは言った。『カトヴァドさまは今朝、弟子たちにそう教えておられました。わたしはエウィンの南でそれを聞いて、すぐあなたのもとへ来たのです。』</p>
+    <p>『たしかに、今日は良い日だ』とカトヴァドは言った。『今日武器を取る者は、名高く、誉れ高い者になる。それは確かだ。ただし、命は短い<sup class="fn" id="tr59"><a href="#tn59">59</a></sup>。』</p>
+    <p>『それはすばらしい』とクー・フリンは言った。『名高い者になれるのなら、この世にたった一日しか生きられなくてもかまいません。』</p>
+    <p>また別の日、ドルイドの一人が、今日はどんなことに良い日か、とカトヴァドに尋ねた。</p>
+    <p>『今日初めて戦車に乗る者は、その名がアイルランドに永遠にとどろくだろう』とカトヴァドは言った。</p>
+    <p>クー・フリンはそれを耳にすると、コンホヴァルのところへ行って言った。『コンホヴァルさま、わたしに戦車をください。』</p>
+    <p>コンホヴァルは戦車を与えた。あの子が二本の轅のあいだに手をかけて力を込めると、戦車は壊れてしまった。こうしてあの子は、十二台の戦車を壊した。</p>
+    <p>とうとう、コンホヴァルの戦車が与えられた。これだけは持ちこたえた。あの子は戦車に乗り込み、コンホヴァルの御者も一緒に乗った。</p>
+    <p>イヴァルという名のその御者は、あの子を乗せたまま、戦車をぐるりと回して言った。『さあ、もう戦車から降りなさい。』</p>
+    <p>『この馬はすばらしい。わたしもなかなかのものだぞ、おまえ』とクー・フリンは言った。『エウィンをひと回りするだけでいいから、付き合ってくれ。礼はするから。』</p>
+    <p>御者は承知した。するとクー・フリンは、少年たちに挨拶するために、その道を通るよう御者に無理強いした。少年たちから祝福をもらうためである。それからあの子は、もう一度その道を走らせた。</p>
+    <p>戻ってくると、クー・フリンは御者に言った。『さあ、馬に鞭を当てろ。』</p>
+    <p>『どちらへ行くのです』と御者は言った。</p>
+    <p>『道の続くかぎり、どこまでもだ』とクー・フリンは言った。</p>
+    <p>二人はスリアヴ・フアトへやって来た。そこでコナル・ケルナハに出会った。その日、州の守りを務める番がコナルに当たっていたのである。ウラドの勇士は、毎日一人ずつ交替でスリアヴ・フアトに詰めることになっていた。詩を携えてやって来る者を迎えて案内したり、戦いを挑みに来る者がいればそこで相手をしたりするためである。こうして、誰も気づかれずにエウィンへ入り込めないようにしていた。</p>
+    <p>『その門出に、幸運と勝利と誉れのあらんことを』とコナルは言った。</p>
+    <p>『コナルさま、どうぞ館へお帰りください』とクー・フリンは言った。『しばらく、わたしにここの見張りを任せてください。』</p>
+    <p>『詩人を案内するくらいなら、おまえでも務まるだろう』とコナルは言った。『だが戦いを挑まれたら、おまえにはまだ早すぎる。』</p>
+    <p>『そんな必要は、まったくないかもしれません』とクー・フリンは言った。『ロッホ・エフトラの岸辺を見に行きましょう。あそこには、よく戦士たちが陣取っているのです。』</p>
+    <p>『よかろう』とコナルは言った。</p>
+    <p>二人は出かけた。するとクー・フリンは石投げ紐で石を投げ、コナル・ケルナハの戦車の轅を打ち砕いてしまった。</p>
+    <p>『なぜ石など投げたのだ、坊や』とコナルは言った。</p>
+    <p>『わたしの腕前と、狙いの正しさを試してみたのです』とクー・フリンは言った。『あなたがたウラドの方々は、壊れた戦車で危ない道を進んだりはなさらないでしょう<sup class="fn" id="tr60"><a href="#tn60">60</a></sup>。コナルさま、どうぞエウィンにお戻りください。ここの見張りは、わたしにお任せを。』</p>
+    <p>『そうするとしよう』とコナルは言った。</p>
+    <p>こうしてコナル・ケルナハは、そこから先へは行かなかった。</p>
+
+    <h3 class="chapter"><small>第八章</small>ネフタ・スケーネの三人の息子</h3>
+    <p class="open">クー・フリンはロッホ・エフトラまで進んだが、そこには誰もいなかった。御者は、エウィンに戻れば酒盛りに間に合います、と言った。</p>
+    <p>『いや、戻らない』とクー・フリンは言った。『あそこに見える山は何だ。』</p>
+    <p>『スリアヴ・モドゥルンです』と御者は言った。</p>
+    <p>『あそこへ行ってみよう』とクー・フリンは言った。</p>
+    <p>二人はその山へ行った。山に着くと、クー・フリンは尋ねた。『山の頂にある、あの白い石塚は何だ。』</p>
+    <p>『フィンハルン（白い石塚）です』と御者は言った。</p>
+    <p>『向こうに見える平野は何だ。』</p>
+    <p>『マグ・ブレグ<sup class="fn" id="tr61"><a href="#tn61">61</a></sup>です』と御者は言った。</p>
+    <p>御者は、テウィル（タラ）からケナナスまでのあいだにある主だった城砦の名を、一つ一つ教えた。牧草地や浅瀬、名高い土地や住まい、城砦や要害のことも、残らず教えた。</p>
+    <p>そして御者は、ネフタ・スケーネの三人の息子の城砦も指し示した<sup class="fn" id="tr62"><a href="#tn62">62</a></sup>。三人の名は、フォイル、ファンダル、トゥアヘルといった。</p>
+    <p>『ウラドの者で生きている者は、自分たちが殺した数よりも少ない、と言っているのは、あの者たちか』とクー・フリンは言った。</p>
+    <p>『そのとおりです』と御者は言った。</p>
+    <p>『あそこへ行ってみよう』とクー・フリンは言った。</p>
+    <p>『わたしたちには危ないことです』と御者は言った。</p>
+    <p>『危ないことを避けに行くのではない』とクー・フリンは言った。</p>
+    <p>二人は出かけて、三人の城砦の南の高台、沼地と川の出合うところで馬を外した。クー・フリンは、そこに立っていた立石にかけてあった輪を外し、腕いっぱいに振りかぶって川へ投げ込み、流れのままに流してしまった。それは、ネフタ・スケーネの息子たちの禁忌<sup class="fn" id="tr63"><a href="#tn63">63</a></sup>を破ることだった。息子たちはそれに気づいて、二人のほうへやって来た。</p>
+    <p>輪を流してしまうと、クー・フリンは立石のそばで眠りこんだ。眠る前に、クー・フリンは御者に言った。『敵が少しなら起こすな。大勢来たら起こせ。』</p>
+    <p>御者はひどく怯えた。そこで御者は戦車に馬をつなぎ、クー・フリンにかけてあった覆いや毛皮を引き寄せて、いつでも逃げられるように支度した。クー・フリンを起こす勇気はなかったのである。あらかじめ、敵が少しなら起こすなと言われていたからだ。</p>
+    <p>やがて、ネフタ・スケーネの息子たちがやって来た。</p>
+    <p>『ここにいるのは誰だ』と一人が言った。</p>
+    <p>『小さな子供です。今日初めて戦車に乗って、遊びに出てきたのです』と御者は言った。</p>
+    <p>『それは、この子にとって幸先の悪いことだ。初めて武器を取った日が、運の尽きになるのだからな』とその戦士は言った。『わしらの土地に居座るな。馬にこれ以上ここの草を食わせるな。』</p>
+    <p>『手綱はこのとおり、わたしの手にあります』と御者は言った。</p>
+    <p>『この子を手にかけて恨みを買うのは、あなたにとってもよくないでしょう』とイヴァルはその戦士に言った。『それに、この子は眠っているのです。』</p>
+    <p>『わたしは小さな子供などではない』とクー・フリンは言った。『ここにいる子供は、男と一騎打ちをしに来たのだ。』</p>
+    <p>『それは願ってもないことだ』と戦士は言った。</p>
+    <p>『願ってもないことになるだろう、あの浅瀬でな』とクー・フリンは言った。</p>
+    <p>御者がクー・フリンに言った。『いま向かってくる男に、用心してください。名をフォイル（ずる賢い者）<sup class="fn" id="tr64"><a href="#tn64">64</a></sup>といいます。最初のひと突きで仕留められなければ、夕方まで仕留められませんよ。』</p>
+    <p>『わが民が誓う神にかけて誓う』とクー・フリンは言った。『わが主コンホヴァルの平たい槍が、わたしの手から届きさえすれば、あの男がウラドの者にその手を使うことは二度とない。あの男にとっては、思いもよらぬ手にかかることになろう。』</p>
+    <p>クー・フリンは男めがけて槍を投げた。槍は男の背骨を貫いた。クー・フリンは男の武具を剥ぎ、首をはねた。</p>
+    <p>『次の男に用心してください』と御者は言った。『名をファンダル（燕）といいます。白鳥か燕のように、水の上を身軽に渡るのです。』</p>
+    <p>『誓ってもいい。あの男がウラドの者にその手を使うことも、二度とない』とクー・フリンは言った。『わたしがエウィンの池をどんなふうに渡るか、おまえも見たことがあるだろう。』</p>
+    <p>二人は浅瀬で渡り合った。クー・フリンはその男も討ち取り、首と武具を持ち帰った。</p>
+    <p>『次に向かってくる男にも用心してください』と御者は言った。『名をトゥアヘルといいます。あだ名ではありません。どんな武器で打たれても倒れないのです<sup class="fn" id="tr65"><a href="#tn65">65</a></sup>。』</p>
+    <p>『それなら、こいつには技の投げ矢だ。体じゅうを穴だらけにして、血の篩にしてやろう』とクー・フリンは言った。</p>
+    <p>クー・フリンが男めがけて槍を投げると、男はその場に崩れ落ちた。クー・フリンは男に近寄って、首をはねた。そして首と武具を、自分の御者に渡した。</p>
+    <p>そのとき、背後から、三人の母ネフタ・スケーネの嘆き叫ぶ声が聞こえてきた。</p>
+    <p>クー・フリンは三人の武具を剥ぎ取り、三つの首を戦車に積んで言った。『エウィン・ヴァハに着くまでは、この勝利の証を手放すものか。』</p>
+    <p>二人は戦利品を携えて出発した。</p>
+    <p>クー・フリンは御者に言った。『おまえは、すばらしい走りを見せてくれると約束したな。いまこそ、それが要る。戦いをしてきたうえに、追っ手が後ろに迫っているのだから。』</p>
+    <p>二人はスリアヴ・フアトを目指して戦車を駆った。マグ・ブレグを過ぎてからの走りは、それはすさまじいものだった。御者が馬を励ますと、戦車を引く馬は風にも、飛ぶ鳥にも追いついた。クー・フリンが石投げ紐から石を放つと、その石が地面に落ちる前に、戦車が追いついて受け止めてしまうほどだった。</p>
+    <p>スリアヴ・フアトに着くと、行く手に鹿の群れがいた。</p>
+    <p>『あの身軽な獣の群れは何だ』とクー・フリンは言った。</p>
+    <p>『野の鹿です』と御者は言った。</p>
+    <p>『ウラドの者たちは、どちらを喜ぶだろう。死んだ鹿を持ち帰るのと、生きたまま持ち帰るのと。』</p>
+    <p>『生きたまま持ち帰るほうが驚かれます』と御者は言った。『誰にでもできることではありませんから。死んだ鹿なら、ウラドの者で持ち帰れない者はいません。でも、あなたには生きたまま一頭持ち帰ることはできないでしょう。』</p>
+    <p>『できるとも』とクー・フリンは言った。『馬に鞭を当てて、沼地へ乗り入れろ。』</p>
+    <p>御者がそうすると、馬は沼地にはまって動けなくなった。クー・フリンは戦車から跳び降り、いちばん近くにいた、いちばん見事な鹿を捕まえた。そして沼地を引きずり回して、たちまちおとなしくさせ、戦車の二本の轅のあいだにつないだ。</p>
+    <p>次に、行く手に白鳥の群れが見えた。</p>
+    <p>『ウラドの者たちは、どちらを喜ぶだろう。生きたままか、死んだのか。』</p>
+    <p>『いちばん元気で腕の立つ者は、生きたまま持ち帰ります』と御者は言った。</p>
+    <p>クー・フリンは鳥の群れめがけて小さな石を投げ、八羽を打ち落とした。続いて大きな石を投げ、十二羽を打ち落とした。どれも〈返し打ち〉<sup class="fn" id="tr66"><a href="#tn66">66</a></sup>によるものだった。</p>
+    <p>『鳥を拾い集めてくれ』とクー・フリンは御者に言った。『わたしが取りに行けば、鹿がおまえに襲いかかるだろうから。』</p>
+    <p>『わたしが行くのも、たやすくはありません』と御者は言った。『馬が荒れ狂っていて、脇をすり抜けられないのです。どちらの車輪の脇も通れません。車輪の鉄の縁が鋭すぎるのです。鹿の脇も通れません。角が二本の轅のあいだいっぱいに広がっているのですから。』</p>
+    <p>『では、鹿の角を踏んで行け』とクー・フリンは言った。『ウラドの者が誓う神にかけて誓う。わたしが鹿のほうへ顔を向け、目でにらみつけてやれば、鹿はおまえのほうに首を向けることもできず、身じろぎひとつしないだろう。』</p>
+    <p>そのとおりになった。クー・フリンが手綱を押さえているあいだに、御者は鳥を拾い集めた。クー・フリンは鳥を、戦車の綱や紐に結びつけた。</p>
+    <p>こうしてクー・フリンは、エウィン・ヴァハへ帰っていった。戦車の後ろには野の鹿を従え、頭上には白鳥の群れを羽ばたかせ、戦車には三つの首を積んで。</p>
+    <p>一行はエウィンに着いた。</p>
+    <p>『戦車乗りが一人、こちらへ向かってきます』とエウィン・ヴァハの見張りが言った。『用心しないと、あの男は城砦じゅうの者の血を流すでしょう。裸の女たちを迎えに出さないかぎりは。』</p>
+    <p>クー・フリンは、戦車の左側の板をエウィンのほうへ向けた。それは城砦にとって禁忌とされることだった<sup class="fn" id="tr67"><a href="#tn67">67</a></sup>。</p>
+    <p>そしてクー・フリンは言った。『ウラドの者が誓う神にかけて誓う。わたしと戦う男が出てこないなら、城砦にいる者すべての血を流してやる。』</p>
+    <p>『裸の女たちを迎えに出せ』とコンホヴァルは言った。</p>
+    <p>そこでエウィンの女たちが、コンホヴァル・マク・ネサの妃ムガン（別の言い伝えではフェラグ）を先頭にして迎えに出て、クー・フリンに胸をあらわにして見せた。</p>
+    <p>『今日あなたと渡り合うのは、この戦士たちです』とムガンは言った。</p>
+    <p>クー・フリンは顔を伏せた。その隙に、エウィンの勇士たちがクー・フリンを取り押さえ、冷たい水を張った桶に投げ込んだ。すると、その桶ははじけ飛んだ。次に入れられた桶では、水が拳ほどの泡を立てて煮えたぎった。その次に入れられた三つ目の桶で、クー・フリンはようやく水をほどよく温め、熱すぎも冷たすぎもしなくなった<sup class="fn" id="tr68"><a href="#tn68">68</a></sup>。</p>
+    <p>クー・フリンが桶から出てくると、王妃ムガンが、銀のブローチのついた紺の外套と、頭巾つきの下衣を着せかけた。それからクー・フリンは、コンホヴァルの膝もとに座った。以来、そこがいつもクー・フリンの席となった。</p>
+    <p>七つの年にこれだけのことをやってのけた男だ。十六年が満ちたいま、多勢を相手にしてもひけを取らず、勝ちを収めたところで、何の不思議もあるまい<sup class="fn" id="tr69"><a href="#tn69">69</a></sup>。」</p>
+    <p>フィアハ・マク・フィル・フェヴェは、そう言って話を結んだ。</p>
+
+    <h3 class="chapter"><small>第九章</small>フラーイフとオルラウ</h3>
+    <p class="open">ここから、オルラウの死までは、別の伝えによる<sup class="fn" id="tr70"><a href="#tn70">70</a></sup>。</p>
+    <p>「さあ、もう出発しよう」とアリルは言った。</p>
+    <p>一行はマグ・ムッケダに着いた。クー・フリンはそこで、軍勢の行く手にある一本の樫の木を切り倒し、その側面にオガムの文字を刻んだ。そこには、戦車乗りが一台の戦車でこの木を跳び越えるまでは、誰もここを通ってはならない、と書かれていた。</p>
+    <p>一行はそこに天幕を張り、戦車で木を跳び越えようと試みた。そのため三十頭の馬が倒れ、三十台の戦車が壊れた。それでその場所は、いつまでもベラハ・アーネ（技比べの峠）と呼ばれている。</p>
+    <p>一行は翌朝までそこにとどまった。フラーイフ<sup class="fn" id="tr71"><a href="#tn71">71</a></sup>が呼び出された。</p>
+    <p>「助けておくれ、フラーイフ」とメドヴは言った。「わたしたちに降りかかっている、この難儀を払いのけておくれ。クー・フリンのところへ行って、あの男と渡り合えるかどうか、試してみておくれ。」</p>
+    <p>フラーイフは朝早く、九人を連れて出かけ、アート・フアトに着いた。すると一人の若い戦士が、川で水浴びをしているのが見えた。</p>
+    <p>「ここで待っていろ」とフラーイフは供の者たちに言った。「あの男と渡り合ってくる。あいつは水の中では強くないはずだ。」</p>
+    <p>フラーイフは服を脱いで、男のほうへ水の中を進んでいった。</p>
+    <p>「わたしのほうへ来るな」とクー・フリンは言った。「おまえは死ぬことになる。わたしはおまえを殺したくないのだ。」</p>
+    <p>「いや、行く」とフラーイフは言った。「水の中で勝負しよう。正々堂々と相手をしてもらうぞ。」</p>
+    <p>「おまえの好きなようにやるがいい」とクー・フリンは言った。</p>
+    <p>「互いに腕を相手に回して組み合おう」とフラーイフは言った。</p>
+    <p>二人は長いあいだ、水の上で取っ組み合った。やがてフラーイフは、水の中に沈められた。クー・フリンはフラーイフを引き上げて言った。「今度はどうだ。命を助けてもらう気になったか。」</p>
+    <p>「ならぬ」とフラーイフは言った。</p>
+    <p>クー・フリンはもう一度フラーイフを水に沈め、フラーイフは息絶えた。クー・フリンはその亡骸を岸へ運んだ。フラーイフの供の者たちが、亡骸を陣営へ運んでいった。その浅瀬は、いつまでもアート・フラーイフ（フラーイフの浅瀬）と呼ばれている。</p>
+    <p>陣営じゅうの者が、フラーイフの死を嘆いた。すると、緑の衣をまとった女たちの一団が、イダドの子フラーイフの亡骸のそばに現れるのが見えた。女たちはフラーイフを、妖精塚の中へ連れ去った。それでその妖精塚は、シード・フラーイフ（フラーイフの塚）と呼ばれている<sup class="fn" id="tr72"><a href="#tn72">72</a></sup>。</p>
+    <p>フェルグスは、例の樫の木を戦車で跳び越えた<sup class="fn" id="tr73"><a href="#tn73">73</a></sup>。一行は進んで、アート・ターテンに着いた。そこでクー・フリンは、六人を打ち倒した。イルスの六人のドゥーンガルである。</p>
+    <p>一行はそれからフォルノフトへ進んだ。メドヴは、バシュクネという名の子犬を飼っていた。クー・フリンがこの犬めがけて石を投げると、犬の首が飛んだ。それで、その場所はそれ以来、ドルイム（バシュクネの尾根）と呼ばれている<sup class="fn" id="tr74"><a href="#tn74">74</a></sup>。</p>
+    <p>「情けないことです」とメドヴは言った。「おまえたちを殺してまわっている、あの見すぼらしい小僧を追いかけもしないとは。」</p>
+    <p>そこで一行はクー・フリンを追いかけたが、戦車の轅が折れてしまうばかりだった。</p>
+    <p>翌日、一行はイラルド・クリンを越えて進んだ。クー・フリンは軍勢の先回りをして、ディーシェルト・ローハトのやや北、タヴラフト・オルラウで、アリルとメドヴの息子オルラウの御者に出くわした。御者は、そこで木を切っていた。</p>
+    <p>別の伝えでは、折れたのはクー・フリンの戦車の轅のほうで、クー・フリンが轅にする木を切りに行ったところで、オルラウの御者に出会ったという。だが、この伝えでは、轅を切っていたのは御者のほうである。</p>
+    <p>「もしあそこにいるのがウラドの者だとしたら、恥知らずなことだ」とクー・フリンは言った。「敵の軍勢が目の前まで迫っているというのに。」</p>
+    <p>クー・フリンは、その男をウラドの者だと思い込み、叱りつけようとして近づいた。見ると、男は木を、つまり戦車の轅を切っていた。</p>
+    <p>「ここで何をしているのだ」とクー・フリンは言った。</p>
+    <p>「戦車の轅を切っているのさ」と御者は言った。「あの野の鹿みたいなクー・フリンを追い回しているうちに、戦車を壊しちまったんだ。手を貸してくれないか。木を集めるか、削るか、どっちを手伝ってくれる。」</p>
+    <p>「削るほうにしよう」とクー・フリンは言った。</p>
+    <p>クー・フリンは御者の目の前で、柊の轅を指のあいだに通してしごき、樹皮も節もすっかり削ぎ落としてしまった。</p>
+    <p>御者は恐ろしくなって言った。「あんたにさせるような仕事じゃなかった。あんたは誰に仕えているんだ。」</p>
+    <p>「おまえこそ、誰に仕えている」とクー・フリンは言った。</p>
+    <p>「アリルとメドヴの息子オルラウの御者だ。それで、あんたは。」</p>
+    <p>「わたしの名はクー・フリンだ。」</p>
+    <p>「なんてこった」と御者は言った。</p>
+    <p>「何も恐れることはない」とクー・フリンは言った。「おまえの主人はどこにいる。」</p>
+    <p>「あそこの塹壕のところにいる」と御者は言った。</p>
+    <p>「では、一緒に来い。わたしは御者は殺さないのだ。」</p>
+    <p>クー・フリンはオルラウのところへ行って、討ち取った。そして首をはね、その首を軍勢に向けて振りかざして見せた。それから首を御者の背中に載せて、言った。「これを持って行け。この格好のまま陣営へ帰るのだ。この格好で帰らなかったら、わたしの石投げ紐から石が飛んでいくぞ。」</p>
+    <p>陣営の近くまで来ると、御者は背中から首を下ろし、アリルとメドヴに自分の身に起きたことを話した。</p>
+    <p>「鳥を捕まえるのとはわけが違うということだ」とメドヴは言った<sup class="fn" id="tr75"><a href="#tn75">75</a></sup>。</p>
+    <p>御者は言った。「もしこの首を背負ったまま陣営まで来ていなかったら、あいつは石でわたしの頭を砕いていたでしょう。」</p>
+    <p>それから、ガラハの三人の息子が、自分たちの浅瀬で待ち構えた。三人の名は、ロン、ウアル、ディーリウである。メス・リル、メス・ラーイフ、メス・レサンが、三人の御者であった。</p>
+    <p>三人は、クー・フリンのしたことを度が過ぎると思った。王の二人の養い子を殺し、王の息子を殺し、その首を軍勢に向けて振りかざしたのである。三人は、仕返しにクー・フリンを殺し、自分たちの手だけで軍勢からこの難儀を取り除こうと考えた。</p>
+    <p>三人は自分たちの土地から三本の木の棒を切り出して、六人がかりでクー・フリンと戦おうとした<sup class="fn" id="tr76"><a href="#tn76">76</a></sup>。正々堂々の一騎打ちの掟を彼らが破ったので、クー・フリンは六人とも討ち取った。</p>
+    <p>そのころ、オルラウの御者はアリルとメドヴのそばにいた。クー・フリンはその御者めがけて石を投げた。石は御者の頭を砕き、脳が耳の上まであふれ出た。この御者の名はフェル・テディルといった。</p>
+    <p>してみると、クー・フリンが御者を殺さないというのは本当ではない。とはいえ、何の咎もないのに殺したわけではなかった。</p>
+    <p>クー・フリンはメシェで、アリルとメドヴを見かけたらどこであろうと石を投げつけてやる、と言い放った。そして、そのとおりにした。クー・フリンが石投げ紐から石を放つと、浅瀬の南側で、メドヴの肩に乗っていた貂が死んだ。それで、そこはメシェ・トグ（貂の首）と呼ばれる。浅瀬の北側では、アリルの肩に乗っていた鳥が死んだ。それで、そこはメシェ・ネーイン（鳥の首）と呼ばれる。別の伝えでは、貂も鳥もメドヴの肩に乗っていて、石はどちらの首も打ち落としたという<sup class="fn" id="tr77"><a href="#tn77">77</a></sup>。</p>
+    <p>レーウィンは湖で溺れた。それで、その湖はロッホ・レーウィンと呼ばれる。</p>
+    <p>「おまえたちの仲間は、すぐ近くにいるぞ」とアリルはマネたちに言った。</p>
+    <p>マネたちは立ち上がって辺りを見回した。そして再び腰を下ろしたとたん、クー・フリンの投げた石が一人に当たり、その頭を砕いた。</p>
+    <p>「おまえたちが向かっていったところで、威勢がいいだけで役には立つまい」と道化のマエネーンが言った<sup class="fn" id="tr78"><a href="#tn78">78</a></sup>。「わしなら、あいつの首を取ってみせるがな。」</p>
+    <p>クー・フリンはマエネーンにも石を投げ、その頭を砕いた。</p>
+    <p>こうして、これらの者たちが討たれた。まずオルラウが、その丘で。ガラハの三人の息子が、その浅瀬で。フェル・テディルが、デドラで。マエネーンが、その丘で。</p>
+    <p>「わが民が誓う神にかけて誓う」とアリルは言った。「このことをここで笑いものにする者がいれば、真っ二つにしてやる。昼も夜も休まず進んで、クアルンゲへたどり着こう。このままでは、あの男がおまえたちの軍勢の三分の二を殺してしまうぞ。」</p>
+    <p>そのとき、エス・ルーアドから、カインヴィレの竪琴弾きたちが一行を楽しませにやって来た。一行は、彼らをウラドの回し者だと思い込み、追いかけた。竪琴弾きたちは鹿の姿になって逃げ、北にあるリーアグ・モールの立石のあいだへ消えていった。彼らは深い知恵を持つドルイドだったのである。</p>
+
+    <h3 class="chapter"><small>第十章</small>褐色の牡牛を求めて</h3>
+    <p class="open">レサンは、コナレの地を流れるニート川の、自分の浅瀬までやって来た。そして、そこにとどまってクー・フリンを待ち構えた。クー・フリンのしたことが腹に据えかねたのである。</p>
+    <p>クー・フリンはレサンの首をはね、首を亡骸のそばに残していった。それで、その浅瀬はニート川のアート・レサン（レサンの浅瀬）と呼ばれる。また、すぐそばの浅瀬で戦ったとき、二人の戦車が壊れた。それで、そこはアート・カルバト（戦車の浅瀬）と呼ばれる。レサンの御者ムルハは、二つの浅瀬のあいだの丘で倒れた。それで、そこはグアラ・ムルハ（ムルハの肩）と呼ばれる。</p>
+    <p>軍勢がマグ・ブレグを進んでいるあいだに、アレフトゥがやって来た。アレフトゥとは、モリーガン<sup class="fn" id="tr79"><a href="#tn79">79</a></sup>のことである。モリーガンは鳥の姿で、クアルンゲのテウィルにある立石の上にとまり、牡牛に向かってこう言った。</p>
+    <blockquote class="verse">
+      <p>「落ち着きのない黒き者よ、おまえは知っているのか。<br>敵が来る。鴉が群れ集う。<br>ブレグの民に、殺戮が降りかかる。<br>わたしには、黒き者に知らせたい秘密がある。</p>
+      <p>波のような軍勢が、青い草の野を踏みしだく。<br>戦の火が燃え、軍勢はひき臼のように人を砕く。<br>ヴォドヴが吠え、牛たちが鳴く。<br>猛々しい鴉、倒れ伏す男たち。</p>
+      <p>クアルンゲの勇士たちの上に、<br>来る日も来る日も、<br>多くの若者に死が訪れ、<br>人々は次々と滅びてゆく。」<sup class="fn" id="tr80"><a href="#tn80">80</a></sup></p>
+    </blockquote>
+    <p>そこで褐色の牡牛は、五十頭の若い雌牛を従えて出かけてゆき、スリアヴ・クリンに着いた。牡牛の牛飼いもその後を追っていった。牛飼いの名はフォルゲウェンといった。</p>
+    <p>牡牛はいつも、背中に百五十人の少年を乗せて遊ばせていた<sup class="fn" id="tr81"><a href="#tn81">81</a></sup>。牡牛は出てゆくとき、その少年たちを振り落とし、少年たちの三分の二が死んだ。そして出てゆく前に、クアルンゲのマルケーネの地で、蹄で地面を掘り返していった。</p>
+    <p>クー・フリンは、コナレの地のサレ・イムドルテから、軍勢がクアルンゲに着くまでのあいだ、一人も殺さなかった。</p>
+    <p>クー・フリンはそのころ、クインキウという山にいた。そしてメドヴを見かけたら、どこであろうと頭に石を投げつけてやる、と言い放った。だが、それはたやすいことではなかった。メドヴはいつも、軍勢の半分を周りに従え、頭上には盾を差しかけさせて進んでいたからである。</p>
+    <p>メドヴの侍女で、ローハという名の女が、大勢の女たちを連れて水を汲みに出かけた。クー・フリンは、それをメドヴだと思った。クー・フリンはクインキウから石を投げ、その平野で女を殺した。それでその平野は、クアルンゲのレード・ローハ（ローハの平原）と呼ばれる。</p>
+    <p>軍勢は、クアルンゲのフィンダヴィルから四方に散らばって、その地方に火を放った。そしてクアルンゲじゅうの女と少年と娘と牛をかき集め、皆をフィンダヴィルに連れてきた。</p>
+    <p>「おまえたちはしくじりましたね」とメドヴは言った。「牡牛が見当たらないではありませんか。」</p>
+    <p>「牡牛はこの地方のどこにもいません」と皆は言った。</p>
+    <p>そこで、メドヴの牛飼いのローハルが呼ばれた。</p>
+    <p>「牡牛はどこにいると思う」とメドヴは言った。</p>
+    <p>「申し上げるのが恐ろしゅうございます」と牛飼いは言った。「ウラドの男たちが衰弱の呪いにかかった晩に、牡牛は六十頭の雌牛を従えて出てゆきました。いまはグレン・ガトのドゥヴハレにおります。」</p>
+    <p>「では行きなさい」とメドヴは言った。「二人に一本ずつ、柳の枝を持ってゆくのです。」</p>
+    <p>皆はそのとおりにした。それでその谷は、グレン・ガト（柳の枝の谷）と呼ばれる<sup class="fn" id="tr82"><a href="#tn82">82</a></sup>。</p>
+    <p>皆は牡牛を、フィンダヴィルへ連れてきた。ところが牡牛は、牛飼いのローハルの姿を見ると、ローハルに襲いかかった。そしてローハルのはらわたを角に引っかけて引きずり出した。それから牡牛は、百五十頭の雌牛を引き連れて陣営に突っ込み、五十人の戦士を殺した。これが、「牛捕り」に語られるローハルの死である。</p>
+    <p>牡牛は陣営から逃げ去り、皆はどこへ行ったのか見当もつかなかった。皆は面目を失った。</p>
+    <p>メドヴは牛飼いに、牡牛がどこにいると思うか尋ねた。</p>
+    <p>「スリアヴ・クリンの人里離れた奥地にいるのではないかと思います」と牛飼いは言った。</p>
+    <p>そこで一行は、クアルンゲを荒らし尽くしたうえで引き返したが、牡牛はそこにもいなかった。</p>
+    <p>やがて、クロン川が一行に逆らって増水し、木々の梢まで水かさが上がった。一行はその川岸で夜を過ごした。メドヴは手勢の一隊に、川を渡れと命じた。</p>
+    <p>翌日、ウアルという名の名高い戦士が、川を渡ろうとして、大きな石を背負った。ところが川はウアルを押し戻し、ウアルは石を背負ったまま溺れ死んだ<sup class="fn" id="tr83"><a href="#tn83">83</a></sup>。その川のそばの道ばたに、ウアルの墓と石がある。その石はリーア・ウアラン（ウアルの石）と呼ばれる。</p>
+    <p>一行はクロン川に沿って、その水源まで回り込んだ。水源と山のあいだを抜けて行くこともできたのだが、メドヴはそれを許さなかった。山を越えて行くほうを選んだのである。そうすれば、自分たちの通った跡が、ウラドの者たちへの辱めとして、いつまでもそこに残るからだった。</p>
+    <p>一行はそこで三日三晩とどまり、自分たちの前の土を掘り崩して道を開いた。これが、ベルナス・ボー・クアルンゲ（クアルンゲの牛の峡）である。</p>
+    <p>そのとき、クー・フリンはそこでクロンとコイヴデレを討ち、激しい殺戮を行った。王の周りにいた百人の勇士が、クー・フリンの手にかかって死んだ。その中には、この「牛捕り」を伝えた二人の語り部、ローアーンとロアエもいた<sup class="fn" id="tr84"><a href="#tn84">84</a></sup>。同じ川のほとりで、百四十四人の王がクー・フリンの手にかかって死んだ。</p>
+    <p>一行は、クアルンゲの財産と家畜を連れて、ベルナス・ボー・クアルンゲを越えた。そしてクアルンゲのグレン・ダール・イムダで夜を過ごした。その場所はボタ（小屋）と呼ばれる。一行がそこに小屋を建てたからである。</p>
+    <p>翌日、一行はコルプタ川へ進んだ。渡ろうとすると、川は一行に逆らって増水し、百人の戦車乗りを海まで押し流した。溺れた者たちのいた土地は、クルーアン・カルバト（戦車の牧草地）と呼ばれる。</p>
+    <p>一行はコルプタ川に沿ってその水源まで回り込み、ベラハ・アリオーンへ出て、リーアサ・リーアグで夜を過ごした。クアルンゲとコナレのあいだにあるその場所で、一行は子牛たちのために小屋を建てたので、その名がついたのである。</p>
+    <p>一行はグレン・ガトラグを越えたが、ガトラグ川が一行に逆らって増水した。この川は、以前はセハレと呼ばれていた。だが一行が子牛を柳の枝に縛って引いていったので、それ以来、グラシュ・ガトラグ（枝の小川）と呼ばれている。一行は、コナレの地のドルイム・フェーネで夜を過ごした。</p>
+    <p>この伝えによれば、クアルンゲから平原に至るまでの一行の歩みは、以上のとおりである。ただし、ほかの著者や書物は、フィンダヴィルからコナレに至るまでの歩みを、これとは別の順序で語っている<sup class="fn" id="tr85"><a href="#tn85">85</a></sup>。</p>
+
+    <h3 class="chapter"><small>第十一章</small>フェルグスの剣</h3>
+    <p class="open">ここからは「クアルンゲの略奪」の伝えである<sup class="fn" id="tr86"><a href="#tn86">86</a></sup>。</p>
+    <p>皆がそれぞれの獲物を携えて、クアルンゲのフィンダヴィルに集まると、メドヴは言った。「ここで軍勢を分けましょう。これほどの獲物の群れを、一本の道で連れてゆくことはできません。アリルは群れの半分を連れて、ミドルアフラの道を行ってください。フェルグスとわたしは、ウラドの峡を越えて行きます。」</p>
+    <p>「わしらに回された群れの半分は、幸先がよくない」とフェルグスは言った。「群れを分けなければ、牛を山越えさせることはできぬ。」</p>
+    <p>そこで群れは分けられた。それで、その峡はベルナス・ボー・ヌラド（ウラドの牛の峡）と呼ばれる。</p>
+    <p>そのときアリルは、御者のクリウスに言った。「今日は、メドヴとフェルグスの様子を探ってきてくれ。あの二人がなぜあんなに連れ立っているのか、わしにはわからぬ。何か証拠を持ち帰ってくれたら、ありがたい。」</p>
+    <p>クリウスは、二人がクルイフレにいるところへ出かけていった。二人は後に残り、戦士たちは先に進んでいた。クリウスが近づいていっても、二人はこの間者に気づかなかった。ちょうどフェルグスの剣が、フェルグスのそばに置いてあった。クリウスはその剣を鞘から抜き取り、空の鞘を残して立ち去った。</p>
+    <p>クリウスはアリルのもとへ戻った。</p>
+    <p>「どうだった」とアリルは言った。</p>
+    <p>「どうもこうもありません」とクリウスは言った。「ほら、これが証拠です。」</p>
+    <p>「でかした」とアリルは言った。二人は顔を見合わせて笑った。</p>
+    <p>「お考えのとおりでした」とクリウスは言った。「二人が一緒に寝ているところを見つけたのです。」</p>
+    <p>「あれも無理はない」とアリルは言った。「『牛捕り』のために、フェルグスの助けを得ようとしてしたことだ<sup class="fn" id="tr87"><a href="#tn87">87</a></sup>。その剣は大事にしまっておけ。亜麻布にくるんで、戦車の座席の下に入れておくのだ。」</p>
+    <p>一方フェルグスは、剣を取ろうと起き上がった。</p>
+    <p>「しまった」とフェルグスは言った。</p>
+    <p>「どうしたのです」とメドヴは言った。</p>
+    <p>「アリルに対して、ひどいことをしてしまった」とフェルグスは言った。「わしが森から戻るまで、ここで待っていてくれ。遅くなっても、怪しまないでくれ。」</p>
+    <p>メドヴは、剣がなくなったことを知らなかった。フェルグスは出かけていって、御者の剣を手に取った。そして森で木の剣をこしらえた。それで、その森はウラドの地のフィド・モールドルアレ（大いなる木剣の森）と呼ばれる<sup class="fn" id="tr88"><a href="#tn88">88</a></sup>。</p>
+    <p>「仲間の後を追おう」とフェルグスは言った。</p>
+    <p>二人は平野で軍勢と落ち合い、天幕を張った。フェルグスは、アリルとフィドヘルを打つために呼ばれた。フェルグスが天幕に入ってくると、アリルはフェルグスを見て笑った。</p>
+    <p>ここから、フェルグス、アリル、メドヴのあいだで、修辞的な韻文による応酬が続く。韻文は非常に難解なので、要旨のみを示す<sup class="fn" id="tr89"><a href="#tn89">89</a></sup>。</p>
+    <div class="rosc"><span class="tag">要旨 ― フェルグス</span><p>笑われるいわれはない、と抗議する。剣を失ったことを嘆き、女のために名誉を損なったことをほのめかす。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― アリル</span><p>剣を失ったことでそう怒るな、となだめる。女たちは誓いを守らぬものだ、と皮肉を込める。そして最後に、はっきりとこう言う。「さあ座れ。フィドヘルを打とう。よく来てくれた。何も恐れることはない。」</p></div>
+    <div class="rosc"><span class="tag">要旨 ― アリル</span><p>王と王妃の前でフィドヘルを打とう、と誘う。そして、竜の勢い、蛇の息、獅子の一撃を持つ勇士として、フェルグス・マク・ロサ・ロイヒを讃える。</p></div>
+    <p>二人は打ちはじめた。金と銀の駒を、青銅の盤の上で動かした。</p>
+    <div class="rosc"><span class="tag">要旨 ― アリル</span><p>王にふさわしからぬことがある、と言う。そして、偉業をなしたメドヴと、フェルグスとのひそかな語らいを当てこする。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― メドヴ</span><p>根も葉もない言葉はやめよ、と言い返す。フェルグスの潔白はいずれ明らかになる、と言う。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― フェルグス</span><p>大勢の前で多くの言葉を浴びせるのはやめよ、と嘆く。このことはいずれ語り草になるだろう、と言う。</p></div>
+    <p>一行はその夜そこで過ごした。翌朝、アリルがまた口を開いた。</p>
+    <div class="rosc"><span class="tag">要旨 ― アリル</span><p>クロン川のほとりで、大軍の前に大いなる戦いが待っている、と予告する。オル・ネークマハト（コナハトの古名）の男たちが血を流し、ウラドの勇士が現れるだろう、と言う。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― メドヴ</span><p>恐れるな、と鼓舞する。男たちを集め、女たちに牛を追わせ、大軍をクアルンゲから進めよ、と命じる。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― フェルグス</span><p>大いなる首が胸の上に据えられるだろう、と不吉な予言をする。誇り高き軍勢が王たちのもとを進み、敵に立ち向かう、と言う。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― メドヴ</span><p>多くの軍勢をあなたの指揮に委ねます、とアリルに言う。</p></div>
+    <p>一行はクロン川へ進んだ。そこで、アリルの息子マネが口を開いた。</p>
+    <div class="rosc"><span class="tag">要旨 ― マネ</span><p>急いで進もう、と勇み立つ。角のある牛を追って川を渡ろう、と言う。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― フェルグス</span><p>行くな、と止める。一人の若者がおまえの首を切り落として持ち去るだろう、と言う。川は荒れ狂って軍勢を溺れさせ、メドヴは多くの顔を失うだろう、と予言する。</p></div>
+    <p>「わしの亡命者の一隊を、先頭に立たせてくれ」とフェルグスは言った。「あの若者に対して、一騎打ちの掟が破られることのないようにな。牛はわしらの後ろに、軍勢はその後ろに、女たちはさらにその後ろにつけるがいい。」</p>
+    <div class="rosc"><span class="tag">要旨 ― メドヴ</span><p>フェルグスよ、ウラドの者を裏切るつもりはないのだろうが、自分たちの名誉を守れ、とたしなめる。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― フェルグス</span><p>メドヴよ、わしは国々の噂にのぼるような声に屈しはしない、と言い返す。わしはエウィンに背いた、物知らずの若造ではないのだから、と。</p></div>
+
+    <h3 class="chapter"><small>第十二章</small>クロン川の浅瀬と和議の申し出</h3>
+    <p class="open">クー・フリンは、軍勢の先回りをしてクロン川の浅瀬に来ていた。</p>
+    <p>「ロイグよ」とクー・フリンは御者に言った。「軍勢がこちらへ向かってくる。」</p>
+    <div class="rosc"><span class="tag">要旨 ― ロイグ</span><p>神々にかけて誓う、と言う。銀の軛と黄金の車輪を備えた戦車の勇士たちの前で、あなたは大いなる技を見せ、王たちの首を打ち、勝利を手にするだろう、と言う。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― クー・フリン</span><p>ロイグよ、と呼びかける。そして、水よ、わたしを助けよ、と祈る。「わたしは天と地に呼びかける。とりわけクロン川に呼びかける。」</p></div>
+    <blockquote class="verse">
+      <p>「クロン川よ、逆巻いて彼らを阻め。<br>ムルテヴネへは入らせるな。<br>フェーネの戦士たちの働きが、<br>北のオハネの山で終わるまで。」</p>
+    </blockquote>
+    <p>すると川の水が盛り上がり、木々の梢まで達した<sup class="fn" id="tr90"><a href="#tn90">90</a></sup>。</p>
+    <p>アリルとメドヴの息子マネが、皆の先頭に立って進んだ。クー・フリンは浅瀬でマネを打ち倒した。マネの手勢の騎兵三十人が、川に溺れた。クー・フリンはさらに、川のほとりで十二人の名だたる戦士を打ち倒した。一行は、その浅瀬に天幕を張った。</p>
+    <p>そこへ、ロワルク・アルホヴァハの孫で、ノスの子のルギドが、三十人の騎兵を連れて、クー・フリンと話し合いにやって来た<sup class="fn" id="tr91"><a href="#tn91">91</a></sup>。</p>
+    <p>「よく来てくれた、ルギド」とクー・フリンは言った。「ムルテヴネの野に鳥の群れが降りてきたら、おまえには一羽半を分けよう。河口に魚が上ってきたら、おまえには鮭一匹半を分けよう。三つの草も分けよう。クレソンをひとつかみ、浜の草をひとつかみ、海藻をひとつかみ<sup class="fn" id="tr92"><a href="#tn92">92</a></sup>。浅瀬でおまえの身代わりになる男も、一人出してやろう。」</p>
+    <p>「頼もしいことだ」とルギドは言った。「若者のもてなしは気持ちがいい。」</p>
+    <p>「おまえたちの軍勢は見事なものだな」とクー・フリンは言った。</p>
+    <p>「あの軍勢を前にして、おまえが少人数でも恥ではない」とルギドは言った。</p>
+    <p>「わたしには誠と、確かな武勇がついている」とクー・フリンは言った。「ルギドどの、軍勢はわたしを恐れているか。」</p>
+    <p>「神にかけて誓うが」とルギドは言った。「二十人か三十人そろわなければ、一人も二人も、陣営の外へ用を足しに出ることさえできない有様だ。」</p>
+    <p>「わたしが石投げ紐で石を投げはじめたら、もっとひどいことになるだろう」とクー・フリンは言った。「ルギドどの、ウラドの男たちの力がそれぞれわたしに乗り移ったら、おまえがウラドの者と結んでいる友情は、おまえにとってありがたいものになるだろうな<sup class="fn" id="tr93"><a href="#tn93">93</a></sup>。さあ、望みを言ってくれ。」</p>
+    <p>「わたしの手勢には、手を出さないと約束してほしい」とルギドは言った。</p>
+    <p>「約束しよう。ただし、印をつけておいてくれ」とクー・フリンは言った。「それから、わが友フェルグスにも、その手勢に印をつけておくよう伝えてくれ。医者たちにも、その一団に印をつけておくよう伝えてくれ。そして医者たちには、わたしの命を守ると誓ってもらいたい。毎晩わたしに食べ物を届けてくれるように、ともな<sup class="fn" id="tr94"><a href="#tn94">94</a></sup>。」</p>
+    <p>ルギドは帰っていった。ちょうどフェルグスは、アリルと一緒に天幕の中にいた。ルギドはフェルグスを外へ呼び出して、クー・フリンの言葉を伝えた。それをアリルが聞きつけた。</p>
+    <div class="rosc"><span class="tag">要旨 ― アリル</span><p>野の陣でひそひそ話がなされている、と怪しむ。ロイヒの子フェルグスのためだろう、と言う。メドヴにも大きな助けになるかもしれない、少人数でその天幕へ行こう、と持ちかける。</p></div>
+    <p>「神にかけて、あの若者に尋ねてみないことには、何とも言えません」とルギドは言った。</p>
+    <p>「では行ってくれ、ルギド」とフェルグスは言った<sup class="fn" id="tr95"><a href="#tn95">95</a></sup>。「アリルも三千の兵を連れて、わしの一隊に加わってよいか、あの若者に尋ねてきてくれ。それから、塩漬けの豚肉と、葡萄酒をひと樽、持っていってやってくれ。」</p>
+    <p>ルギドはクー・フリンのところへ行って、そう伝えた。</p>
+    <p>「誰が来ようと、わたしはかまわない」とクー・フリンは言った。</p>
+    <p>こうして二つの一隊は合流した。一行はそこで夕方まで過ごした。そのあいだにクー・フリンは、石投げ紐で三十人の戦士を打ち倒した。別の書物によれば、一行はそこで二十夜を過ごしたという。</p>
+    <p>「まずいことになった」とフェルグスは言った。「このままでは、ウラドの者たちが衰弱から立ち直って、わしらを粉みじんにしてしまうだろう。わしらは、ひどくまずい位置で戦っているのだ。」</p>
+    <p>一行はクール・アルシルへ進んだ。その夜、クー・フリンはウラドの人々と話し合いに出かけた。</p>
+    <p>「何か知らせはあるか」とコンホヴァルは言った。</p>
+    <div class="rosc"><span class="tag">要旨 ― クー・フリン</span><p>女たちが連れ去られ、牛が追われ、男たちが殺されている、と告げる。マーガハの子アリルと、ロイヒの子フェルグスが、剣をふるって攻め寄せている、と言う。</p></div>
+    <p>「今日のところは、わしらにはどうにもしてやれぬ」とコンホヴァルは言った。「わしらはまだ、同じ苦しみの中にいるのだから<sup class="fn" id="tr96"><a href="#tn96">96</a></sup>。」</p>
+    <p>クー・フリンはウラドの人々のもとを去った。そして、軍勢が陣を引き払って進んでゆくのを見た。</p>
+    <div class="rosc"><span class="tag">要旨 ― アリル</span><p>なんということだ、と嘆く。どの浅瀬でも男たちを打つ戦車が見える、と言う。軍勢がウラドの牛をめぐって争ううちに、浅瀬で血が流されるだろう、と予言する。</p></div>
+    <p>クー・フリンは、アート・ドゥルンで三十人の戦士を討ち取った。一行は、夜になるまでクール・アルシルに着けなかった。クー・フリンはそこでも三十人を討ち取った。一行はそこに天幕を張った。</p>
+    <p>朝、アリルの御者のクリウスが、浅瀬で戦車の部品を洗っていた。クー・フリンが石を投げてクリウスを打つと、クリウスは死んだ。それで、その浅瀬はクール・アルシルのアート・クリンネ（クリウスの浅瀬）と呼ばれる<sup class="fn" id="tr97"><a href="#tn97">97</a></sup>。</p>
+    <p>一行は、前にも述べたように、コナレの地のドルイム・フェーネに着いた<sup class="fn" id="tr98"><a href="#tn98">98</a></sup>。クー・フリンはそこでも一行に襲いかかった。一行がそこにいた三晩のあいだ、クー・フリンは毎晩百人ずつ討ち取った。すぐそばのオハネの山から、石投げ紐で石を投げつけたのである。</p>
+    <p>「このままでは、わしらの軍勢はクー・フリンのために長くはもたぬ」とアリルは言った。「あの男に和議を申し入れよう。アイの平野のうちから、マグ・ムルテヴネに等しい広さの土地をやろう。アイでいちばんの戦車と、十二人分の装束もやろう。あるいは、もしあの男が望むなら、自分が育った平野と、二十一人の女奴隷に相当する財<sup class="fn" id="tr99"><a href="#tn99">99</a></sup>をやろう。あの男の家や家畜で失われたものは、すべて償おう。わしに仕えるがよい、とも伝えよ。若い主人に仕えるより、ずっとあの男のためになる<sup class="fn" id="tr100"><a href="#tn100">100</a></sup>。誰がこの申し入れを伝えに行く。」</p>
+    <p>「そこにいるマク・ロトが行きましょう」</p>
+    <p>アリルとメドヴの使者マク・ロトが、この申し入れを携えてデルガへ向かった。マク・ロトは一日でアイルランドを一周できるほどの足を持っていた。フェルグスは、クー・フリンはデルガにいるだろうと考えていたのである。</p>
+    <p>「誰かがこちらへやって来ます」とロイグはクー・フリンに言った。「黄色い髪を短く刈った男です。亜麻の外套をまとい、手には太い棍棒を持っています。腰の下には象牙の柄の剣を差し、赤い縫い取りのある頭巾つきの下衣を着ています。」</p>
+    <p>「王の戦士の誰だろう」とクー・フリンは言った。</p>
+    <p>マク・ロトはロイグに、誰に仕えているのかと尋ねた。</p>
+    <p>「あそこの下にいる人に仕えています」とロイグは言った。</p>
+    <p>クー・フリンは、そこで雪の中に腿まで埋まって座っていた。何も羽織らず、下衣を手入れしていた<sup class="fn" id="tr101"><a href="#tn101">101</a></sup>。</p>
+    <p>マク・ロトはクー・フリンにも、誰に仕えているのかと尋ねた。</p>
+    <p>「コンホヴァル・マク・ネサに仕えている」とクー・フリンは言った。</p>
+    <p>「もっと詳しい名乗りはないのか。」</p>
+    <p>「それで十分だろう。」</p>
+    <p>「クー・フリンは、このあたりのどこにいるのだ」とマク・ロトは言った。</p>
+    <p>「あの男に何を言うつもりだ」とクー・フリンは言った。</p>
+    <p>マク・ロトは、申し入れの中身を残らず話した。</p>
+    <p>「たとえクー・フリンがすぐ近くにいたとしても、そんな申し入れは受けないだろう」とクー・フリンは言った。「母の兄弟を、よその王と引き換えに売り渡したりはしない。」</p>
+    <p>マク・ロトはもう一度やって来て、新しい申し入れを伝えた。夜のあいだに石投げ紐で石を投げつけるのをやめるなら、昼間に何人殺してもかまわない、その代わりに、女たちのうちいちばん身分の高い者たちと、牛のうち乳の出ない者たちを与えよう、というのである。</p>
+    <p>「断る」とクー・フリンは言った。「女奴隷を奪われたら、わたしたちの自由な女たちが石臼を挽くことになる。乳の出る牛を奪われたら、わたしたちは乳なしで暮らすことになる<sup class="fn" id="tr102"><a href="#tn102">102</a></sup>。」</p>
+    <p>マク・ロトはまたやって来て、それでは女奴隷と乳の出る牛を与えよう、と伝えた。</p>
+    <p>「それも断る」とクー・フリンは言った。「ウラドの男たちが女奴隷を寝床に連れ込んで、奴隷の子が生まれることになる。乳の出る牛は、冬になれば肉にして食べてしまうだろう。」</p>
+    <p>「では、ほかに条件はあるのか」と使者は言った。</p>
+    <p>「ある。だが、おまえには言わない」とクー・フリンは言った。「おまえたちのうち誰かがそれを言い当てたら、そのとおりにしよう。」</p>
+    <p>「わしにはわかる」とフェルグスは言った。「あの男が言わずにおいた条件がな。おまえたちにとって得になるものではないが。それはこういうものだ。浅瀬を一つ決め、そこであの男が一日に一人の相手と一騎打ちをする。そのあいだは、牛を連れ出してはならない。昼と夜が明けるまでのあいだに、ウラドの援軍があの男のもとに届くかどうか、というわけだ。それにしても、ウラドの者たちが衰弱から立ち直るのに、ずいぶん時がかかるものだ。」</p>
+    <p>「わしらにとっては、毎晩百人を失うより、毎日一人を失うほうがましだ」とアリルは言った。</p>
+
+    <h3 class="chapter"><small>第十三章</small>エタルコウォルの死</h3>
+    <p class="open">フェルグスは、この取り決めを伝えに出かけた。すると、エダとレトリンネの子で、アリルとメドヴの養い子であるエタルコウォルが、フェルグスについてきた。</p>
+    <p>「おまえには来てほしくない」とフェルグスは言った。「おまえが嫌いだからではない。おまえとクー・フリンが渡り合うことになるのが気が重いのだ。おまえは傲慢で、うぬぼれが強い。一方、わが友クー・フリンは猛々しく、荒々しく、気性が激しく、向こう見ずだ。勝負になったら、おまえのためにならぬ。」</p>
+    <p>「あなたなら、あの男からわたしを守ってくださるでしょう」とエタルコウォルは言った。</p>
+    <p>「守ってはやる」とフェルグスは言った。「ただし、あの男を見下すような口はきくな。」</p>
+    <p>二人は二台の戦車に分かれて、デルガへ向かった。</p>
+    <p>そのときクー・フリンは、ロイグと〈ブアンヴァハ〉<sup class="fn" id="tr103"><a href="#tn103">103</a></sup>を打っていた。クー・フリンは来る者たちに背を向け、ロイグはそちらに顔を向けていた。</p>
+    <p>「戦車が二台、こちらへやって来ます」とロイグは言った。「先頭の戦車には、大柄な色の黒い男が乗っています。濃い褐色の髪は茂みのよう。紫の外套に黄金のブローチを留め、赤い縫い取りのある頭巾つきの下衣を着ています。白銅の縁を波形に刻んだ、曲面の盾を持っています。手には、根元から穂先まで幅の広い槍。腿の上には、舟の櫂ほども長い剣を載せています。」</p>
+    <p>「あれは、わが主フェルグスが運んでいる、中身のない大きな櫂だ」とクー・フリンは言った。「あの鞘には、木の剣しか入っていないのだから。聞いた話では、アリルはフェルグスとメドヴが眠っているところを捕らえ、フェルグスの剣を盗み取って、御者に預けたそうだ。そして鞘には木の剣が入れられたという。」</p>
+    <p>そこへフェルグスがやって来た。</p>
+    <p>「ようこそ、フェルグスさま」とクー・フリンは言った。「河口に魚が上ってきたら、あなたには一匹半を差し上げます。野に鳥の群れが降りてきたら、一羽半を差し上げます。クレソンや海草もひとつかみずつ。砂から汲んだ水もひと口。誰かがあなたに挑んできたら、あなたに代わって浅瀬へ出向き、その相手と戦いましょう。」</p>
+    <p>「頼もしいことだ」とフェルグスは言った。「だが、わしらはご馳走になりに来たのではない。おまえのここでの暮らしぶりは、よく知っておるからな。」</p>
+    <p>クー・フリンはフェルグスから取り決めを受け入れた。フェルグスは帰っていった。</p>
+    <p>エタルコウォルは残って、クー・フリンをじろじろと眺めていた。</p>
+    <p>「何を見ている」とクー・フリンは言った。</p>
+    <p>「おまえだ」とエタルコウォルは言った。</p>
+    <p>「ひと目で見終わるだろうに」とクー・フリンは言った。</p>
+    <p>「そのとおりだ」とエタルコウォルは言った。「おまえには、人を怖がらせるようなところは何も見当たらない。恐ろしさもなければ、数で圧倒するでもない。きれいな武器を持って、見栄えのする技を見せる、ただの可愛らしい若者ではないか。」</p>
+    <p>「いくら侮られても、おまえを殺しはしない。フェルグスのためだ」とクー・フリンは言った。「フェルグスの庇護がなければ、おまえのはらわたと四つ裂きにした手足を、おまえの戦車の後ろにつけて陣営へ送り返していたところだ。」</p>
+    <p>「そんな脅しは無用だ」とエタルコウォルは言った。「一人ずつ一騎打ちをするという、あの見事な取り決めがあるではないか。アイルランドの男のうち、明日おまえと渡り合うのは、このわたしだ。」</p>
+    <p>エタルコウォルは帰っていった。</p>
+    <p>ところが、メシェとケシェ<sup class="fn" id="tr104"><a href="#tn104">104</a></sup>まで来たところで、エタルコウォルは引き返した。そして御者に言った。「わたしはフェルグスの前で、明日クー・フリンと戦うと言い放った。待っていても、楽になるわけではない。馬を丘から引き返させろ。」</p>
+    <p>ロイグはそれを見て、クー・フリンに言った。「あの戦車が戻ってきました。しかも、左側をこちらに向けています<sup class="fn" id="tr105"><a href="#tn105">105</a></sup>。」</p>
+    <p>「挑戦を断るわけにはいかないな」とクー・フリンは言った。「わたしのほうから、あの男を相手にしたいとは思わないが。」</p>
+    <p>「おまえはわたしと戦わねばならぬ」とエタルコウォルは言った。</p>
+    <p>クー・フリンは、エタルコウォルの足もとの芝土を斬りつけた。エタルコウォルは仰向けに倒れ、その腹の上に芝土が載った。</p>
+    <p>「わたしの前から消えろ」とクー・フリンは言った。「おまえで手を汚すのはごめんだ。フェルグスのことがなければ、とっくにおまえを切り刻んでいたところだ。」</p>
+    <p>「このまま別れはしない」とエタルコウォルは言った。「わたしがおまえの首を取るか、わたしの首をおまえに残してゆくかだ。」</p>
+    <p>「では、そういうことになるだろう」とクー・フリンは言った。</p>
+    <p>クー・フリンは剣で、エタルコウォルの両の脇の下を斬りつけた。衣はすっかり切れ落ちたが、肌には傷ひとつつかなかった。</p>
+    <p>「さあ、もう行け」とクー・フリンは言った。</p>
+    <p>「行かぬ」とエタルコウォルは言った。</p>
+    <p>クー・フリンは剣の切っ先でエタルコウォルに斬りかかり、剃刀で剃るようにその髪を剃り落とした。かすり傷ひとつ負わせなかった。</p>
+    <p>それでもエタルコウォルがしつこく食い下がってくるので、クー・フリンはとうとうその頭のてっぺんに斬りつけ、へそまで真っ二つにしてしまった。</p>
+    <p>フェルグスは、戦車が自分の脇を通り過ぎてゆくのを見た。乗っているのは一人だけだった<sup class="fn" id="tr106"><a href="#tn106">106</a></sup>。フェルグスは引き返して、クー・フリンをなじった。</p>
+    <p>「ひどいことをしてくれたな、小僧。わしの顔に泥を塗りおって。わしの腕が短いとでも思っているのか<sup class="fn" id="tr107"><a href="#tn107">107</a></sup>。」</p>
+    <p>「怒らないでください、フェルグスさま」とクー・フリンは言った。</p>
+    <div class="rosc"><span class="tag">要旨 ― クー・フリン</span><p>あの男は剣も持たずに敵に立ち向かい、傲慢にもウラドを侮った、と弁明する。わたしを打つなら打ってください、わたしの上を戦車で轢いてください、と身を投げ出す。</p></div>
+    <p>そう言ってクー・フリンは地面に身を投げ出した。フェルグスの戦車が、三度その上を通り過ぎた。</p>
+    <p>「あの男の御者に尋ねてみてください」とクー・フリンは言った。「挑んだのはわたしのほうでしたか。」</p>
+    <p>「いいえ、あなたではありません」と御者は言った。</p>
+    <p>「あの男は、わたしの首を取るか、自分の首をわたしに残すかしなければ帰らない、と言ったのです」とクー・フリンは言った。「フェルグスさま、どちらがよかったとお思いですか。」</p>
+    <p>「こうなってよかった」とフェルグスは言った。「傲慢だったのは、あの男のほうなのだから。」</p>
+    <p>フェルグスは、エタルコウォルの両の踵に柳の枝を通し、自分の戦車の後ろにつけて、陣営まで引きずっていった。石の上を通ると、体の半分がもう半分から離れた。平らなところでは、また一つにくっついた。</p>
+    <p>メドヴはそれを見て言った。「若い子犬に対して、それはずいぶん手荒な扱いではありませんか、フェルグス。」</p>
+    <p>「わしは悲しまぬ」とフェルグスは言った。「止めるのも聞かずに、あの大いなる猛犬に挑んだ子犬なのだから<sup class="fn" id="tr108"><a href="#tn108">108</a></sup>。」</p>
+    <p>エタルコウォルの墓が掘られ、墓石が立てられた。墓石にはオガムでその名が刻まれ、弔いの歌が歌われた。</p>
+    <p>その夜、クー・フリンは石投げ紐で軍勢を襲わなかった。取り決めのとおり、クー・フリンには女たちと娘たちが返され、牛の半分も返された。そして毎日、食べ物が届けられた<sup class="fn" id="tr109"><a href="#tn109">109</a></sup>。</p>
+
+    <h3 class="chapter"><small>第十四章</small>ナト・クランタル</h3>
+    <p class="open">「明日、クー・フリンに立ち向かうのは誰だ」とルギドは言った。</p>
+    <p>「明日、おまえたちに差し出すさ」とアリルの息子マネは言った。</p>
+    <p>「あの男に立ち向かえる者は見つかりません」とメドヴは言った。「あの男に見合う者が見つかるまで、休戦を願いましょう。」</p>
+    <p>休戦は認められた。</p>
+    <p>「そんな男を、どこへ探しに行くのだ」とアリルは言った。</p>
+    <p>「アイルランドには、あの男に太刀打ちできる者はいません」とメドヴは言った。「ダーレの子クー・ロイを呼んでくるか、戦士ナト・クランタルを呼んでくるかしないかぎりは。」</p>
+    <p>天幕の中には、クー・ロイの手の者が一人いた。その男は言った。「クー・ロイは来ないでしょう。自分の手勢がもう十分に加わっている、と考えているのですから。」</p>
+    <p>「では、ナト・クランタルを呼びましょう」とメドヴは言った<sup class="fn" id="tr110"><a href="#tn110">110</a></sup>。</p>
+    <p>マネ・アンドーイがナト・クランタルのもとへ出かけて、事の次第を話した。</p>
+    <p>「コナハトの名誉のために、一緒に来てください」とマネは言った。</p>
+    <p>「行かぬ」とナト・クランタルは言った。「フィンダヴィルをわしにくれるというのでなければ。」</p>
+    <p>それでもナト・クランタルは一行についてきた。その武具は、荷車に積まれて、コナハトの東の果てから陣営まで運ばれてきた。</p>
+    <p>「あの男に立ち向かってくれたら、フィンダヴィルをあげましょう」とメドヴは言った。</p>
+    <p>「引き受けた」とナト・クランタルは言った。</p>
+    <p>その夜、ルギドはクー・フリンのところへやって来て言った。「明日、ナト・クランタルがおまえに挑みに来る。気の毒だが、おまえは助かるまい。」</p>
+    <p>「そうはならない」とクー・フリンは言った<sup class="fn" id="tr111"><a href="#tn111">111</a></sup>。</p>
+    <p>翌朝、ナト・クランタルは陣営を出発した。火で焼き固めて先を尖らせた、柊の串を九本携えていた。</p>
+    <p>クー・フリンはそのとき鳥を捕らえていた。戦車はそのそばに置いてあった。ナト・クランタルは、クー・フリンめがけて串を一本投げた。クー・フリンはその串の先にひらりと跳び乗り、鳥を捕らえる手を休めなかった。残りの八本の串も、同じようにあしらった。</p>
+    <p>ナト・クランタルが九本目の串を投げたとき、鳥の群れがクー・フリンのもとから飛び立った。クー・フリンは群れを追いかけた。鳥を逃がすまいと、串の先から串の先へ、鳥のように跳び移っていった。</p>
+    <p>ところが、それを見ていた者たちには、クー・フリンがナト・クランタルから逃げ出したように見えた。</p>
+    <p>「おまえたちのクー・フリンとやらは、わしの前から逃げていったぞ」とナト・クランタルは言った。</p>
+    <p>「無理もありません」とメドヴは言った。「本物の戦士がやって来れば、あんな小僧はひとたまりもないのです。」</p>
+    <p>フェルグスとウラドの亡命者たちは、これを聞いてつらく思った。そこでフィアハ・マク・フィル・フェヴェが、クー・フリンをいさめに遣わされた。</p>
+    <p>「あの男に、こう伝えてくれ」とフェルグスは言った。「手柄を立てているあいだ、戦士たちの中に身を置くのは立派なことだった。だが、たった一人の相手から逃げ出すのなら、身を隠しているほうがふさわしい。あの男の恥は、あの男だけのものではない。ウラドじゅうの恥になるのだから、と。」</p>
+    <p>フィアハがそれを伝えると、クー・フリンは言った。「そんなことを言いふらしているのは誰だ。」</p>
+    <p>「ナト・クランタルだ」とフィアハは言った。</p>
+    <p>「何を言いふらしているのだ。わたしがあの男の前でやってみせた技は、恥ずかしいものではなかった」とクー・フリンは言った。「あの男が武器を手にしていたなら、そんな自慢はできなかっただろう。わたしは武器を持たない者は殺さないと、あなたも知っているはずだ。明日、オハネと海のあいだに来るよう、あの男に伝えてくれ。どんなに朝早く来ても、わたしはそこにいる。逃げはしない。」</p>
+    <p>クー・フリンは約束の場所へ出かけていった。夜通し見張りをしたあとだったので、外套を体に巻きつけた。そばには、クー・フリンと同じくらいの大きさの立石があったが、クー・フリンはそれに気づかなかった。そして立石を外套の内に抱き込むようにして、その横に座った。</p>
+    <p>そこへナト・クランタルが、荷車いっぱいの武器を携えてやって来た。</p>
+    <p>「クー・フリンはどこだ」とナト・クランタルは言った。</p>
+    <p>「あそこにいる」とフェルグスは言った。</p>
+    <p>「昨日見たときとは、ずいぶん様子が違う」とナト・クランタルは言った。「おまえがクー・フリンか。」</p>
+    <p>「もしそうだとしたら」とクー・フリンは言った。</p>
+    <p>「もしそうなら」とナト・クランタルは言った。「わしは子羊の首など陣営へ持ち帰りはせぬ。髭も生えていない小僧の首など、持ち帰る気はない。」</p>
+    <p>「わたしはクー・フリンではない」とクー・フリンは言った。「あの丘を回ったところにいるから、そこへ行くがいい。」</p>
+    <p>クー・フリンはロイグのところへ行って言った。「わたしに付け髭を塗りつけてくれ<sup class="fn" id="tr112"><a href="#tn112">112</a></sup>。あの勇士は、髭のない者とは戦わないそうだ。」</p>
+    <p>ロイグはそのとおりにしてやった。クー・フリンは丘の上で、ナト・クランタルを迎えた。</p>
+    <p>「これならよかろう」とナト・クランタルは言った。「では、正々堂々と戦ってもらおう。」</p>
+    <p>「そうしよう。どういう戦いになるか、すぐにわかる」とクー・フリンは言った。</p>
+    <p>「わしがおまえに槍を投げる。おまえはそれをよけてはならぬ」とナト・クランタルは言った。</p>
+    <p>「よけはしない。ただし、上へ跳ぶのは別だ」とクー・フリンは言った。</p>
+    <p>ナト・クランタルが槍を投げた。クー・フリンはその前に、上へ跳んだ。</p>
+    <p>「よけるとは卑怯な」とナト・クランタルは言った。</p>
+    <p>「では、おまえもわたしの槍を上へよけてみろ」とクー・フリンは言った。</p>
+    <p>クー・フリンは槍を投げた。ただし、上へ向かって投げた。槍は空から落ちてきて、ナト・クランタルの頭のてっぺんに突き刺さり、体を貫いて地面に達した。</p>
+    <p>「ああ」とナト・クランタルは言った。「おまえこそ、アイルランドでいちばんの戦士だ。わしには陣営に二十四人の息子がいる。行って、わしがどんな宝を隠しているか息子たちに教えてくる。それから戻ってくるから、わしの首をはねるがいい。この槍を頭から抜けば、わしは死ぬのだから。」</p>
+    <p>「よかろう。戻ってくるがいい」とクー・フリンは言った。</p>
+    <p>ナト・クランタルは陣営へ戻った。皆が出迎えた。</p>
+    <p>「〈姿の歪む者〉の首はどこだ」と皆は言った。</p>
+    <p>「待ってくれ、戦士たちよ」とナト・クランタルは言った。「息子たちに話をしてから、またクー・フリンと戦いに戻るのだ。」</p>
+    <p>ナト・クランタルはクー・フリンのところへ戻ってくると、剣でクー・フリンに斬りかかった<sup class="fn" id="tr113"><a href="#tn113">113</a></sup>。クー・フリンが上へ跳ぶと、剣は立石に当たって、真っ二つに折れた。</p>
+    <p>クー・フリンの姿が歪みはじめた。エウィンで少年たちを相手にしたときと同じだった。クー・フリンはナト・クランタルの盾の上に跳び乗り、その首をはねた。続いて首の付け根から下へ、へそまで斬り下ろした。ナト・クランタルの体は四つに分かれて地に落ちた。</p>
+    <p>そこでクー・フリンは、こう言った。</p>
+    <blockquote class="verse">
+      <p>「ナト・クランタルが倒れたからには、<br>争いはいっそう激しくなるだろう。<br>残念だ、いまこのとき、戦いの相手が<br>軍勢の三分の一を率いるメドヴでないとは。」</p>
+    </blockquote>
+
+    <h3 class="chapter"><small>第十五章</small>褐色の牡牛、奪われる</h3>
+    <p class="open">ここからは、牡牛が見つかったいきさつを、この伝えに従って語る。</p>
+    <p>そのころメドヴは、軍勢の三分の一を率いてクイヴへ牡牛を探しに出かけていた。クー・フリンはその後を追った。メドヴはミドルアフラの道をたどって、ウラドとクルフネの地を荒らしながら、ダーン・ソヴァルヘまで進んでいた<sup class="fn" id="tr114"><a href="#tn114">114</a></sup>。</p>
+    <p>そのときクー・フリンは、スリアヴ・クリンのバーンの子ブディが、牡牛を連れてゆくのを見つけた。牡牛の周りには十五頭の雌牛がいて、アリルの手の者六十人が付き従っていた。どの男も外套をきちんと畳んで身にまとっていた。</p>
+    <p>クー・フリンは一行に近づいた。</p>
+    <p>「その牛はどこから連れてきた」とクー・フリンは言った。</p>
+    <p>「あそこの山からだ」と戦士は言った。</p>
+    <p>「牛飼いはどこにいる」とクー・フリンは言った。</p>
+    <p>「見つけたときのままさ」と戦士は言った。</p>
+    <p>クー・フリンは話を聞こうと、三度跳んで一行を追い、浅瀬まで来た。そして頭目に言った。</p>
+    <p>「おまえの名は何という。」</p>
+    <p>「おまえの敵でも味方でもない。バーンの子ブディだ。」</p>
+    <p>「ではブディよ、この槍をくれてやる」とクー・フリンは言った。</p>
+    <p>クー・フリンが投げ槍を放つと、槍はブディの脇の下から入り、体の中を突き破った。ブディはその浅瀬で討たれた。それで、その浅瀬はアート・ブディ（ブディの浅瀬）と呼ばれる。</p>
+    <p>だが牡牛は、そのまま陣営へ連れていかれてしまった<sup class="fn" id="tr115"><a href="#tn115">115</a></sup>。</p>
+    <p>そこで皆は相談した。クー・フリンも、あの投げ槍を取り上げてしまえば手ごわくはあるまい、と。</p>
+    <p>そこで、アリルの風刺詩人<sup class="fn" id="tr116"><a href="#tn116">116</a></sup>レーグが、皆の相談を受けてクー・フリンのところへ行き、投げ槍をくれとせがんだ。</p>
+    <p>「その槍をよこせ」と風刺詩人は言った。</p>
+    <p>「それはやれない」とクー・フリンは言った。「だが、宝なら差し上げよう。」</p>
+    <p>「そんなものは受け取らぬ」と風刺詩人は言った。</p>
+    <p>差し出したものを受け取らないので、クー・フリンは風刺詩人を斬りつけた。すると風刺詩人は、投げ槍をくれないなら、おまえの名誉を奪ってやる、と言った。</p>
+    <p>そこでクー・フリンは投げ槍を投げつけた。槍は風刺詩人の頭を横ざまに貫いた。</p>
+    <p>「これはまた、ずっしりとした贈り物だ」と風刺詩人は言った<sup class="fn" id="tr117"><a href="#tn117">117</a></sup>。それで、その浅瀬はアート・トラム・シェード（重い贈り物の浅瀬）と呼ばれる。そこから東にもう一つ浅瀬があり、そこには投げ槍の銅の飾りが落ちた。それで、その浅瀬はウマリト（銅の浅瀬）と呼ばれる。</p>
+    <p>クイヴで、クー・フリンは先に挙げた者たちをすべて討ち取った。ナト・コルプテを、その木立のそばで。クルフェンを、その浅瀬で。ブアハルの息子たちを、その石塚のそばで。マルクを、その丘で。メレを、その砦で。ボドヴを、その塔で。ボガネを、その沼地で。</p>
+    <p>クー・フリンは、マグ・ムルテヴネへ引き返した。自分の土地を守るほうが大事だと思ったのである。戻ってくると、クー・フリンはフォヘルドで、陣を張ろうとしていた二十人を討ち取った。酌取りが十人と、戦士が十人だった。</p>
+    <p>メドヴは、二週間かけてその地方を荒らし回ったのち、北から引き返してきた。その途中で、ケルトハル・マク・ウテヒルの妻フィンモールと戦った。そしてダール・リアダの地にあるダーン・ソヴァルヘを陥としたのち、五十人の女を捕らえて連れ去った。</p>
+    <p>クイヴでメドヴが馬の鞭を地面に突き立てた場所は、どこもビレ・メドヴァ（メドヴの木）と呼ばれている。メドヴが陣を張った浅瀬や高みは、どこもアート・メドヴァ（メドヴの浅瀬）、ディンナ・メドヴァ（メドヴの高み）と呼ばれている。</p>
+    <p>やがて皆は、フォヘルドで落ち合った。アリルとメドヴ、そして牡牛を追ってきた一隊である。</p>
+    <p>ところが牛飼いが、彼らから牡牛を取り戻そうとした。そこで皆は、狭い峡で、盾の上に棒を渡して牛飼いを追い詰め、その上を牛の群れに越えさせた。牛の群れの蹄は、牛飼いを地面の中へ踏みつぶしてしまった。牛飼いの名はフォルゲウェンといった<sup class="fn" id="tr118"><a href="#tn118">118</a></sup>。牛飼いはいまもそこにいて、その丘はフォルゲウェンと呼ばれている。</p>
+    <p>その夜、皆が心を悩ませたのはただ一つ、浅瀬でクー・フリンに立ち向かう男を誰にするか、ということだけだった。</p>
+
+    <h3 class="chapter"><small>第十六章</small>休戦の申し出とフィンダヴィルの策略</h3>
+    <p class="open">「クー・フリンに、剣を収めてもらう休戦を願い出よう」とアリルは言った<sup class="fn" id="tr119"><a href="#tn119">119</a></sup>。</p>
+    <p>「ルギドに行ってもらおう」と皆は言った。</p>
+    <p>ルギドはクー・フリンと話し合いに出かけた。</p>
+    <p>「軍勢のあいだで、わたしはいまどう思われている」とクー・フリンは言った。</p>
+    <p>「おまえは、たいそうな恥を彼らにかかせたものだ」とルギドは言った。「女たちも娘たちも、牛の半分も、おまえに返さねばならなかった。だが彼らにとっては、おまえに殺され、そのうえおまえを養わねばならないことのほうが、何よりもこたえている。この一週間、毎日一人ずつ、おまえの手にかかって倒れているのだからな。」</p>
+    <p>そのころ、クー・フリンに対して一騎打ちの掟が破られた。二十人が一度にクー・フリンに襲いかかったのである。クー・フリンは二十人とも討ち取った。</p>
+    <p>「フェルグスよ、あの男のところへ行って、陣を移してくれるよう頼んでくれ」とアリルは言った。</p>
+    <p>一行は進んで、クローネフに着いた。クー・フリンはそこで、一騎打ちによって次の者たちを討ち取った。ロトが二人、ルーアンが二人、女の盗人<sup class="fn" id="tr120"><a href="#tn120">120</a></sup>が二人、道化が十人、酌取りが十人、フェルグスという名の者が十人、フェドリミドという名の者が六人、フィアフラという名の者が六人である。これらの者は皆、一騎打ちで討たれた。</p>
+    <p>クローネフに天幕を張ると、皆はクー・フリンをどうしたものかと相談した。</p>
+    <p>「よい手があります」とメドヴは言った。「誰かを遣わして、軍勢のために剣を収めてくれるよう頼むのです。その代わりに、ここにいる牛の半分をあの男に与えましょう。」</p>
+    <p>その申し入れがクー・フリンのもとへ届けられた。</p>
+    <p>「引き受けよう」とクー・フリンは言った。「ただし、おまえたちが約束を破らないかぎりだ。」</p>
+    <p>「あの男に、こう申し入れよう」とアリルは言った。「フィンダヴィルを与えるから、軍勢に手を出さないでくれ、と。」</p>
+    <p>マネ・アハルウィルがクー・フリンのもとへ出かけた。マネはまずロイグのところへ行った。</p>
+    <p>「おまえは誰に仕えているのだ」とマネは言った。</p>
+    <p>ロイグは答えなかった。マネは同じことを三度尋ねた。</p>
+    <p>「クー・フリンに仕えている」とロイグは言った。「うるさくつきまとうな。首をはね飛ばされたくなければな。」</p>
+    <p>「気の荒い男だ」とマネは言って、ロイグのもとを離れた。</p>
+    <p>マネは、クー・フリンと話をしに行った。クー・フリンは下衣を脱ぎ捨てて、帯の高さまで雪に埋まって座っていた。その戦士の体の熱があまりに激しいので、周りの雪は、男の肘から指先までの幅ほども溶けていた。</p>
+    <p>マネは同じように、誰に仕えているのかと三度尋ねた。</p>
+    <p>「コンホヴァルに仕えている」とクー・フリンは言った。「うるさくつきまとうな。これ以上つきまとうなら、鶫の首をはねるように、おまえの首をはね飛ばしてやる。」</p>
+    <p>「この二人とは、話にならぬ」とマネは言って、二人のもとを離れた。そしてアリルとメドヴに、事の次第を話した。</p>
+    <p>「ルギドに行ってもらって、娘をやると申し入れてもらおう」とアリルは言った。</p>
+    <p>ルギドはクー・フリンのところへ行って、そのことを伝えた。</p>
+    <p>「ルギドどの、それは嘘だ」とクー・フリンは言った。</p>
+    <p>「王が自らそう言ったのだ。嘘であるはずがない」とルギドは言った。</p>
+    <p>「では、そうしよう」とクー・フリンは言った。</p>
+    <p>ルギドはクー・フリンのもとを去り、その返事をアリルとメドヴに伝えた。</p>
+    <p>「道化をわしの身代わりに行かせよう」とアリルは言った。「頭に王冠を載せて、クー・フリンに見破られないよう、遠くに立たせるのだ。娘も一緒に行かせて、道化に娘を婚約させる。そうしたら二人とも、すぐに引き上げてくるのだ。こうしてあの男を欺いておけば、ウラドの者たちと一緒に戦場へ出てくるまで、あの男はおまえたちの邪魔をしないだろう<sup class="fn" id="tr121"><a href="#tn121">121</a></sup>。」</p>
+    <p>道化は娘を連れてクー・フリンのところへ行き、遠くからクー・フリンに話しかけた。クー・フリンは二人のほうへ近づいた。ところがクー・フリンは、その話しぶりから、相手が道化だと見抜いてしまった。</p>
+    <p>クー・フリンは、手に持っていた投石用の石を道化に投げつけた。石は道化の頭に食い込み、脳が飛び出した。</p>
+    <p>それからクー・フリンは娘に近づいて、その二本のお下げ髪を切り落とした。そして娘の外套と下衣に石を一つ突き通して地面に留め、道化の体のど真ん中には立石を一本突き立てた。いまもそこに、二本の立石がある。フィンダヴィルの立石と、道化の立石である。クー・フリンは二人をそのままにして立ち去った。</p>
+    <p>アリルとメドヴは、二人の帰りが遅いので、使いを出して探させた。使いの者たちは、二人がそんな姿になっているのを見つけた。その話は陣営じゅうに伝わった。それからというもの、クー・フリンは二度と休戦に応じなかった。</p>
+    <p>軍勢がそこにいたある日の夕方、東から一つの石が飛んできて、西からももう一つの石が飛んできた。二つの石は空中でぶつかり合い、フェルグスの陣とアリルの陣とエーラン族<sup class="fn" id="tr122"><a href="#tn122">122</a></sup>の陣のあいだに落ちた。</p>
+    <p>この石の投げ合いは、その時刻から翌日の同じ時刻まで続いた。兵たちは石の破片から身を守るために、盾を頭の上にかざして立ちつくしていた。平野は石で埋めつくされた。それで、そこはマグ・クロハル（石の野）と呼ばれる。</p>
+    <p>石を投げていたのは、実はダーレの子クー・ロイだった。クー・ロイは味方を助けに来て、コタルにいた。そしてゲルケンの子ムンレウァルと向かい合っていた。ムンレウァルはクー・フリンを助けるためにエウィン・ヴァハからやって来て、アルド・ロイヒにいたのである。クー・ロイは、軍勢の中にはムンレウァルにかなう男がいないことを知っていた。そこで二人のあいだで、石の投げ合いが始まったのだった。</p>
+    <p>軍勢は二人に、やめてくれと頼んだ。ムンレウァルとクー・ロイは和解した。クー・ロイは自分の家へ帰り、ムンレウァルはエウィン・ヴァハへ帰った。ムンレウァルは最後の決戦の日まで戻ってこなかった。クー・ロイもまた、フェル・ディアドの一騎打ちのときまで戻ってこなかった<sup class="fn" id="tr123"><a href="#tn123">123</a></sup>。</p>
+    <p>「陣を移してくれるよう、クー・フリンに頼んでくれ」とメドヴとアリルは言った。</p>
+    <p>クー・フリンはそれを聞き入れ、両者は陣の場所を入れ替えた。</p>
+    <p>そのころ、ウラドの男たちの衰弱は終わりに近づいていた。ウラドの男たちは衰弱からいったん目覚めると、何人かずつ軍勢に打ちかかってきた。だが、そのたびにまた衰弱に襲われるのだった<sup class="fn" id="tr124"><a href="#tn124">124</a></sup>。</p>
+
+    <h3 class="chapter"><small>第十七章</small>少年たちとロハド、そして勇者カウル</h3>
+    <p class="open">エウィン・ヴァハでは、ウラドの少年たちが相談していた。</p>
+    <p>「つらいことだ」と少年たちは言った。「わたしたちのクー・フリンさまに、誰も助けに行かないなんて。」</p>
+    <p>「そのとおりだ」と、フィル・フェヴェの子フィアフナ・フレフが言った。フィル・フェヴェの子フィアハ・フィアルダナの兄弟である<sup class="fn" id="tr125"><a href="#tn125">125</a></sup>。「わたしに一隊を預けてくれ。助けに行ってこよう。」</p>
+    <p>百五十人の少年が、ハーリングの棒を手にしてフィアフナについていった。それはウラドの少年たちの三分の一にあたった。</p>
+    <p>軍勢は、少年たちが平野を渡ってやって来るのを見た。</p>
+    <p>「大勢の者が、平野を渡ってこちらへ向かってくる」とアリルは言った。</p>
+    <p>フェルグスが見に行った。「ウラドの少年たちの一部だ」とフェルグスは言った。「クー・フリンを助けに来たのだ。」</p>
+    <p>「一隊を差し向けよう」とアリルは言った。「クー・フリンに知られないようにな。あの子らがクー・フリンと一緒になったら、とても打ち負かせぬ。」</p>
+    <p>百五十人の戦士が、少年たちを迎え撃ちに出た。両者は互いに相手を倒し合い、リーア・トゥイルで、一人として生きて帰る者はなかった。少年たちがそれほどまでに激しく戦ったのである。それで、そこはリーア・フィアフラハ・マク・フィル・フェヴェ（フィル・フェヴェの子フィアフナの石）と呼ばれる。フィアフナがそこで倒れたからである。</p>
+    <p>「相談しよう」とアリルは言った。「クー・フリンに、この場所から通してくれるよう頼むのだ。力ずくでは、あの男の脇を通り抜けることはできぬ。あの男の英雄の光が、燃え上がってしまったのだから。」</p>
+    <p>英雄の光が燃え上がると、クー・フリンの体はこうなるのだった。足は後ろ向きにねじれ、ふくらはぎとかかとは前へ回り、ふくらはぎの肉の塊がすねの前に来た。片方の目は頭の中に引っ込み、もう片方は頭の外へ飛び出した。口は、男の頭がすっぽり入るほど大きく開いた。体じゅうの毛は、どれもさんざしの棘のように鋭く逆立ち、一本一本の先に血のしずくが宿った。味方も身内も見分けがつかなくなり、前にいる者も後ろにいる者も、見境なく打ち倒した。それで、オル・ネークマハトの男たちは、クー・フリンに〈姿の歪む者〉という名をつけたのである。</p>
+    <p>クー・フリンは御者をウラドのファシェウォンの子ロハドのもとへ遣わして、助けに来てくれるよう頼んだ。</p>
+    <p>ところで、フィンダヴィルはロハドに恋をしていた。ロハドは、その当時ウラドでいちばん美しい戦士だったのである。</p>
+    <p>御者はロハドのところへ行って、もう衰弱から立ち直っているのなら、クー・フリンを助けに来てほしいと伝えた。二人で軍勢を待ち伏せして、その一隊を討ち取ろうというのである。</p>
+    <p>ロハドは百人の戦士を連れて、北からやって来た。</p>
+    <p>「今日は、わしのために平野を見張ってくれ」とアリルは言った。</p>
+    <p>「平野を渡ってくる一隊が見えます」と見張りは言った。「その中に、若い男が一人います。ほかの戦士たちは、その男の肩までしか届きません。」</p>
+    <p>「あれは誰だ、フェルグス」とアリルは言った。</p>
+    <p>「ファシェウォンの子ロハドだ」とフェルグスは言った。「クー・フリンを助けに来たのだ。あの男に対しては、よい手がある。おまえたちのうち百人の戦士を、娘と一緒に平野の真ん中まで行かせるのだ。娘を先に立たせ、騎兵を一人遣わして、娘と話をしに一人で来るようロハドに伝えさせる。そしてロハドが来たら、取り押さえるのだ。そうすれば、ロハドの手勢が攻めかかってくるのを防げる。」</p>
+    <p>そのとおりにされた。ロハドは騎兵を迎えに出た。</p>
+    <p>「フィンダヴィルさまのお使いで、あなたを迎えに来ました」と騎兵は言った。「フィンダヴィルさまと話をしに来てください。」</p>
+    <p>ロハドは一人で、フィンダヴィルと話をしに出かけた。すると軍勢が四方からロハドに襲いかかり、取り押さえた。ロハドの手勢は逃げ去った。</p>
+    <p>やがてロハドは放された。ただし、ウラドの男たちすべてと一緒に来るまでは、二度と軍勢に攻めかからないと誓わされた。そしてフィンダヴィルを妻に与えると約束されて、ロハドは引き返していった。これが「ロハドの女の戦い」である<sup class="fn" id="tr126"><a href="#tn126">126</a></sup>。</p>
+    <p>「クー・フリンに、剣を収めてくれるよう頼もう」とアリルとメドヴは言った。</p>
+    <p>ルギドがその使いに出かけ、クー・フリンは休戦に応じた。</p>
+    <p>「明日、浅瀬にわたしの相手を一人よこしてくれ」とクー・フリンは言った。</p>
+    <p>メドヴのもとには、王の兵が六人いた。クランナ・デダの六人の王子で、イウレフの三人のドゥヴと、スルハルの三人のデルグである。</p>
+    <p>「わしらがクー・フリンに立ち向かわないでどうする」と六人は言った。</p>
+    <p>六人は翌日出かけていった。クー・フリンは六人とも討ち取った。</p>
+    <p>今度は、ダ・ラトの子カウルに、クー・フリンに立ち向かってほしいと頼んだ。カウルが血を流させた者は、九日のうちに必ず死ぬのだった。</p>
+    <p>「カウルがあの男を殺してくれれば、それで勝ちです」とメドヴは言った。「カウルのほうが殺されても、わたしの軍勢から重荷が一つ下りるというもの。あの男とは、食事のときも寝るときも、一緒にいるのがたいへんなのですから<sup class="fn" id="tr127"><a href="#tn127">127</a></sup>。」</p>
+    <p>カウルは出かけた。だが、髭も生えていない小僧の相手をしに行くのは、気が進まなかった。</p>
+    <p>「まったく、わしをずいぶん安く見てくれたものだ」とカウルは言った。「わしをあんな男の相手に送り出すと知っていたら、自分で腰を上げはしなかった。わしの手の者のうち、あの男と同じ年ごろの若者一人で十分だったろうに。」</p>
+    <p>「おやおや」とコルマク・コン・ロンガスは言った。「あなた自身があの男を倒してくれたら、わたしたちにとっては驚くべき手柄ですよ。」</p>
+    <p>「いずれにせよ、わしに任されたからには」とカウルは言った。「明日の朝早く、皆の衆は出発の支度をしておけ。あんな鹿一頭を仕留めるのに、手間取りはせぬ。」</p>
+    <p>カウルは翌朝早く出かけていった。そして軍勢に、先へ進む支度をしておけと言った。クー・フリンの相手をしに行くなど、自分にとっては道中の気晴らしにすぎない、というのである。</p>
+    <p>カウルは出かけていった。クー・フリンはそのとき、技の稽古をしていた。</p>
+    <p>クー・フリンの技の数々は、次のとおりである<sup class="fn" id="tr128"><a href="#tn128">128</a></sup>。</p>
+    <div class="tbl"><table>
+      <thead><tr><th>原語</th><th>訳語（推定を含む）</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ga">ubullchless</span></td><td>林檎の技（小さな玉を投げ上げる技）</td></tr>
+        <tr><td><span class="ga">fáeborchless</span></td><td>刃の技</td></tr>
+        <tr><td><span class="ga">fáenchless</span></td><td>斜めの技</td></tr>
+        <tr><td><span class="ga">cless cletenach</span></td><td>投げ槍の技</td></tr>
+        <tr><td><span class="ga">tétchless</span></td><td>綱の技</td></tr>
+        <tr><td><span class="ga">corpchless</span></td><td>体の技</td></tr>
+        <tr><td><span class="ga">cless caitt</span></td><td>猫の技</td></tr>
+        <tr><td><span class="ga">ích n-erred</span></td><td>勇者の鮭跳び</td></tr>
+        <tr><td><span class="ga">cor ndeled</span></td><td>投げ矢の一投</td></tr>
+        <tr><td><span class="ga">léim dar néib</span></td><td>…を跳び越える跳躍（対象は不明）</td></tr>
+        <tr><td><span class="ga">filliud erred nair</span></td><td>気高い勇者のひねり</td></tr>
+        <tr><td><span class="ga">gai bolga</span></td><td>ガイ・ボルガ（注11）</td></tr>
+        <tr><td><span class="ga">baí brasse</span></td><td>速さの技</td></tr>
+        <tr><td><span class="ga">rothchless</span></td><td>車輪の技</td></tr>
+        <tr><td><span class="ga">otar</span></td><td>（語義不明）</td></tr>
+        <tr><td><span class="ga">cless for análaib</span></td><td>息の上の技</td></tr>
+        <tr><td><span class="ga">bruud gine</span></td><td>顎砕き</td></tr>
+        <tr><td><span class="ga">sían caurad</span></td><td>勇者の叫び</td></tr>
+        <tr><td><span class="ga">béim co commus</span></td><td>加減した一撃</td></tr>
+        <tr><td><span class="ga">táithbéim</span></td><td>返し打ち（注66）</td></tr>
+        <tr><td><span class="ga">dréim fri fogaist co ndirgiud crette fora rind</span></td><td>槍をよじ登り、その穂先の上で体をまっすぐに伸ばす技</td></tr>
+        <tr><td><span class="ga">fornadmaim níad náir</span></td><td>気高い勇士の縛め</td></tr>
+      </tbody>
+    </table></div>
+    <p>カウルは、盾の陰に身を隠しながら武器を振るい、一日の三分の一のあいだクー・フリンに挑みかかった。だがクー・フリンの技があまりにめまぐるしいので、打ち込む隙も、つけ入る隙も見つからなかった。クー・フリンのほうは、自分に打ちかかってくる者がいることにさえ気づいていなかった。</p>
+    <p>とうとうフィアハ・マク・フィル・フェヴェが、クー・フリンに声をかけた。「おまえに打ちかかっている戦士に気をつけろ。」</p>
+    <p>クー・フリンはちらりと横を見た。そして手にしていた〈林檎の技〉の玉を投げつけた。玉は盾の縁と盾の中央の膨らみのあいだを抜け、その男の頭を後ろまで突き抜けた。別の伝えでは、カウルが倒れたのはイムスリゲ・グレンナウナハでのことだったともいう。</p>
+    <p>フェルグスは軍勢のほうを振り返って言った。「約束に縛られているのでなければ、明日までここにとどまっていろ。」</p>
+    <p>「ここではない」とアリルは言った。「自分たちの陣営へ戻ろう。」</p>
+    <p>次に、ダ・ブロの子ラトに、カウルと同じように立ち向かってほしいと頼んだ。ラトもまた、討たれた。</p>
+    <p>フェルグスはまた振り返って、軍勢に約束を守らせた。一行はそこにとどまり、そのあいだに、ダ・ラトの子カウル、ダ・ブロの子ラト、トリ・ナイグネフの子フォルク、エオヴィトの子スルーヴ・ガレが、次々と討たれた。皆、一騎打ちで倒されたのである。</p>
+
+    <h3 class="chapter"><small>第十八章</small>フェル・バイトとラーリネ</h3>
+    <p class="open">「さあ、ロイグよ、陣営へ行ってくれ」とクー・フリンは言った。「そしてロワルクの孫で、ノスの子のルギドに、明日わたしに挑んでくるのは誰か尋ねてきてくれ。よく確かめて、わたしからの挨拶も伝えてくれ。」</p>
+    <p>ロイグは陣営に着いた。</p>
+    <p>「よく来た」とルギドは言った。「クー・フリンも、たった一人でアイルランドの男たちを相手にするとは、たいへんな苦労をしているものだ。明日クー・フリンに挑むのは、わたしたち二人の共通の友――その武器に呪いあれ<sup class="fn" id="tr129"><a href="#tn129">129</a></sup>――フェル・バイトだ。その褒美に、フィンダヴィルと、一族の王位を与えられることになっている。」</p>
+    <p>ロイグはクー・フリンのもとへ戻った。</p>
+    <p>「浮かない顔をしているな、ロイグ」とクー・フリンは言った。</p>
+    <p>ロイグは、聞いてきたことを残らず話した。</p>
+    <p>フェル・バイトは、アリルとメドヴの天幕に呼ばれた。そしてフィンダヴィルの隣に座るよう言われ、フィンダヴィルを与えられた。アリルとメドヴは、クー・フリンと戦わせるならフェル・バイトだと決めていた。二人ともスカータハのもとで同じ技を学んでいたので、フェル・バイトこそクー・フリンにふさわしい相手だと思ったのである。</p>
+    <p>フェル・バイトには酒が振る舞われ、すっかり酔いが回った。そして二人はフェル・バイトに言った。この酒はわたしたちにとって大事なもので、五十人の戦士にしか振る舞わない。おまえの杯を受けるのは、この娘なのだ、と。</p>
+    <p>「気が進みません」とフェル・バイトは言った。「クー・フリンは、わたしの義兄弟で、いつも助け合ってきた仲なのです。でも、明日はあの男と戦いに行って、首をはねてきましょう。」</p>
+    <p>「あなたなら、やってのけるでしょう」とメドヴは言った。</p>
+    <p>クー・フリンはロイグに、ルギドを呼んで、話をしに来てもらうよう頼んだ。ルギドがやって来た。</p>
+    <p>「明日わたしに挑んでくるのは、フェル・バイトなのか」とクー・フリンは言った。</p>
+    <p>「そのとおりだ」とルギドは言った。</p>
+    <p>「困ったことだ」とクー・フリンは言った。「わたしは生きて帰れまい。わたしたちは年も同じなら、技も同じ、力も同じなのだから。ルギドどの、あの男にわたしからの挨拶を伝えてくれ。そして、わたしに挑んでくるのは、まことの武勇とは言えない、と伝えてくれ。今夜、わたしのところへ話をしに来るように、とも。」</p>
+    <p>ルギドはそれをフェル・バイトに伝えた。フェル・バイトはクー・フリンとの対決を避けようとはしなかったが、その夜、友情を確かめ直そうとクー・フリンのところへやって来た。フィアハ・マク・フィル・フェヴェも一緒だった。</p>
+    <p>クー・フリンはフェル・バイトに、二人がともに育てられたことを思い出させた。二人には、スカータハという共通の育ての母がいたのである。</p>
+    <p>「わたしにはどうしようもないのです」とフェル・バイトは言った。「約束してしまったのですから。」</p>
+    <p>「それなら、わたしたちの友情を捨てるがいい」とクー・フリンは言った。</p>
+    <p>フェル・バイトは腹を立てて、クー・フリンのもとを去った。</p>
+    <p>そのとき、谷間で、柊の槍の折れ端がクー・フリンの足に突き刺さり、膝のところまで突き抜けて出てきた。クー・フリンはそれを引き抜いた。</p>
+    <p>「行くな、フェル・バイト。わたしが見つけたものを見てからにしろ」とクー・フリンは言った。</p>
+    <p>「投げてみろ」とフェル・バイトは言った。</p>
+    <p>クー・フリンは、去ってゆくフェル・バイトの背に向けて、その槍を投げた。槍はフェル・バイトの首の付け根のくぼみに当たり、口から前へ突き抜けた。フェル・バイトは、仰向けに谷間へ倒れ込んだ。</p>
+    <p>「見事な一投だ（フォヘルド）」とフェル・バイトは言った。それで、そこはフォヘルド・ムルテヴネ（ムルテヴネの一投）と呼ばれる。あるいは、フィアハが「今日のおまえの一投は、勢いがあったな、クー・フリン」と言ったことから、フォヘルド・ムルテヴネと呼ばれるようになったともいう<sup class="fn" id="tr130"><a href="#tn130">130</a></sup>。</p>
+    <p>フェル・バイトは、その谷間でたちまち息絶えた。それで、その谷はグレン・フィル・バイト（フェル・バイトの谷）と呼ばれる。</p>
+    <p>フェルグスはそれを聞いて、こう歌った。</p>
+    <blockquote class="verse">
+      <p>「フェル・バイトよ、愚かな旅をしたものだ。<br>おまえの墓のある、この場所への旅を。<br>友との約束を破った報いが、そこでおまえを捕らえた。<br>クローン・コランドで、すべてが尽きた。</p>
+      <p>その高みは、いつまでも<br>ムルテヴネのクローネフと呼ばれるだろう。<br>そして今日からは、おまえが倒れたその場所は、<br>フォヘルドと呼ばれるだろう、男よ。」<sup class="fn" id="tr131"><a href="#tn131">131</a></sup></p>
+    </blockquote>
+    <p>「おまえたちの仲間は倒れた」とフェルグスは言った。「さて、あの男は明日、償いをさせられるのか。」</p>
+    <p>「償わせてやるとも」とクー・フリンは言った。</p>
+    <p>クー・フリンは再びロイグを陣営へ遣わした。陣営の様子はどうか、フェル・バイトはまだ生きているか、探ってくるためである。ルギドは、フェル・バイトは死んだと言った。しばらくして、クー・フリンもルギドと話をしにやって来た。</p>
+    <p class="scene" aria-hidden="true">＊＊＊</p>
+    <p>陣営では、ルギドが言った。「明日、誰か一人、すぐにでもおまえたちの仲間<sup class="fn" id="tr132"><a href="#tn132">132</a></sup>に立ち向かう者を出すがいい。」</p>
+    <p>「そんな者は見つかるまい」とアリルは言った。「何か手を打たないかぎりはな。誰であれ、やって来た者には酒を飲ませて、いい気分にさせてやるのだ。そしてこう言うのだ。『これはクルーアハンから持ってきた酒の、最後の残りです。あなたが陣営で水ばかり飲んでいるのは、わたしたちもつらいのです』と。そしてフィンダヴィルをその者の右隣に座らせて、こう言うのだ。『〈姿の歪む者〉の首を持ち帰ってくれたら、この娘をあなたにあげましょう』と。」</p>
+    <p>こうして毎晩、勇士を一人ずつ呼んでは、同じことを言い聞かせた。そしてクー・フリンは、その勇士を一人ずつ討ち取っていった。やがて、クー・フリンに立ち向かおうとする者は、一人も見つからなくなった。</p>
+    <p>そこで呼ばれたのが、ノスの子ラーリネだった。マンスターの王ルギドの兄弟である。ラーリネはひどく自惚れの強い男だった。ラーリネには酒が振る舞われ、フィンダヴィルがその右隣に座らされた。</p>
+    <p>メドヴは二人を眺めて言った。「あの二人は、なんとお似合いでしょう。二人が結ばれたら、さぞかしふさわしい夫婦になることでしょう。」</p>
+    <p>「わしは止めはせぬ」とアリルは言った。「〈姿の歪む者〉の首を持ち帰れば、この男に娘をやろう。」</p>
+    <p>「持ち帰ってみせましょう」とラーリネは言った。</p>
+    <p>そこへルギドがやって来た。</p>
+    <p>「明日、浅瀬へ出るのは誰だ」とルギドは言った。</p>
+    <p>「ラーリネが行く」とアリルは言った。</p>
+    <p>ルギドはクー・フリンと話をしに出かけた。二人はグレン・フィル・バイトで落ち合い、互いに挨拶を交わした。</p>
+    <p>「話というのは、こういうことだ」とルギドは言った。「あそこに、自惚れの強いうつけ者がいる。わたしの兄弟のラーリネだ。あいつも同じ娘のことで騙されているのだ。わたしとの友情に免じて、あいつを殺さないでくれ。わたしを兄弟のない身にしないでくれ。あいつがおまえのところへ送られるのは、わたしたち二人を仲違いさせるためなのだ。それでも、あいつがこっぴどく痛めつけられるのなら、それはそれでかまわない。わたしの意に逆らって出かけてゆくのだからな。」</p>
+    <p>翌日、ラーリネはクー・フリンに挑みに出かけた。娘もラーリネを励ますために、その隣についていった。</p>
+    <p>クー・フリンは武器を持たずにラーリネを迎えた。そしてラーリネの手から、力ずくで武器を奪い取った。それからラーリネを両手でつかまえ、揉みつぶし、揺さぶった。ラーリネの腹の中のものが噴き出して、浅瀬はラーリネの糞で汚れ、四方の空気はその悪臭でけがれた。クー・フリンは、ラーリネをルギドの両腕の中へ放り投げた。</p>
+    <p>ラーリネは、生きているあいだずっと、腹の具合が元に戻らなかった。胸の病にも悩まされつづけ、食事のたびに苦しんだ。「牛捕り」でクー・フリンと渡り合った者のうち、ひどい後遺症を負いながらも生き延びたのは、ラーリネただ一人である。</p>
+
+    <h3 class="chapter"><small>第十九章</small>モリーガンの求愛</h3>
+    <p class="open">ある日クー・フリンは、一人の若い女が自分のほうへやって来るのを見た。女はあらゆる色の衣をまとい、この上なく美しい姿をしていた。</p>
+    <p>「あなたは誰だ」とクー・フリンは言った。</p>
+    <p>「ブアン王の娘です」と女は言った。「あなたのもとへ参りました。あなたの武勲の噂を聞いて、あなたを愛するようになったのです。わたしの宝と家畜も、一緒に持ってまいりました。」</p>
+    <p>「よくない時に来たものだ」とクー・フリンは言った。「いまのわたしたちは、飢えに苦しむひどい有様ではないか。この戦いのさなかに、女と交わるわけにはいかない。」</p>
+    <p>「それなら、戦いのお手伝いをいたしましょう」と女は言った。</p>
+    <p>「女の尻を追いかけるために、この戦いを引き受けたのではない」とクー・フリンは言った。</p>
+    <p>「それなら、あなたにとっては、もっとつらいことになりますよ」と女は言った。「あなたが男たちと戦っているときに、わたしはあなたに襲いかかります。浅瀬で鰻の姿になって、あなたの足に絡みつき、あなたを倒してみせます。」</p>
+    <p>「王の娘よりは、そのほうがまだましだ」とクー・フリンは言った。「わたしはおまえを足の指のあいだにはさんで、肋骨をへし折ってやる。そしてわたしが祝福を与えるまで、おまえはその傷を負ったままでいるだろう<sup class="fn" id="tr133"><a href="#tn133">133</a></sup>。」</p>
+    <p>「灰色の雌狼の姿になって、浅瀬を渡って牛の群れをあなたのほうへ追い立ててみせます」と女は言った。</p>
+    <p>「では、石投げ紐から石を放って、おまえの目玉をつぶしてやる。そしてわたしが祝福を与えるまで、おまえはその傷を負ったままでいるだろう。」</p>
+    <p>「角のない赤い雌牛の姿になって、牛の群れの先頭に立ってあなたに向かってゆきます。そうすれば牛たちは、浅瀬でも水たまりでも湖でも、あなたを踏みしだくでしょう。あなたには、わたしの姿も見えないでしょう。」</p>
+    <p>「では、石を投げておまえの脚をへし折ってやる。そしてわたしが祝福を与えるまで、おまえはその傷を負ったままでいるだろう。」</p>
+    <p>そう言われると、女はクー・フリンのもとを去っていった<sup class="fn" id="tr134"><a href="#tn134">134</a></sup>。</p>
+    <p>こうしてクー・フリンは、一週間アート・グレンハにとどまった。そして毎日一人ずつ、アート・グレンハで、すなわちアート・ダルテシュクで、敵を討ち取った。</p>
+
+    <h3 class="chapter"><small>第二十章</small>ロッホとの戦い</h3>
+    <p class="open">次に呼び出されたのは、エモニシュの子ロッホ<sup class="fn" id="tr135"><a href="#tn135">135</a></sup>だった。ロッホにも、これまでの者たちと同じ褒美が約束された。アイの平野の肥えた土地のうちから、マグ・ムルテヴネに等しい広さの土地。十二人分の装束。そして七クワルの値打ちのある戦車である。だがロッホは、子供と戦うなど自分の沽券にかかわる、と考えた。</p>
+    <p>ロッホには、エボニシュの子ロングという兄弟がいた。ロングにも同じ褒美が与えられた。娘と、装束と、戦車と、土地である。ロングはクー・フリンに挑みに出かけていった。クー・フリンはロングを討ち取り、その亡骸は兄弟のロッホの前に運ばれてきた。</p>
+    <p>ロッホは言った。「弟を殺したのが髭の生えた男だとわかれば、仇を討ってやるのだが。」</p>
+    <p>「浅瀬の西側から、総がかりで攻めかかりなさい」とメドヴは手勢に言った。「浅瀬を渡りきって、一騎打ちの掟など破ってしまうのです。」</p>
+    <p>まず七人のマネの戦士たちが進み出た。すると浅瀬の向こう岸に、クー・フリンの姿が見えた。その日、クー・フリンは晴れの日の装いをしていた。女たちは男たちを押しのけて、クー・フリンを見ようとした。</p>
+    <p>「わたしにはあの若者が見えない。それが残念です」とメドヴは言った。「この騒ぎのもとになっている、あの若者が。」</p>
+    <p>「ご覧になったところで、お心が晴れることはありますまい」とアリルの馬番レスレンが言った。</p>
+    <p>そこへクー・フリンが、そのままの姿で浅瀬にやって来た。</p>
+    <p>「あれは誰です、フェルグス」とメドヴは言った。</p>
+    <div class="rosc"><span class="tag">要旨 ― フェルグス</span><p>剣と盾をかざす若者だ、と答える。角のある牛の群れをめぐって、女たちのために戦い、王の財を守る。もしあれがクランの猛犬なら、ムルテヴネの野はあの若者のものだ、と言う。</p></div>
+    <p>メドヴは男たちを押しのけて、クー・フリンを見ようとした。</p>
+    <p>そのとき女たちが、クー・フリンにこう言った。あなたは陣営で笑いものにされている、髭がないからだ、まともな戦士はあなたの相手をしに行かず、つまらぬ者ばかりが行くのだ、と。そして、髭を塗りつけてこしらえたほうがよい、と勧めた。クー・フリンは、男と一騎打ちをするために、つまりロッホと戦うために、そうすることにした。</p>
+    <p>クー・フリンは草をひとつかみ取り、それに呪文を唱えた。すると誰の目にも、それが髭に見えた<sup class="fn" id="tr136"><a href="#tn136">136</a></sup>。</p>
+    <p>「本当だ」と女たちは言った。「クー・フリンには髭がある。勇士が渡り合うのにふさわしい相手だ。」</p>
+    <p>女たちがこう言ったのは、ロッホをけしかけるためだった。</p>
+    <p>「今日から七日たつまでは、あの男とは戦わぬ」とロッホは言った。</p>
+    <p>「そのあいだ、あの男をほうっておくわけにはいきません」とメドヴは言った。「毎晩、戦士の一隊を差し向けて、あの男を狩らせましょう。隙を突けるかもしれません。」</p>
+    <p>そのとおりにされた。毎晩、戦士の一隊がクー・フリンを狩りに出かけ、クー・フリンはその者たちを皆討ち取った。倒れた者たちの名は、次のとおりである。七人のコナル、七人のオイングス、七人のウアルグス、七人のケルトレ、八人のフェーイク、十人のアリル、十人のデルヴァト、十人のタサハ。これが、その一週間にクー・フリンがアート・グレンハで立てた手柄である。</p>
+    <p>メドヴは、クー・フリンをどうしたものかと考えをめぐらせた。自分の軍勢がクー・フリンに次々と殺されてゆくのが、たまらなく悔しかったのである。</p>
+    <p>メドヴの考えついた策は、こうだった。クー・フリンがメドヴと話し合いに来たところへ、向こう見ずで傲慢な男たちを一度に差し向けて、襲わせるのである。メドヴは翌日、偽りの和議を結ぶふりをしてクー・フリンを捕らえようと、話し合いの約束を取りつけていた。メドヴはクー・フリンのもとへ使いを出して、話し合いに来るよう伝えさせた。ただし武器を持たずに来るように、自分も侍女たちだけを連れてゆくから、と。</p>
+    <p>使いのトラーイグトレーンは、クー・フリンのところへ行って、メドヴの言葉を伝えた。クー・フリンは、そのとおりにすると約束した。</p>
+    <p>「クー・フリンさま、明日はどんなふうにメドヴの話し合いに出かけるおつもりですか」とロイグは言った。</p>
+    <p>「メドヴの求めたとおりにだ」とクー・フリンは言った。</p>
+    <p>「メドヴは策略にたけています」と御者は言った。「背中に何か隠し持っているのではないかと心配です。」</p>
+    <p>「では、どうしたらいい」とクー・フリンは言った。</p>
+    <p>「剣を脇に差しておいでなさい。そうすれば、不意を突かれることはありません。武器を持たずに襲われた戦士は、名誉の償いを受ける資格がないのです。そのときは、臆病者の扱いしか受けられません<sup class="fn" id="tr137"><a href="#tn137">137</a></sup>。」</p>
+    <p>「では、そうしよう」とクー・フリンは言った。</p>
+    <p>話し合いは、アルド・アイグネフ、いまのフォヘルドで行われることになっていた。メドヴは話し合いの場にやって来ると、自分の手勢のうちから、いちばん武勇にすぐれた十四人をクー・フリンに向けて配した。ブクリドの二人の息子グラス・シンナ、リケの二人の息子アルダーン、クロンドの二人の息子グラス・オグマ、それにドルフト、デルト、ダセン、テーア、タスクル、トゥアラング、タウル、グレセである。</p>
+    <p>クー・フリンが話し合いにやって来ると、男たちがいっせいに立ち上がって襲いかかった。十四本の槍が、一度にクー・フリンめがけて投げられた。クー・フリンは身をかわし、肌にも盾にも一本も当てさせなかった。そして男たちのほうへ向き直って、十四人とも討ち取った。これがフォヘルドの十四人であり、クローネフの男たちでもある。フォヘルドのそばのクローネフで討たれたからである。</p>
+    <p>そこでクー・フリンは、こう歌った。</p>
+    <div class="rosc"><span class="tag">要旨 ― クー・フリン</span><p>わが勇者の技は見事だ、と歌う。わたしは、輝く亡霊のような軍勢に恐ろしい一撃を加え、多くの軍勢を相手に戦う。メドヴとアリルの陰険なたくらみと冷たい策略をうち破るのだ、と。そして、良い言葉を持つ者には良い助言がある、と結ぶ。</p></div>
+    <p>そのためこの場所は、フォヘルドと呼ばれるようになったという。すなわち <i class="ga">fó cherd</i>（見事な技）である。クー・フリンがそこで見せた武技は、見事なものだったからである<sup class="fn" id="tr138"><a href="#tn138">138</a></sup>。</p>
+    <p>それからクー・フリンは、陣を張ろうとしていた者たちの不意を突いて、ダイグレを二人、アーンリを二人、イウレフのドゥーンガスを四人討ち取った。</p>
+    <p>メドヴは、ロッホをけしかけはじめた。</p>
+    <p>「あなたにとって、たいへんな恥ですよ」とメドヴは言った。「あなたの弟を殺した男が、わたしたちの軍勢を滅ぼしているというのに、あなたは戦いに出てゆかないのですから。あんな火の玉のような小僧が、あなたのような勇士の熱と怒りに耐えられるはずがありません。それにあなたがたは二人とも、同じ一人の師から技を授かったのですから<sup class="fn" id="tr139"><a href="#tn139">139</a></sup>。」</p>
+    <p>こうしてロッホは、弟の仇を討とうとクー・フリンに立ち向かった。クー・フリンに髭があることが、確かめられたからである。</p>
+    <p>「上の浅瀬へ来い」とロッホは言った。「ロングが倒れた、この汚れた浅瀬で戦うのはごめんだ。」</p>
+    <p>クー・フリンが浅瀬へやって来ると、男たちは牛の群れを浅瀬の向こうへ追い立てて渡らせた。</p>
+    <p>「今日はここで、魚が喉を渇かせることになるだろう」と詩人ガヴラーンは言った<sup class="fn" id="tr140"><a href="#tn140">140</a></sup>。それで、その場所はアート・ダルテシュク、ティール・モール・ダルテシュクと呼ばれるようになった。</p>
+    <p>二人の男は浅瀬で向かい合い、戦いはじめた。互いに打ち合い、斬り合ううちに、鰻がクー・フリンの足に三重に巻きついた。クー・フリンは浅瀬に、仰向けに倒れた。ロッホは剣でクー・フリンに斬りつけ、浅瀬はクー・フリンの血で真っ赤に染まった。</p>
+    <p>「これはまずい。敵の前で、こんなざまをさらすとは」とフェルグスは言った。「誰か、あの男をけしかけてやってくれ。こんなところで、むざむざやられてはならぬ。」</p>
+    <p>カルバドの子、毒舌のブリクリウが立ち上がって、クー・フリンをけしかけはじめた。</p>
+    <p>「おまえの力も尽きたようだな。ちっぽけな鮭一匹に倒されるとは。ウラドの者たちが衰弱から立ち直って、もうすぐやって来るというのに。アイルランドの男たちの前で、勇者の働きを引き受けて、こんなふうに強者を相手にするのは、おまえには荷が重かったのだ。」</p>
+    <p>それを聞くと、クー・フリンは跳ね起きて、鰻を打ちすえた。鰻の肋骨はへし折れた。そのとき牛の群れが、軍勢の中を東へ無理やり突き抜けていった。二人の勇士が浅瀬で雷のような打ち合いを繰り広げたので、牛たちは驚いて暴れ回り、角に天幕を引っかけて運び去ってしまった。</p>
+    <p>次に、雌狼が牛の群れをクー・フリンめがけて西へ追い立てた。クー・フリンは石投げ紐から石を放ち、雌狼の目玉をつぶした。</p>
+    <p>雌狼は、角のない赤い雌牛の姿になった。そして牛の群れの先頭に立って、水たまりや浅瀬を突き進んできた。</p>
+    <p>そこでクー・フリンは言った。「水たまりのせいで、浅瀬が見えない。」</p>
+    <p>クー・フリンは角のない赤い雌牛めがけて石を投げ、その脚をへし折った。そしてこう歌った。</p>
+    <blockquote class="verse">
+      <p>「わたしはたった一人、牛の群れを前にしている。<br>押しとどめることもできず、通すこともできない。<br>冷たい見張りの時を重ねながら、<br>わたしはたった一人、多くの民を相手にしている。</p>
+      <p>誰か、コンホヴァルに伝えてくれ。<br>いま来てくれても、早すぎはしないと。<br>マーガハの息子たちが牛を奪い、<br>自分たちで分け合ってしまった。</p>
+      <p>一つの首をめぐって争いがあった。<br>だが一本の木だけでは燃え上がらない。<br>二本か三本あれば、<br>その燃えさしも燃え立つだろうに。</p>
+      <p>もう少しで、男たちに打ち負かされるところだった。<br>一騎打ちがあまりに続いたからだ。<br>気高い勇士の戦いはできない。<br>わたしはこうして、たった一人なのだから。」</p>
+    </blockquote>
+    <p>こうしてクー・フリンは、『レガウナの牛捕り』<sup class="fn" id="tr141"><a href="#tn141">141</a></sup>でモリーガンに約束した三つのことを、そのとおりにやってのけた。</p>
+    <p>それからクー・フリンは、御者が流れに乗せて送ってよこしたガイ・ボルガで、浅瀬にいるロッホを討った。ガイ・ボルガは、ロッホの胴体に深く突き刺さった。ロッホは、男と戦うときには角のように硬い皮<sup class="fn" id="tr142"><a href="#tn142">142</a></sup>を身にまとっていたからである。</p>
+    <p>「一歩下がってくれ」とロッホは言った<sup class="fn" id="tr143"><a href="#tn143">143</a></sup>。</p>
+    <p>クー・フリンが一歩下がってやると、ロッホは前のめりに倒れた。それで、その浅瀬はティール・モールのアート・トラーイギド（足の浅瀬）と呼ばれる。クー・フリンはそれから、ロッホの首をはねた。</p>
+    <p>その日も、クー・フリンに対して一騎打ちの掟が破られた。五人の男が一度にクー・フリンに襲いかかったのである。二人のクルーアド、二人のカラド、そしてデロホルである。クー・フリンはたった一人で五人とも討ち取った。これがフォヘルドの五人、あるいはオイングルトの五人である。また別の説では、クー・フリンがフォヘルドにいたのが十五日間だったことから、「牛捕り」の中でこれを「フォヘルドの五」と呼ぶのだという。</p>
+    <p>クー・フリンはデルガから敵を食い止めた。デルガと海のあいだを南へ、人も家畜も一頭たりとも、クー・フリンの脇をすり抜けて行くことはできなかった。</p>
+
+    <h3 class="chapter"><small>第二十一章</small>老婆の乳と、ルグの子守歌</h3>
+    <p class="open">こうしてクー・フリンが疲れ果てていたところへ、モリーガンがやって来た。モリーガンは片目で足の不自由な老婆の姿をして、乳房が三つある雌牛の乳を搾っていた<sup class="fn" id="tr144"><a href="#tn144">144</a></sup>。</p>
+    <p>クー・フリンは、飲み物をくれと頼んだ。老婆は一つの乳房から搾った乳をクー・フリンに与えた。</p>
+    <p>「これを飲ませてくれた者は、癒やされるがいい」とクー・フリンは言った。「神々と、神ならぬ者たちの祝福が、あなたにあるように<sup class="fn" id="tr145"><a href="#tn145">145</a></sup>。」</p>
+    <p>すると、老婆の頭の傷が癒えた。</p>
+    <p>老婆はもう一つの乳房から搾った乳を与えた。すると、老婆の目が癒えた。三つ目の乳房から搾った乳を与えると、老婆の脚が癒えた。クー・フリンは乳をもらうたびに、「祝福があるように」と言ったのである。</p>
+    <p>「あなたは、わたしに言いましたね」とモリーガンは言った。「わたしは決して、あなたに癒やしてもらえないだろうと。」</p>
+    <p>「あなただとわかっていたら、決して癒やしはしなかっただろう」とクー・フリンは言った。</p>
+    <p>この話は、「牛捕り」の中では「タルテシュクにおけるクー・フリンの先陣」と呼ばれている<sup class="fn" id="tr146"><a href="#tn146">146</a></sup>。</p>
+    <p>そこでフェルグスは、クー・フリンに対して一騎打ちの掟が破られることのないよう、皆に念を押した。</p>
+    <p>そののちクー・フリンは、一騎打ちで、ケン・コリシュ、あるいはダーン・キン・コロス、すなわちいまのデルガ・ムルテヴネの五人を討ち取った。クー・フリンはそこで、フォタをその野で、ボー・マルケをその浅瀬で、サラハをその平地で、ムンネをその高みで、ルーアルをレスヴェラで、フェル・トーイトレをトーイトレで討ち取った。どこであれ、それぞれの男が倒れたところの地名は、いつまでもその男の名で呼ばれている。</p>
+    <p>クー・フリンはまた、メシェとケシェの南にあるアート・ティーレ・モールで、トラーイグ、ドルヌ、デルヌ、コル、メヴル、エラシェを討ち取った。この者たちは、三人のドルイドとその三人の妻であった<sup class="fn" id="tr147"><a href="#tn147">147</a></sup>。</p>
+    <p>そこでメドヴは、自分の手勢のうちから百人を、クー・フリンを殺しに差し向けた。クー・フリンは、アート・ケート・フレで百人とも討ち取った。</p>
+    <p>そこでメドヴは言った。「わたしたちの仲間がこうして殺されるのは、痛手（クリン）です。」それで、そこはグラシュ・フラーウ、クリン・キン・ドゥーン、アート・ケート・フレと呼ばれる。</p>
+    <p class="scene" aria-hidden="true">＊＊＊</p>
+    <p>アイルランドの四つの州の軍勢は、マグ・ムルテヴネの大ブレスレフ<sup class="fn" id="tr148"><a href="#tn148">148</a></sup>に陣と砦を構えた。そして分け前の牛と捕虜を、南のクリハル・ボー・ヌラド（ウラドの牛の囲い）へ送った。</p>
+    <p>クー・フリンは、軍勢のすぐ近くのレルガの塚に陣取った。その日の夕方、御者のリアンガヴァルの子ロイグが、クー・フリンのために火を焚いた。</p>
+    <p>夕べの雲が沈んでゆくころ、クー・フリンは遠くに、アイルランドの四つの州の軍勢の頭上に、金色の武器が燃えるようにきらめくのを見た。敵の多さ、仇の数の多さを目にして、クー・フリンの胸に怒りと激情がこみ上げた。</p>
+    <p>クー・フリンは二本の槍と盾と剣を手に取った。盾を打ち振り、槍をしごき、剣を振りかざして、喉の奥から勇者の雄叫びを上げた。その雄叫びのすさまじさに、谷の妖怪バーナナハやボッカーナハ、谷の亡霊たち、空の悪霊たちまでが応えて叫んだ<sup class="fn" id="tr149"><a href="#tn149">149</a></sup>。</p>
+    <p>戦いの女神ネウィンが、軍勢を狂乱させた。四つの州の軍勢は、武器を打ち鳴らして混乱に陥り、自分たちの槍の穂先や武器の上に倒れかかった。その夜、陣営の真ん中で、恐怖と心の動揺のために、百人の戦士が死んだ。</p>
+    <p>ロイグがそこにいると、一人の男が、アイルランドの男たちの陣営を北東から斜めに横切って、まっすぐこちらへ向かってくるのが見えた。</p>
+    <p>「クー・フリンさま、男が一人、こちらへやって来ます」とロイグは言った。</p>
+    <p>「どんな男だ」とクー・フリンは言った。</p>
+    <p>「わけもないことです。背の高い美しい男で、髪は幅広く刈り込まれ、巻き毛の金色の髪をしています。緑の外套を身に巻きつけ、胸もとには白銀のブローチを留めています。王の着る繻子の下衣を、白い肌にじかに膝までまとい、その下衣には赤い黄金の縫い取りがあります。白銅の硬い膨らみのついた黒い盾を持ち、手には五叉の槍、そばには二股の投げ槍を携えています。驚くような技や遊びや芸を見せていますが、誰もその男に気づかず、男のほうも誰にも打ちかかりません。まるで誰の目にも見えていないようです。」</p>
+    <p>「そのとおりだろう、わが養い子よ」とクー・フリンは言った。「あれは、わたしの妖精塚の友の一人で、わたしを哀れんで来てくれたのだ。わたしがこの『牛捕り』で、たった一人でアイルランドの四つの州を相手に、どれほどの苦難に耐えているか、彼らは知っているのだから。」</p>
+    <p>それはまさに、クー・フリンの言うとおりだった。その戦士は、クー・フリンのいるところまでやって来ると、クー・フリンに話しかけ、その身をいたわった。</p>
+    <p>「よく男らしく戦ったな、クー・フリン」と戦士は言った。</p>
+    <p>「たいしたことではありません」とクー・フリンは言った。</p>
+    <p>「わたしが力を貸そう」と戦士は言った。</p>
+    <p>「いったい、あなたは誰なのです」とクー・フリンは言った。</p>
+    <p>「わたしは、妖精塚から来たおまえの父だ。エスリウの子ルグ<sup class="fn" id="tr150"><a href="#tn150">150</a></sup>である。」</p>
+    <p>「わたしの傷はひどく重いのです。もう癒やしてもらわねばなりません」とクー・フリンは言った。</p>
+    <p>「少し眠るがいい、クー・フリン」と戦士は言った。「このレルガの塚で、三日三晩、深い眠りにつくがいい。そのあいだ、わたしが軍勢と戦っていよう。」</p>
+    <p>ルグがクー・フリンのために子守歌を歌うと、クー・フリンは眠りに落ちた。ルグがクー・フリンの傷を一つ一つ見てやると、傷はどれもきれいになった。</p>
+    <p>そしてルグは、こう歌った<sup class="fn" id="tr151"><a href="#tn151">151</a></sup>。</p>
+    <div class="rosc"><span class="tag">要旨 ― ルグの歌</span><p>起きよ、ウラドの偉大な子よ、と呼びかける。おまえの傷はもう癒えた。おまえはたった一人で、恐ろしい敵どもに立ち向かい、牛の群れを守ってきた。妖精塚から助けが来た。おまえの敵の中に、おまえにかなう者は一人もいない。さあ、戦車に乗って、起き上がるのだ、と。</p></div>
+    <p>クー・フリンは三日三晩眠りつづけた。それも無理はなかった。疲れが深いぶんだけ、眠りも深かったのである。サウィンの後の月曜日から、インボルグ<sup class="fn" id="tr152"><a href="#tn152">152</a></sup>の後の水曜日まで、クー・フリンは一度も眠っていなかった。昼過ぎに、槍にもたれて、ほんのひととき、まどろむことがあっただけである。頭を拳に載せ、拳を槍に載せ、槍を膝に載せて。そのあいだもずっと、アイルランドの四つの州の軍勢を、斬り、打ち倒し、滅ぼしつづけていたのである。</p>
+    <p>その間、戦士はクー・フリンの切り傷や刺し傷、腫れ物や数々の傷口に、薬草や癒やしの草を詰め、癒やしのまじないを施した。こうしてクー・フリンは、それとも気づかぬまま、眠りのうちに回復していった。</p>
+
+    <h3 class="chapter"><small>第二十二章</small>フォラマンと少年たちの死</h3>
+    <p class="open">ちょうどそのころ、北のエウィン・ヴァハから少年たちがやって来た。ウラドの王たちの息子百五十人で、コンホヴァルの息子フォラマンが率いていた。少年たちは軍勢に三度戦いを挑んだ。少年たちの数の三倍の敵が、少年たちの手にかかって倒れた。だが少年たちもまた、コンホヴァルの息子フォラマンを残して、皆倒れた。</p>
+    <p>フォラマンは、この世の終わりまでエウィンには帰らない、と誓った。黄金の冠を戴いたアリルの首を持ち帰らないかぎりは、というのである。だが、それはたやすいことではなかった。アリルの乳母と養い親の息子たち、つまりバーンの子ベセの二人の息子がフォラマンに襲いかかり、手傷を負わせた。フォラマンは二人の手にかかって倒れた。</p>
+    <p>これが「ウラドの少年たちと、コンホヴァルの息子フォラマンの死」である<sup class="fn" id="tr153"><a href="#tn153">153</a></sup>。</p>
+    <p>クー・フリンは、レルガの塚で三日三晩、ぐっすりと眠りつづけた。それから眠りから覚めて起き上がり、手で顔をなでた。すると頭のてっぺんから足の先まで、体じゅうが紅に燃え立った<sup class="fn" id="tr154"><a href="#tn154">154</a></sup>。気力がみなぎり、いまならどんな集まりにでも、行進にでも、逢い引きにでも、酒宴にでも、アイルランドじゅうのいちばん大きな市にでも、出かけてゆけそうだった。</p>
+    <p>「戦士どの、わたしはどのくらい眠っていたのですか」とクー・フリンは言った。</p>
+    <p>「三日三晩だ」と戦士は言った。</p>
+    <p>「それは困ったことになった」とクー・フリンは言った。</p>
+    <p>「なぜだ」と戦士は言った。</p>
+    <p>「そのあいだ、軍勢を少しも攻めていないのですから」とクー・フリンは言った。</p>
+    <p>「いや、攻められずにいたわけではない」と戦士は言った。</p>
+    <p>「では、誰が来たのです」とクー・フリンは言った。</p>
+    <p>「北のエウィン・ヴァハから、少年たちがやって来た」と戦士は言った。「ウラドの王たちの息子百五十人を、コンホヴァルの息子フォラマンが率いていた。おまえが眠っていた三日三晩のあいだに、少年たちは軍勢に三度戦いを挑んだ。少年たちの数の三倍の敵が倒れたが、少年たちもまた、フォラマンを残して皆倒れた。フォラマンはアリルの首を持ち帰ると誓ったが、それはたやすいことではなかった。フォラマンも討たれたのだ。」</p>
+    <p>「わたしが力を取り戻していればよかったのに」とクー・フリンは言った。「そうしていれば、少年たちもフォラマンも、あんなふうに倒れはしなかっただろうに。」</p>
+    <p>「さあ、戦うがいい、クー・フリン」と戦士は言った。「おまえの名誉にとって恥になることではなく、おまえの武勇の汚点になることでもないのだから。」</p>
+    <p>「戦士どの、今夜はここにとどまって、わたしと一緒にいてください」とクー・フリンは言った。「二人で、少年たちの仇を軍勢に討ちましょう。」</p>
+    <p>「わたしはとどまらぬ」と戦士は言った。「おまえと一緒にいて、どれほどの武勇を振るったとしても、その名声や誉れはわたしのものにはならず、おまえのものになるのだから。だから、とどまりはしない。おまえ一人で、軍勢に武勇を振るうがいい。いまは、おまえの命は彼らの手には握られていないのだから<sup class="fn" id="tr155"><a href="#tn155">155</a></sup>。」</p>
+
+    <h3 class="chapter"><small>第二十三章</small>大鎌の戦車と大ブレスレフの殺戮</h3>
+    <p class="open">「ロイグよ、大鎌の戦車だ」とクー・フリンは言った。「あれを支度できるか。装具はそろっているか。支度ができて装具もそろっているなら、つないでくれ。装具がそろっていないなら、つながなくてよい。」</p>
+    <p>そこで御者は立ち上がって、御者の戦装束を身につけた<sup class="fn" id="tr156"><a href="#tn156">156</a></sup>。</p>
+    <p>御者がまず身につけたのは、鹿革の柔らかな上着だった。軽く、風通しがよく、なめらかな革で丁寧に縫ってあるので、両腕の動きを少しも妨げなかった。</p>
+    <p>その上には、外套を羽織った。この外套は、魔術師シモン<sup class="fn" id="tr157"><a href="#tn157">157</a></sup>がローマ人の王ダレイオスのために作ったものだった。ダレイオスはそれをコンホヴァルに贈り、コンホヴァルはクー・フリンに贈り、クー・フリンはそれを御者に与えたのである。</p>
+    <p>御者はさらに、四角い兜をかぶった。兜には飾りの房と板金がつき、あらゆる色と形に彩られて、両肩のあいだまで覆っていた。御者によく似合い、少しも重くはなかった。</p>
+    <p>御者は額に、赤みがかった黄色の飾り輪を手でつけた。それは鉄床の縁で打ち延ばした赤金の板のようで、主人とは区別される、御者の役目のしるしだった。</p>
+    <p>御者は右手に、馬を励ます突き棒と、飾りのついた鞭を握った。左手には、馬を操る手綱を握った。</p>
+    <p>それから御者は、飾りのついた鉄の鎧を馬に着せた。鎧は馬の額から前足までを覆い、小さな槍や穂先や刃や硬い突起がびっしりとついていた。戦車の縁という縁には刃が生え、角という角、端という端が、触れるものを切り裂く道になっていた。</p>
+    <p>それから御者は、馬と仲間に守りのまじないをかけた。陣営の者には誰一人として彼らの姿が見えず、彼らには陣営の者が一人残らず見えるようにしたのである。御者がそうしたのは、もっともなことだった。その日の御者には、御者としての三つの天分がそなわっていたからである。溝を跳び越えること、まっすぐに駆け抜けること、そして轅を巧みに操ることである。</p>
+    <p>そして、勇者にして戦士、地上の男たちの中で戦いの女神の囲い場ともいうべきスアルティウの子クー・フリンが、戦いと勝負と一騎打ちのための戦装束を身につけた。</p>
+    <p>クー・フリンがまず白い肌にじかにまとったのは、二十七枚の肌着だった。蝋を引き、板のように硬く、目を詰めて縫い合わされ、紐や綱や革帯で体に締めつけてあった。怒りが燃え上がったとき、正気と分別を失わないようにするためである<sup class="fn" id="tr158"><a href="#tn158">158</a></sup>。</p>
+    <p>その上から、勇者の戦帯を締めた。これは、一歳の雄牛七頭分の皮の最もよいところを硬くなめした革でできていて、脇腹の細いところから脇の下のくぼみまでを覆っていた。槍や穂先や投げ矢や投げ槍や矢を防ぐためのもので、そうしたものは、石か岩か角に当たったように、すべて跳ね返された。</p>
+    <p>それから、柔らかな下腹に、薄絹の腰布を巻いた。腰布には、まだらの白金の縁取りがついていた。その上から、一歳の雄牛四頭分の皮の最もよいところを丁寧になめした、褐色の革の腰布を巻き、牛の皮の戦帯で、絹の腰布の外から締めた。</p>
+    <p>それから、王者の勇士は戦いの武器を手に取った。輝く象牙の柄の剣のほかに、八振りの小さな剣。五叉の槍のほかに、八本の小さな槍。それに矢筒。投げ槍のほかに、八本の投げ槍。技の投げ矢のほかに、八本の技の投げ矢。そして、紅黒の曲面の盾のほかに、八枚の技の盾である。</p>
+    <p>その紅黒の盾は、見世物の猪がまるごと入るほどのくぼみがあった。縁はぐるりと、剃刀のように鋭く研ぎ澄まされていた。あまりの鋭さに、流れに逆らって髪の毛一本を断ち切れるほどだった。クー・フリンがこの盾で〈刃の技〉を見せると、盾でも槍でも剣でも、同じように断ち切ることができた。</p>
+    <p>それから、戦いと勝負と一騎打ちのための房飾りのついた兜を頭にかぶった。兜の隅々から、百人の戦士の叫びが絶え間なく響きわたった。クー・フリンが勇士や猛者の血を流しに行くところではどこでも、谷の妖怪バーナナハやボッカーナハ、谷の亡霊たち、空の悪霊たちが、クー・フリンの前で、頭上で、周りで、この兜から叫び声を上げるのだった。</p>
+    <p>そしてクー・フリンは、身を隠す外套を体に巻きつけた。それは〈約束の地〉<sup class="fn" id="tr159"><a href="#tn159">159</a></sup>の織物で、ドルイドの養い親から贈られたものだった。</p>
+    <p>そのとき、クー・フリンの最初の変身が起こった<sup class="fn" id="tr160"><a href="#tn160">160</a></sup>。クー・フリンは、恐ろしく、さまざまな姿をした、見たこともない異様なものに変わった。</p>
+    <p>頭のてっぺんから足の先まで、手足も、関節も、指先も、体じゅうの肉が震えた。洪水に揺れる木のように、流れにそよぐ葦のように。クー・フリンの体は、皮の中で狂ったようにねじれた。足とすねと膝が後ろへ回り、かかととふくらはぎと膝の裏が前へ来た。ふくらはぎの筋が、すねの前に回り込み、その一つ一つの大きな瘤が、兵士の拳ほどもあった。頭のてっぺんの筋は、うなじのところまで引きつれて、その丸い瘤の一つ一つが、生後ひと月の赤子の頭ほどもあった。</p>
+    <p>それから、顔と目鼻がゆがんで、赤い椀のようになった<sup class="fn" id="tr161"><a href="#tn161">161</a></sup>。片方の目は頭の中に吸い込まれ、野の鶴でも、頬の真ん中から頭蓋骨の奥まで嘴を差し込まなければ届かないほどだった。もう片方の目は、頬の上へ飛び出した。口は恐ろしくゆがみ、頬の肉が顎の骨から引き剥がされて、喉の奥まで見えた。肺と肝臓が、口と喉の中でひらひらと揺れていた。上顎で下顎を打ち鳴らすと、喉から口へ噴き出す火の塊の一つ一つが、雄羊の毛皮ほどもあった。</p>
+    <p>胸の中で心臓が激しく打つ音は、餌を前にした猟犬の吠え声か、熊に襲いかかる獅子の咆哮のように響いた。頭上の雲や空には、戦いの女神の松明や、毒の雲や、血のように赤い火の粉が見えた。クー・フリンの頭上に立ちのぼる、激しい怒りが煮えたぎっていたのである。</p>
+    <p>髪は頭の周りで、垣根の切れ目に生える赤いさんざしの枝のようにもつれ合った。たとえ見事な実のなった林檎の木をその上で揺すったとしても、地面に落ちる林檎はほとんどなかっただろう。髪の上に立ちのぼる怒りのためにねじれ逆立った毛の一本一本に、林檎が一つずつ刺さって止まっただろうからである。</p>
+    <p>額からは英雄の光が立ちのぼった。それは戦士の砥石ほどの長さと太さがあり、鼻と同じくらいの長さだった。盾を振るい、御者を急き立て、軍勢に石を投げるたびに、その光はますます燃え上がった。</p>
+    <p>そして頭のてっぺんからは、黒い血がまっすぐに噴き上がった。その高さ、太さ、強さ、まっすぐな長さは、大きな船の帆柱ほどもあった。噴き上がった血は、魔術の黒い霧となって立ちこめた。冬の日の夕べに、王がもてなしを受けに来たときの、王の館の煙のようだった。</p>
+    <p>この変身ののち、勇士は大鎌のついた戦車に跳び乗った<sup class="fn" id="tr162"><a href="#tn162">162</a></sup>。戦車には鉄の鎌がつき、刃は薄く研がれ、鉤と硬い突起が並んでいた。轅にも、革帯にも、輪にも、綱にも、鋭い釘が打ってあった。</p>
+    <p>その戦車は、枠組みが引き締まって頑丈で、技を見せるのに十分な高さがあり、轅はまっすぐで、まさに勇者のための戦車だった。八つの王者の武器を載せることができ、燕か風か鹿のような速さで、平らな野を駆け抜けた。</p>
+    <p>戦車を引くのは二頭の馬だった。どちらも速く、勇み立ち、荒々しく、頭は小さく、体は丸く引き締まり、蹄は細く、胸は赤く、落ち着いていて、見事な軛によく馴れていた。一頭は、しなやかで身軽に跳ね、力強く、首を弓なりにそらし、大きな蹄で幅広く土を蹴り上げた。もう一頭は、たてがみが巻き毛で、細身で、脇腹が引き締まっていた。</p>
+    <p>クー・フリンは〈雷の技〉を見せた。まず百人の雷の技、続いて二百人、三百人、四百人の雷の技、そして五百人の雷の技で止めた<sup class="fn" id="tr163"><a href="#tn163">163</a></sup>。アイルランドの四つの州に向けた最初の突撃、最初の戦いで、それだけの数が倒れても多すぎはしない、と思ったのである。</p>
+    <p>こうしてクー・フリンは敵に襲いかかった。四つの州の軍勢の外側をぐるりと戦車で回り、仇敵に向けて、仇敵としての猛攻を加えた。戦車を激しく走らせたので、戦車の鉄の車輪は地面に食い込み、その轍は砦や要害の堀にもなるほどだった。土の塊も、石も、岩も、敷石も、砂利も、鉄の車輪と同じ高さまで跳ね上がったのである。</p>
+    <p>クー・フリンが四つの州の軍勢の外側に戦いの女神の輪<sup class="fn" id="tr164"><a href="#tn164">164</a></sup>を描いて回ったのは、敵が逃げ出さず、周りに散らばらないようにするためだった。少年たちの仇を討つまでは、一人も逃がさないつもりだったのである。</p>
+    <p>それからクー・フリンは、軍勢のただ中へ突き進んだ。そして軍勢の周りに、敵の屍の大きな土塁を三重に築いた。仇敵に向けて猛攻を加えたので、敵は足の裏と足の裏を、首と首を重ねて倒れた。それほどまでに、屍は密に積み重なったのである。</p>
+    <p>クー・フリンはさらに三度、軍勢の周りを回った。そして軍勢の周りに、六重の層を残した。三人の足の裏が三人の首に重なる形で、陣営をぐるりと囲んだのである。それで、この戦いは「牛捕り」の中で「ブレスレフの六重」と呼ばれる。</p>
+    <p>これは、「牛捕り」の中の数えきれない三つの殺戮の一つである。三つとは、「ブレスレフの六重」、「グレンナウナハの殺戮」、そして「ガーレフとイルガーレフの戦い」である。ただしこの殺戮では、犬も馬も人も、同じように倒れた。別の説では、ルグ・マク・エスレンもクー・フリンとともに「ブレスレフの六重」を戦ったともいう。</p>
+    <p>そこで倒れた者の数はわからない。雑兵がどれほど倒れたかは、数えることができない。数えられたのは、身分の高い者だけである。その名は、次のとおりである<sup class="fn" id="tr165"><a href="#tn165">165</a></sup>。</p>
+    <div class="tbl"><table>
+      <thead><tr><th>人数</th><th>名（いずれも同名の者たち）</th></tr></thead>
+      <tbody>
+        <tr><td>二人ずつ</td><td>クルーアド、カラド、キール、キーア、エケル</td></tr>
+        <tr><td>三人ずつ</td><td>クロム、カウリト、コウィルゲ</td></tr>
+        <tr><td>四人ずつ</td><td>フェオハル、フラハル、カス、フォタ</td></tr>
+        <tr><td>五人ずつ</td><td>カウリト、ケルマン、コヴタハ</td></tr>
+        <tr><td>六人ずつ</td><td>サクソン、ダーイフ、ダーレ</td></tr>
+        <tr><td>七人ずつ</td><td>ロハド、ローナーン、ルルテフ</td></tr>
+        <tr><td>八人ずつ</td><td>ロフラド、ロフタド、リンダフ、コルプレ、ムラハ</td></tr>
+        <tr><td>九人ずつ</td><td>ダイギド、ダーレ、ダーウァグ</td></tr>
+        <tr><td>十人ずつ</td><td>フェーイク、フィアハ、フェドリミド</td></tr>
+      </tbody>
+    </table></div>
+    <p>クー・フリンは、マグ・ムルテヴネの大ブレスレフで、百五十人の王を倒した。そのほかにも、犬や馬や女や少年や、身分の低い者や雑兵が、数えきれないほど倒れた。アイルランドの男たちのうち、腿の骨や、頭の半分や、片方の目をつぶされず、生涯消えない傷を負わずに逃げ延びた者は、三人に一人もいなかった。</p>
+    <p>こうして戦いを終えると、クー・フリンは軍勢のもとから引き上げた。クー・フリン自身も、御者も、二頭の馬も、一滴の血も流さず、かすり傷ひとつ負っていなかった。</p>
+
+    <h3 class="chapter"><small>第二十四章</small>クー・フリンの晴れ姿</h3>
+    <p class="open">翌日、クー・フリンは軍勢の様子を見に出かけた。そして女たちや、侍女たちや、娘たちや、詩人や芸人たちに、自分の穏やかで美しい姿を見せようとした。前の晩に皆の前で見せた、あの恐ろしい魔術めいた姿は、誇れるものでも見栄えのするものでもないと思ったのである<sup class="fn" id="tr166"><a href="#tn166">166</a></sup>。そこでその日は、穏やかで美しい姿を見せに来たのだった。</p>
+    <p>軍勢に姿を見せに来たその若者、スアルティウの子クー・フリンは、まことに美しかった。</p>
+    <p>髪は三色に分かれていた。頭の地肌に近いところは褐色、中ほどは血のように赤く、その上を黄金色の冠のような髪が覆っていた。髪の整え方も見事で、うなじのくぼみの周りに三重に巻いていた。一本一本の髪が、金の糸のように見えた。ほどけて、金色に輝き、長く巻いて、ほかとは比べようもなく美しい色をして、肩越しに背へ流れていた。</p>
+    <p>首の周りには、燃え立つ赤金の明るい輪が百も巻かれていた。頭の周りには、混じりけのない紅玉の連なりが百も巻かれていた。両の頬には、それぞれ四つのえくぼがあった。黄色、緑、青、紫のえくぼである。王者らしい両の目には、それぞれ七つの、宝石のように輝く瞳があった<sup class="fn" id="tr167"><a href="#tn167">167</a></sup>。両の足にはそれぞれ七本の指があり、両の手にもそれぞれ七本の指があって、どの指にも鷹の爪のつかむ力と、グリフィンの爪の握る力がそなわっていた。</p>
+    <p>その日、クー・フリンは晴れの日の装いをしていた。身にまとっていたのは、ふさわしく美しい、房飾りのついた紫の外套で、五重に折り返してあった。白い胸もとには、金を象嵌した白銀のブローチが留めてあった。それは光にあふれた灯火のようで、人の目はそのまぶしさのために見つめることができなかった。肌には絹の下衣をじかにまとい、それは王の着る繻子でできた、紅褐色の戦士の腰布の上端まで届いていた。紅褐色の盾には五つの金の輪がつき、縁は白銅だった。腰帯には、赤金の飾り鋲を打った、金の柄の象嵌の剣を高く差していた。戦車の中のかたわらには、灰色の刃の長い槍と、燃え立つ金の鋲を打った、鋭く猛々しい投げ槍が置いてあった。</p>
+    <p>そして片手には九つの首を、もう片方の手には十の首をつかんでいた。クー・フリンはそれを軍勢に向けて振りかざして見せた。それは、クー・フリンが一夜のうちに挙げた戦果であった。</p>
+    <p>そこでコナハトの女たちは、男たちの肩によじ登り、女たちは男たちを押しのけて、クー・フリンの姿を見ようとした。だがメドヴは顔を隠し、クー・フリンの顔を見ようとはしなかった。クー・フリンを恐れて、盾を屋根のようにかざした下に身をひそめていたのである。そこで、ドゥフタハ・ドイル・ウラドがこう歌った。</p>
+    <blockquote class="verse">
+      <p>「あれが〈姿の歪む者〉なら、<br>あの男のせいで、男たちの屍が転がるだろう。<br>囲い地のまわりには、悲鳴が響くだろう。<br>語り草になることが起こるだろう。</p>
+      <p>墓の上には、石が立つだろう。<br>王たちの死者は、ますます増えるだろう。<br>斜面の上で、たった一人の英雄を相手に<br>戦いを挑むのはよくないことだ。</p>
+      <p>あの男を駆り立てる姿が見える。<br>その手には、八つの首。<br>戦利品が見える。<br>宝のようにつかんだ、十の首。</p>
+      <p>おまえたちの女たちが、戦いの上に<br>顔を上げているのが見える。<br>おまえたちの大いなる女王が、<br>戦いに加わろうとしないのが見える。</p>
+      <p>もしわしが相談役なら、<br>あの男の周りに、四方から軍勢を……」<sup class="fn" id="tr168"><a href="#tn168">168</a></sup></p>
+    </blockquote>
+    <p class="lacuna">（写本では、ここで二行が欠けている）</p>
+    <p>そこでフェルグスが、こう歌った。</p>
+    <blockquote class="verse">
+      <p>「ドゥフタハ・ドイルテンガを連れて行け。<br>軍勢の後ろへ、引きずって行け。<br>あの男は、娘たちを殺めてからというもの、<br>何一つ良いことをしていない。</p>
+      <p>あの男は、卑しく恥ずべきことをした。<br>コンホヴァルの息子フィアハを殺したのだ。<br>それより名誉なことは、何も聞かない。<br>フェドリミドの子コルプレを殺したのだ。</p>
+      <p>ウラドの王位を、あの男は求めない。<br>カスルヴァの孫、ルガズの子のあの男は。<br>あの男が人にしているのは、<br>自分で殺せぬ者を、互いに戦わせることだ<sup class="fn" id="tr169"><a href="#tn169">169</a></sup>。</p>
+      <p>ウラドの亡命者たちは嘆くだろう、<br>髭もまだ生えそろわぬ若者が殺されることを。<br>ウラドの軍勢がやって来れば、<br>奪った牛の群れも引き返させられるだろう。</p>
+      <p>ウラドの者たちの衰弱は、<br>やがて長く続いたのちに終わるだろう。<br>知らせを運ぶ使者が来て、<br>偉大な女王たちが嘆くだろう。</p>
+      <p>傷を負い、武具を剥がれた者たちが横たわり、<br>軍勢は打ち倒されるだろう。<br>屍は足の下に踏みしだかれ、<br>鴉どもが群がるだろう。</p>
+      <p>斜めになった盾が斜面に転がり、<br>略奪者たちの飾りとなるだろう。<br>人の顔をした猛犬どもの軍勢のために、<br>フェーネの民の血が赤く流れるだろう。</p>
+      <p>ウラドの者たちが追いつけば、<br>亡命者たちは長い旅に出ることになるだろう。<br>あの男は聞く耳を持たぬ。<br>ドゥフタハ・ドイルテンガを連れて行け。」<sup class="fn" id="tr170"><a href="#tn170">170</a></sup></p>
+    </blockquote>
+    <p>そう歌うと、フェルグスはドゥフタハを突き飛ばした。ドゥフタハは、向こう側の一隊の前に鼻からつんのめって倒れた。</p>
+    <p>ここから、アリル、メドヴ、フェルグス、詩人ガヴラーンのあいだで、また韻文の応酬が続く。要旨のみを示す。</p>
+    <div class="rosc"><span class="tag">要旨 ― アリル</span><p>フェルグスよ、ウラドの牛と女をめぐって怒るな、と言う。浅瀬では毎日一人ずつ男が討たれるだろうが、と。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― メドヴ</span><p>アリルよ、兵を率いて立ち上がれ、と促す。黒い沼地や大きな浅瀬で戦いを打ち破れ、フェルグスとウラドの亡命者たちも加えて、と言う。戦いの後には、詩人たちが死者を嘆くことになるだろう、と。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― フェルグス</span><p>愚かな女の考えだ、聞く価値はない、と退ける。おまえの民とおまえの一族は、ろくでもない考えにとらわれている、と言う。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― 詩人ガヴラーン</span><p>王妃たちに向けて激しい言葉を吐くな、と諫める。裁きを下す者が、憎しみを招いてはならぬ、と言う。</p></div>
+    <p class="lacuna">（写本の傷みのため、ここで数語が読めない。フェルグスが、浅瀬へ行って相手と戦えと誰かに命じる言葉が、断片的に残っている）</p>
+    <p>「アリル、答えてください」とメドヴは言った。</p>
+    <div class="rosc"><span class="tag">要旨 ― アリル</span><p>フェルグスは諸国の民のことをよく知っている、と言う。おまえたちの民は、牛のために進んで動こうとはしない、だが鞭を当てられれば動くだろう、と。</p></div>
+    <div class="rosc"><span class="tag">要旨 ― フェルグス</span><p>メドヴよ、おまえの亡命者たちのことで怒るな、と言う。一年もたてば、女たちの嘆きが国々に広がるだろう、と予言する。</p></div>
+
+    <h3 class="chapter"><small>第二十五章</small>フェルグスの退却</h3>
+    <p class="open">フィアハ・フィアルダナ・ディウラトは、母の姉妹の子のマネ・アンドーイと話し合いにやって来た<sup class="fn" id="tr171"><a href="#tn171">171</a></sup>。マーガハの子ドーヘが、マネ・アンドーイについてきた。ドゥフタハ・ドイル・ウラドが、フィアハについてきた。</p>
+    <p>ドーヘがフィアハめがけて槍を投げると、槍はドゥフタハに当たった。ドゥフタハがマネめがけて槍を投げると、槍はドーヘに当たった。ドゥフタハとドーヘの母は、姉妹どうしだった<sup class="fn" id="tr172"><a href="#tn172">172</a></sup>。それで、この出来事は「ベラハ・エーインの投げ違い」と呼ばれる。</p>
+    <p>あるいは、「ベラハ・エーインの投げ違い」の名の由来は、次のようだともいう。</p>
+    <p>軍勢がベラハ・エーインに着いたとき、両軍の大部隊がそこに陣取った。そこへコンホヴァルの息子ディアルミドが、ウラドの側から北からやって来た。</p>
+    <p>「騎兵を一人よこしてくれ」とディアルミドは言った。「マネに、二人で話をしに来るよう伝えてくれ。わたしも二人で迎えに行こう。」</p>
+    <p>二人は落ち合った。</p>
+    <p>「わたしはコンホヴァルの使いで来た」とディアルミドは言った。「メドヴとアリルに伝えてほしい。牛を返し、これまでにしたことをすべて償え、と。そして西の牡牛を、ここの牡牛のところへ連れてきて、二頭を戦わせよう、と<sup class="fn" id="tr173"><a href="#tn173">173</a></sup>。メドヴがそう約束したのだから。」</p>
+    <p>「では、行って伝えてこよう」とマネは言った。</p>
+    <p>マネは、そのことをメドヴとアリルに伝えた。</p>
+    <p>「それはできません」とメドヴは言った。</p>
+    <p>マネはそのことを伝えに戻った。</p>
+    <p>「では、互いの武器を取り替えよう」とディアルミドは言った。「そのほうがよいというのなら。」</p>
+    <p>「望むところだ」とマネは言った。</p>
+    <p>二人は互いに槍を投げ合い、二人とも死んだ。それで、その場所は「ベラハ・エーインの投げ違い」と呼ばれる。</p>
+    <p>両軍の大部隊は、互いに相手を打ち破った。どちらの側でも、六十人ずつが倒れた。それで、そこはアルド・イン・ディルマ（大部隊の丘）と呼ばれる。</p>
+    <p>アリルの手の者たちは、道化のタウンに王冠をかぶせた。アリル自身は、王冠をかぶる勇気がなかったのである。クー・フリンはアート・タウンで、タウンめがけて石を投げ、その頭を打ち砕いた。それで、そこはアート・タウン（タウンの浅瀬）と呼ばれ、「タウンの冠」という言い回しもそこから生まれた<sup class="fn" id="tr174"><a href="#tn174">174</a></sup>。</p>
+    <p>オイングス・マク・オイニャーウ・カイウ（片手のカイウの子オイングス）という、ウラドの勇ましい戦士がいた。オイングスは、モダ・ログ、すなわちルグヴォドから、アート・ダ・フェルタまで、軍勢をすべて押し返した。軍勢を自分の脇から通さず、石を投げつけて防いだのである。物知りたちの言うところでは、もし相手が一騎打ちだけで立ち向かってきたなら、オイングスは軍勢をエウィン・ヴァハの剣の下まで追い込んでしまっただろう、という。だが軍勢はオイングスに対して一騎打ちの掟を破り、多勢に無勢でオイングスを討ち取った。</p>
+    <p>アート・ダ・フェルタで、クー・フリンは言った。「誰か、わたしの相手をしに来い。」</p>
+    <p>「わしではない、わしではない」と、皆がそれぞれの場所で言った。「わしの一族から捕虜を出す義理はない。たとえ義理があったとしても、わしがその身代わりに捕虜として差し出されるいわれはない<sup class="fn" id="tr175"><a href="#tn175">175</a></sup>。」</p>
+    <p>そこで皆は、ロイヒの子フェルグスに、クー・フリンの相手をしに行ってくれと頼んだ。フェルグスにとって、それは禁忌に触れることだった。フェルグスは、自分の養い子であるクー・フリンの相手をしに行くことを拒んだ。</p>
+    <p>そこで皆はフェルグスに酒を飲ませ、すっかり酔わせてから、一騎打ちに出てくれとせがんだ。あまりにしつこく頼まれたので、フェルグスはとうとう出かけていった。</p>
+    <p>クー・フリンは言った。「フェルグスさま、あなたはわたしの保証のもとに<sup class="fn" id="tr176"><a href="#tn176">176</a></sup>、鞘に剣も入れずに、わたしの相手をしに来られたのですね。」先に述べたように、アリルがフェルグスの剣を盗んでいたのである。</p>
+    <p>「わしにとっては同じことだ」とフェルグスは言った。「たとえ鞘に剣が入っていたとしても、おまえに向けて振るいはしない。クー・フリンよ、わしに一歩譲ってくれ<sup class="fn" id="tr177"><a href="#tn177">177</a></sup>。」</p>
+    <p>「では、あなたもいつか、わたしに一歩譲ってください」とクー・フリンは言った。</p>
+    <p>「そうしよう」とフェルグスは言った。</p>
+    <p>そこでクー・フリンは、フェルグスの前から一歩退いた。そしてグレラハ・ドルド<sup class="fn" id="tr178"><a href="#tn178">178</a></sup>まで退いた。その代わりに、最後の決戦の日には、フェルグスがクー・フリンに一歩譲るという約束である。クー・フリンは、グレラハ・ドルドへ退いていった。</p>
+    <p>「フェルグスよ、あの男を追いかけろ」と皆は言った。</p>
+    <p>「いや」とフェルグスは言った。「あの男を追うのはたやすくない。あそこにいるのは、とてつもなく勇猛な男なのだ。わしは、ぐるりと回って戻ってくるのでないかぎり、追いはしない。」</p>
+    <p>そこで皆はその場を過ぎて進み、クリーフ・ロスに陣を張った。</p>
+    <p>アリルのもとから追放されて流浪していたフェルフーは、そのことを聞きつけた。そしてクー・フリンに挑みにやって来た。フェルフーの一行は、十三人だった。クー・フリンは、キンニト・フェルホンで、十三人とも討ち取った。そこには、その十三人の墓石がある。</p>
+    <p>メドヴは、ドウナン族のダーレの子、ムレシュクのマンを、クー・フリンと戦わせるために差し向けた。マンは、フェル・ディアドの父ダウァンの兄弟である<sup class="fn" id="tr179"><a href="#tn179">179</a></sup>。マンは、食べるときも寝るときも、粗野で荒々しい男だった。ドゥフタハ・ドイル・ウラドのように口が悪く、ゲルケンの子ムンレウァルのように、がっしりとして手足の頑丈な男だった。コンホヴァルの館の勇士トリスコドのように、強く、妬み深い男でもあった。</p>
+    <p>「わしは武器を持たずに行く」とマンは言った。「そして両手のあいだで、あいつを揉みつぶしてやる。あんな髭も生えていない小僧を相手に武器を振るうなど、わしの名誉にも沽券にもかかわる。」</p>
+    <p>マンはクー・フリンのもとへ出かけた。クー・フリンと御者は、平野にいて、軍勢を見張っていた。</p>
+    <p>「クー・フリンさま、男が一人こちらへやって来ます」とロイグは言った。</p>
+    <p>「どんな男だ」とクー・フリンは言った。</p>
+    <p>「浅黒い、がっしりとした、雄牛のような男です。武器は持っていません。」</p>
+    <p>「通してやれ」とクー・フリンは言った。</p>
+    <p>マンが二人のところへやって来た。</p>
+    <p>「おまえと勝負をしに来た」とマンは言った。</p>
+    <p>二人は長いあいだ、取っ組み合った。マンはクー・フリンを三度投げ倒した。そこで御者が、クー・フリンをけしかけた。</p>
+    <p>「エウィンで勇者の取り分<sup class="fn" id="tr180"><a href="#tn180">180</a></sup>を争っているのだったら、あなたはエウィンの戦士たちに負けはしないでしょうに。」</p>
+    <p>それを聞くと、クー・フリンの勇士の怒りが燃え上がり、戦士の熱が立ちのぼった。クー・フリンはマンを立石に叩きつけ、その体を粉々に砕いてしまった。それで、そこはマグ・マンハタ（マンの殺戮の野）と呼ばれる。すなわち <i class="ga">Mand échta</i>、マンがそこで討たれたからである。</p>
+    <p class="lacuna">（写本はここで途切れている。この先の葉は失われている）</p>
+    <div class="intro" style="margin-top:2rem">
+      <p style="text-indent:0"><b>「牛捕り」のその後について</b><br>この写本の「牛捕り」は、ここで欠損のため終わっています。失われた部分には、ほかの写本に残る版によれば、次のような話が続いていました。クー・フリンが義兄弟フェル・ディアドと三日にわたって浅瀬で戦い、ついに討ち果たすこと。ウラドの男たちがようやく衰弱から立ち直り、最後の決戦に臨むこと。その決戦でフェルグスが、ここで交わした約束どおりクー・フリンに一歩を譲って退き、コナハト軍が総崩れになること。そして二頭の牡牛、クアルンゲの褐色の牡牛とアリルの白角の牡牛がアイルランドじゅうを駆けめぐって戦い、白角の牡牛が引き裂かれ、褐色の牡牛も故郷に帰り着いて息絶えること。これらの場面の訳は、この写本に基づくものではないため、ここでは載せていません<sup class="fn" id="tr181"><a href="#tn181">181</a></sup>。</p>
+    </div>
+  </div>
+
+  <section class="notes" aria-labelledby="tnotes-h">
+    <h3 class="label" id="tnotes-h" style="font-family:var(--font-ui);font-weight:500;font-size:.8rem;letter-spacing:.14em;color:var(--muted)">注</h3>
+    <ol>
+      <li id="tn1"><b>三千</b>：原文は <span class="ga">.xxx.a cét</span>、直訳すると「三十の百」です。この物語では、三千人を一つの単位として軍勢を数えます。<a class="back" href="#tr1" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn2"><b>アイのクルーアハン</b>（<span class="ga">Crúachain Aí</span>）：コナハトの王都です。現在のロスコモン州ラスクローガンにあたります。<a class="back" href="#tr2" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn3"><b>頭は短く刈り込まれ</b>：原文 <span class="ga">Fortíi bértha foraib</span> は語義が確定していません。ここでは O'Rahilly（1976）の解釈に従いました。<a class="back" href="#tr3" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn4"><b>右回り</b>（<span class="ga">deisel</span>）：太陽の動きと同じ向きに回ることで、吉とされました。逆回り（<span class="ga">túaithbel</span>）は凶とされます。<a class="back" href="#tr4" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn5"><b>機織りの刀</b>（<span class="ga">claideb corthaire</span>）：機を織るとき、緯糸を打ち込むのに使う刀形の道具です。女性の持ち物として描かれることが多く、ここでは予言の場面とも結びついていると考えられます。<a class="back" href="#tr5" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn6"><b>アルバ</b>（<span class="ga">Albu</span>）：ブリテン島、とくにスコットランドを指します。英雄たちが武芸や学問を修めに行く土地として、物語にしばしば登場します。<a class="back" href="#tr6" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn7"><b>照らす霊感</b>（<span class="ga">imbas forosnai</span>）：詩人が身につける予見の力です。詩人の学識と予言の力は、切り離せないものと考えられていました。<a class="back" href="#tr7" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn8"><b>病に臥せって</b>（<span class="ga">ina chess</span>）：ウラドの男たちにかけられた周期的な衰弱の呪い（<span class="ga">cess noínden</span>）を指します。この写本では、呪いの由来を語る話は伝わっていません。他の写本に伝わる話では、女神マハが身重のまま王の馬と競走させられ、ウラドの男たちを呪ったとされています。<a class="back" href="#tr8" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn9"><b>ダーン・レスグラス</b>（<span class="ga">Dún Lethglaisse</span>）：現在の北アイルランド、ダウンパトリックにあたります。<a class="back" href="#tr9" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn10"><b>七つの宝玉</b>：のちの章で、クー・フリンの両目にはそれぞれ七つの瞳があったと語られます。ここもそれを指すと解されます。直後の行 <span class="ga">fil fuidrech fora glinni</span> は難読で、「その武具はあらわに抜かれ」は一つの解釈です。<a class="back" href="#tr10" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn11"><b>ガイ・ボルガ</b>（<span class="ga">gáe bolga</span>）：クー・フリンだけが使える恐るべき槍です。物語の後半で、その使い方が明らかになります。<a class="back" href="#tr11" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn12"><b>戦車の左の縁越しに</b>（<span class="ga">tar fonnad clé</span>）：左側は凶の向きとされます。敵を不吉な側から斬るという、呪術的な意味合いがあると考えられています。<a class="back" href="#tr12" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn13"><b>姿の歪む者</b>（<span class="ga">ríastartha</span>）：戦いの激情にかられたクー・フリンは、体がねじれ歪む恐ろしい姿に変わります。それに由来する呼び名です。<a class="back" href="#tr13" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn14"><b>デダの子シンの一族</b>：マンスターの一族クランナ・デダ（<span class="ga">Clanna Dedad</span>）を指します。軍勢に加わったマンスターの人々の運命を告げていると解されます。<a class="back" href="#tr14" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn15"><b>サウィン</b>（<span class="ga">Samain</span>）：11月1日、冬の始まりの祭りです。軍勢は冬のさなかに出陣したことになります。<a class="back" href="#tr15" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn16"><b>クアルンゲのフィンダヴィル</b>（<span class="ga">Findabair Chúailnge</span>）：クアルンゲ（現在のラウズ州クーリー半島）にある地名です。アリルとメドヴの娘と同じ名前ですが、別のものです。<a class="back" href="#tr16" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn17"><b>物語を順を追って語る</b>：原文は <span class="ga">Finit a titulrad incipit in scél iar n-úrd</span>（「表題はここで終わり、順を追った物語がここから始まる」）。ここまでの部分が、物語全体の見取り図の役割を果たしていることを示す書き手の言葉です。<a class="back" href="#tr17" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn18"><b>コナル・ケルナハ</b>：ウラドの代表的な英雄の一人です。コナハトの陣営にいるのは不自然で、この版に特有の記述です。他の版では名が挙がっていません。また原文では、次のフィアハの箇所に「フリディシュ（<span class="ga">Flidais</span>）」の名が紛れ込んでいます。写本の誤記と考えて、訳では省きました。<a class="back" href="#tr18" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn19"><b>ガリオーン族</b>（<span class="ga">Galióin</span>）：レンスター（ラギン）の一部族です。並外れて精強な戦士団として描かれています。<a class="back" href="#tr19" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn20"><b>二つの三千</b>：原文 <span class="ga">díb trichtaib cét</span>。注1と同じく、「三千」を単位とする数え方です。<a class="back" href="#tr20" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn21"><b>モーン・ホールトラ</b>：原文は <span class="ga">Móin Choíltrae</span>。他の版では <span class="ga">Móin Choltna</span> とも綴られます。<a class="back" href="#tr21" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn22"><b>白角の牡牛</b>（<span class="ga">Findbennach</span>）：アリルの持つ名高い牡牛です。メドヴがクアルンゲの褐色の牡牛を欲しがるのは、夫のこの牡牛に負けない財産を手に入れるためだと、他の版の序話（「枕語り」）では説明されています。原文はここで「アリルの妻の」と言っています。<a class="back" href="#tr22" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn23"><b>鴉どもが乳を飲むだろう</b>：原文 <span class="ga">ibait fíaich lúgbairt lacht di gnáis inna muccaide</span> は非常に難読です。「鴉どもが…の乳を飲む」までは確かですが、全体の意味ははっきりしません。訳は暫定的なものです。<a class="back" href="#tr23" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn24"><b>クロン川…オハネの山で終わるまで</b>：この四行は、のちにクー・フリン自身が川に呼びかける場面で、ほぼそのまま繰り返されます。クロン（<span class="ga">Cronn</span>）はクアルンゲを流れる川です。<a class="back" href="#tr24" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn25"><b>来て、おまえの息子を守れ</b>：原文 <span class="ga">taít co comsaiged far mac</span> は解釈が定まりません。訳は暫定的なものです。<a class="back" href="#tr25" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn26"><b>ネウィン、ヴォドヴ</b>（<span class="ga">Némain, Badb</span>）：どちらも戦場に現れて人々を狂乱させる女神です。原文は「ネウィンが、すなわちヴォドヴが」と、二つの名を同じものとして注記しています。<a class="back" href="#tr26" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn27"><b>警告</b>（<span class="ga">robud</span>）：フェルグスはコナハト軍の道案内でありながら、故国ウラドへの情を捨てていません。この二面性は、物語全体を通じて繰り返し描かれます。<a class="back" href="#tr27" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn28"><b>フェデルム・ノイフリデとの約束</b>：原文の注記によれば、実際にはフェデルム・ノイフリデ（「九つの心の」フェデルム、王コンホヴァルの娘）の侍女との密会だったとされます。予言者フェデルムとは別人です。<a class="back" href="#tr28" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn29"><b>オガム文字</b>（<span class="ga">ogam</span>）：木の軸や石の稜線に刻線を入れて書く、古いアイルランドの文字です。<a class="back" href="#tr29" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn30"><b>エル、イネル、フォイフ、フォフラム</b>：原文の注記によれば、イラルド・マク・アーンヒンネの四人の息子です。原文はさらに、ほかの書物ではヌアドゥの子ネラの四人の息子とされている、という異伝も書き留めています。原文は四人のほかに「二人の御者」に触れていますが、四人のうち二人を御者とする読み方もあります。<a class="back" href="#tr30" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn31"><b>君主たちを足止めするもの</b>：ドルイドの歌の原文（<span class="ga">Crephnas churad caur rod lá …</span>）は、文法がきわめて圧縮されています。二連目の「誰かがこの定めを果たすのでないかぎり」を含め、訳は大意を取ったものです。<a class="back" href="#tr31" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn32"><b>パルトリゲ</b>（<span class="ga">Partraige</span>）：部族の名で、ここではその住む土地を指します。<a class="back" href="#tr32" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn33"><b>ケナナス</b>（<span class="ga">Cenannas</span>）：現在のミーズ州ケルズです。のちに修道院が置かれ、『ケルズの書』で知られるようになります。<a class="back" href="#tr33" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn34"><b>ロイグ</b>（<span class="ga">Lóeg mac Ríangabra</span>）：リアンガヴァルの子。クー・フリンの御者で、片時も離れない相棒です。<a class="back" href="#tr34" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn35"><b>三つの見積もり</b>：この段落は、原文では余白に書き込まれた注記です。読み物としての流れを保つため、本文に組み入れました。「ダ・デルガの館」は、この写本に収められた第三話の物語です。<a class="back" href="#tr35" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn36"><b>アート・グレンハ</b>（<span class="ga">Áth Grena</span>）：この出来事ののち、アート・ガヴラ（二股の浅瀬）と呼ばれるようになった浅瀬です。<a class="back" href="#tr36" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn37"><b>クノグヴァ</b>（<span class="ga">Cnogba</span>）：現在のミーズ州ナウス（Knowth）で、ボイン川流域の大羨道墳のある地です。地名の所在を説明するこの一文も、原文では書き込みです。<a class="back" href="#tr37" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn38"><b>スカータハ</b>（<span class="ga">Scáthach</span>）：アルバ（スコットランド）に住み、英雄たちに武芸を授ける女戦士です。原文の注記は「これについては『エメルへの求婚』を見よ」と、同じ写本に収められた別の物語を指示しています。<a class="back" href="#tr38" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn39"><b>九人分の技</b>：この段落の原文は、名詞を三十ほども畳みかける修辞的な列挙です。いくつかの語は意味が近く、訳し分けきれないため、全体の勢いを保つことを優先して訳しました。<a class="back" href="#tr39" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn40"><b>少年時代の武勲</b>：原文は、ここに <span class="ga">Na macgnímrada inso sís</span>（「以下、少年時代の武勲」）という小見出しを置いています。この先は、亡命者たちが一人ずつクー・フリンの少年時代を語る、物語の中の物語になります。<a class="back" href="#tr40" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn41"><b>ダルグディグ</b>：原文 <span class="ga">ocond dairggdig</span>。地名と解するのが普通ですが、場所ははっきりしません。<a class="back" href="#tr41" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn42"><b>フィドヘル</b>（<span class="ga">fidchell</span>）：盤上で駒を動かして遊ぶ遊戯です。王侯のたしなみとされ、物語に頻繁に登場します。<a class="back" href="#tr42" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn43"><b>姿が歪みはじめた</b>：第一章の注13で触れた変身（<span class="ga">ríastrad</span>）が、ここで初めて具体的に描かれます。原文の描写は難読の語を含みます。とくに「口は耳まで裂け」（<span class="ga">Doérig día glainíni co rici a hou</span>）の前半は語義が不確かで、訳は大意です。<a class="back" href="#tr43" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn44"><b>枕の下にもぐり込んだ</b>：原文は、あの子が少年たちに拳を振るって五十人が死んだ、とだけ述べてすぐ逃走に移ります。逃げた理由は書かれていません。<a class="back" href="#tr44" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn45"><b>エオガン・マク・ドゥルタハト</b>：ファルネの王で、ほかの物語ではコンホヴァルの味方として登場します。ここでは敵として描かれています。<a class="back" href="#tr45" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn46"><b>クスクラド・メン・マハ</b>（<span class="ga">Cúscraid Mend Macha</span>）：コンホヴァルの息子です。「メン（どもりの）」というあだ名で呼ばれます。<a class="back" href="#tr46" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn47"><b>ブリクリウ</b>（<span class="ga">Bricriu</span>）：ウラドの宮廷にいる、毒舌で争いの種をまく人物です。コナハト陣営にいる彼を証人として名指ししています。この写本の第二話「ブリクリウの饗宴」の主人公です。<a class="back" href="#tr47" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn48"><b>ろくでもない戦士の卵だこと</b>：原文 <span class="ga">Olc damnae laích fil and fo chossaib aurddrag</span>。直訳は「亡霊どもの足の下にいるのは、戦士の悪い素材だ」。<span class="ga">aurddrag</span> を「亡霊」と取る解釈に従いました。このヴォドヴの嘲りが、少年を奮い立たせます。<a class="back" href="#tr48" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn49"><b>『先に行って、あの家へ……』</b>：写本ではここで、書き手の目移りによって十数語が抜け落ちています（同じ語で終わる句を読み飛ばす誤り）。他の版を参考にすれば「火を焚いておいてくれ」といった趣旨だったと考えられますが、訳では推測で補わず、脱落箇所として示しました。<a class="back" href="#tr49" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn50"><b>呪いにかからない者たち</b>：衰弱の呪い（注8）がかかるのはウラドの成人男子だけで、女性、少年、よそ者、そしてクー・フリンとその父は免れていた、という説明です。クー・フリンが免れている理由は、この版では語られません。<a class="back" href="#tr50" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn51"><b>フィアハの島々から</b>：原文 <span class="ga">a hinsib Faíche</span>。どこを指すかはわかっていません。<a class="back" href="#tr51" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn52"><b>わたしたちの養い子</b>：古代アイルランドでは、子供を他家に預けて育てさせる里子の慣習（<span class="ga">altram</span>）がありました。クー・フリンはウラドの多くの貴人に分担して育てられたとされ、その次第は別の物語に語られています。<a class="back" href="#tr52" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn53"><b>番犬</b>：原文の注記は、これを「海の向こうから連れてきた犬で、猟犬の子」と説明しています。<a class="back" href="#tr53" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn54"><b>わたしが血を流さずに…奪わせはしません</b>：原文 <span class="ga">noco mberthar uaimse eit na halma ass manip aúrderg limsa</span>。直訳は「わたしが赤く染まらないかぎり、牛の群れも羊の群れもそこから奪われない」。自分が血を流すほど戦わないかぎり奪わせない、つまり命がけで守るという意味に解しました。<a class="back" href="#tr54" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn55"><b>カトヴァド</b>（<span class="ga">Cathbad</span>）：コンホヴァルに仕えるドルイドです。コンホヴァルの実の父ともされます。<a class="back" href="#tr55" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn56"><b>写本の書き込み</b>：この段の余白には、後世の書き込みが二つあります。一つは「この犬は、コンガンフネスの脳にいた三匹目の犬ではない。そう考える者もいるが、それは誤りである。コンガンフネスがクー・ロイの仇を討ちに来たのは『牛捕り』よりずっと後のことで、クー・フリンが鍛冶屋の犬を殺したのは七つのときだからである。それに鍛冶屋の犬はスペインから連れてこられたと、本文に書いてある」というものです。もう一つは、ドニゴールのオ・クイリンという人物と、その名を冠した泉について記した、本文とは関係のない近世の覚え書きです。<a class="back" href="#tr56" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn57"><b>フィアハ・マク・フィル・フェヴェ</b>：原文はこの章の冒頭で <span class="ga">Fiacha</span>、章の末尾で <span class="ga">Fiachna</span> と綴っています。同一人物と解して、訳では「フィアハ」に統一しました。<a class="back" href="#tr57" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn58"><b>息子のコンホヴァル</b>：この版では、ドルイドのカトヴァドがコンホヴァルの父とされています。コンホヴァルの「マク・ネサ」は「ネスの子」で、母ネスの名を冠しています。<a class="back" href="#tr58" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn59"><b>ただし、命は短い</b>：名声と引き換えに短命を選ぶというこの場面は、クー・フリンの運命を決定づけるものとして、のちの伝承でも繰り返し言及されます。<a class="back" href="#tr59" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn60"><b>壊れた戦車で危ない道を進んだりはなさらない</b>：原文 <span class="ga">is bés duibsi far nUltaib ní réidid tar églindne</span>。<span class="ga">églindne</span> は「危険」とも「不吉」とも解せる語で、全体の意味は確定していません。コナルを足止めするための口実として、からかい半分に言ったものと解しました。<a class="back" href="#tr60" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn61"><b>マグ・ブレグ</b>（<span class="ga">Mag mBreg</span>）：現在のミーズ州東部からダブリン州北部にかけての平野です。テウィル（タラ）はその中心にある王の丘です。<a class="back" href="#tr61" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn62"><b>ネフタ・スケーネ</b>（<span class="ga">Nechta Scéne</span>）：原文の注記によれば、インヴェル・スケーネ（スケーネの河口）の出身です。三人の父はルガズの子フェル・ウリで、母がネフタ・スケーネです。ウラドの者たちに父を殺されたため、ウラドと敵対していたといいます。<a class="back" href="#tr62" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn63"><b>禁忌</b>（<span class="ga">geis</span>）：特定の人物に課せられた、破ってはならない掟です。破った者は破滅を招くとされ、アイルランドの物語では重要な役割を果たします。ここでは、輪を流されることそのものが、三人にとって屈辱であり挑戦となっています。<a class="back" href="#tr63" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn64"><b>フォイル（ずる賢い者）</b>：三人の名はそれぞれの特技を表しています。<span class="ga">Foill</span>（フォイル）は「欺き、ずる賢さ」、<span class="ga">Fandall</span>（ファンダル）は「燕」、<span class="ga">Túachell</span>（トゥアヘル）は「抜け目のない者」の意と解されます。<a class="back" href="#tr64" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn65"><b>どんな武器で打たれても倒れない</b>：続くクー・フリンの言葉にある「技の投げ矢」（<span class="ga">del chlis</span>）は、クー・フリンの得意とする投擲の技の一つです。「血の篩」（<span class="ga">retherderg</span>）は語義が定まらず、訳は大意です。<a class="back" href="#tr65" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn66"><b>返し打ち</b>（<span class="ga">táithbéim</span>）：クー・フリンの技の一つです。投げた石が一羽に当たったあと跳ね返って、次々と別の鳥を打つ技と解されています。<a class="back" href="#tr66" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn67"><b>戦車の左側の板を向けた</b>：左は凶の向きとされます（注12）。城砦に向けて左側を見せるのは、敵意と挑戦を示す行為でした。<a class="back" href="#tr67" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn68"><b>三つの桶</b>：戦いの激情で燃え上がった体の熱を、水で冷ますという描写です。この場面は、物語の後半でも繰り返されます。<a class="back" href="#tr68" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn69"><b>十六年が満ちたいま</b>：原文は <span class="ga">in tan ata lána a sé bliadna déc indiu</span>（「十六年が満ちた今日」）です。第四章でフェルグスは「十七になる」と言っていますが、これは数え方の違いで、十七年目に入っているという意味では一致します。<a class="back" href="#tr69" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn70"><b>別の伝えによる</b>：原文は <span class="ga">Slicht sain so .i. sis co aidid nÓrláim</span>（「ここからオルラウの死までは別の伝え」）。この写本の「牛捕り」は、複数の伝えを継ぎ合わせて作られています。書き手はそのことを隠さず、ところどころでこうして断っています。<a class="back" href="#tr70" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn71"><b>フラーイフ</b>（<span class="ga">Fráech mac Idaid</span>）：コナハトの美しい若者で、母は異界の女ベー・フィンドとされます。フラーイフを主人公にした別の物語「フラーイフの牛捕り」もあります。<a class="back" href="#tr71" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn72"><b>妖精塚の中へ連れ去った</b>：フラーイフの母方が異界の一族であるため、異界の女たちが亡骸を引き取りに来たと解されます。<a class="back" href="#tr72" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn73"><b>フェルグスは樫の木を跳び越えた</b>：フラーイフの話のあとに、先のベラハ・アーネの場面の結末が唐突に置かれています。複数の伝えを継ぎ合わせたための乱れと考えられます。<a class="back" href="#tr73" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn74"><b>ドルイム（バシュクネの尾根）</b>：原文は <span class="ga">Druim ainm inna maigni sin</span>（「その場所の名はドルイム」）とだけ書いています。他の版に「ドルイム・バシュクネ」とあるのを参考に補いました。<a class="back" href="#tr74" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn75"><b>鳥を捕まえるのとはわけが違う</b>：原文 <span class="ga">Ní fríthid bid eissine ém</span> には、書き込みで「鳥を捕まえるのとは同じではない」という説明が添えられています。訳はこの書き込みに従いました。<a class="back" href="#tr75" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn76"><b>六人がかりで</b>：原文 <span class="ga">Bentatar tri fidot día n-ardaib co róiltis glied fris a ssessiur</span>。<span class="ga">fidot</span> は語義がはっきりせず、「木の棒」は暫定訳です。三人と御者三人の六人がかりで、一騎打ちの掟（<span class="ga">fír fer</span>、「男たちの真実」）を破ったことが、ここでは問題にされています。<a class="back" href="#tr76" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn77"><b>メシェ・トグ、メシェ・ネーイン</b>：<span class="ga">Méithe</span> は「首筋」、<span class="ga">tog</span> は「貂」の一種とされる小動物、<span class="ga">én</span> は「鳥」です。いずれも地名の由来を説く話です。<a class="back" href="#tr77" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn78"><b>道化のマエネーン</b>：原文 <span class="ga">Bá mád lodsaid dó níbu ádas far mbraisse</span> は解釈が定まりません。「おまえたちが向かっていっても、その威勢はふさわしくない」と解し、道化が王子たちをからかう台詞として訳しました。<a class="back" href="#tr78" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn79"><b>アレフトゥ、モリーガン</b>（<span class="ga">Allechtu, in Mórrígan</span>）：モリーガンは「大いなる女王」とも「亡霊の女王」とも解される名を持つ、戦いと運命の女神です。書き手は「アレフトゥ」という名を、モリーガンのことだと注記しています。<span class="ga">Allechtu</span> はローマ詩の復讐の女神アレクトーの名を借りたものと考えられます。<a class="back" href="#tr79" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn80"><b>モリーガンの言葉</b>：この韻文（<span class="ga">In fitir in dub dusáim …</span>）は、「牛捕り」の中でもとりわけ難解な箇所です。単語の切れ目さえ確定していません。訳は、確かに読み取れる語（「黒き者」「鴉」「ブレグの民」「緑の草」「ヴォドヴ」「牛の鳴き声」「倒れた男たち」「クアルンゲ」「死」など）をつないで大意を示したものです。逐語訳ではありません。<a class="back" href="#tr80" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn81"><b>百五十人の少年を乗せて</b>：褐色の牡牛の背中は、少年たちが遊べるほど広かったとされます。他の版では、さらに詳しく描かれています。<a class="back" href="#tr81" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn82"><b>柳の枝</b>（<span class="ga">gat</span>）：柳などのしなやかな枝をよって作った縄のことです。牛をつなぐのに使われました。<a class="back" href="#tr82" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn83"><b>溺れ死んだ</b>：原文は、川がウアルを石もろとも押し戻した、と述べるだけです。墓があることから、溺れ死んだと解しました。<a class="back" href="#tr83" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn84"><b>二人の語り部</b>（<span class="ga">da senchaid na Táne</span>）：物語の中で、物語の語り部が死ぬという奇妙な記述です。原文 <span class="ga">Atbath .c. n-ánrod friss rind ríg</span> の「王の周りにいた」は、<span class="ga">rind ríg</span> の解釈の一つです。<a class="back" href="#tr84" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn85"><b>別の順序で語っている</b>：ここでも書き手は、伝えが一つでないことを明記しています。この直後に「クアルンゲの略奪」という小見出しが置かれ、別の伝えによる進軍の場面が始まります。<a class="back" href="#tr85" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn86"><b>「クアルンゲの略奪」の伝え</b>：原文の小見出しは <span class="ga">Orgain Chualngi inso sis</span>（「以下、クアルンゲの略奪」）です。この部分は前章と同じ出来事を、別の伝えに従って語り直しています。<a class="back" href="#tr86" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn87"><b>あれも無理はない</b>：メドヴがフェルグスと関係を持ったのは、遠征への協力を取りつけるためだと、アリルは割り切っています。他の版の序話（「枕語り」）では、メドヴは「嫉妬しない夫」を求めたと語られています。<a class="back" href="#tr87" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn88"><b>フィド・モールドルアレ</b>（<span class="ga">Fid Mórdrualle</span>）：<span class="ga">drualle</span> の語源ははっきりしませんが、書き手は木の剣（<span class="ga">claideb craind</span>）の話をこの地名の由来としています。木の剣は、のちの章でも話の鍵になります。<a class="back" href="#tr88" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn89"><b>韻文の応酬</b>：この章の韻文（<span class="ga">rosc</span>）は、「牛捕り」の中でも最も難解な部類に属し、専門家の英訳でも多くの箇所が「不明」とされています。逐語訳を無理に作ると誤訳を重ねることになるため、確かに読み取れる語句から言い分の要点だけを示しました。散文の部分は、いつもどおり全文を訳しています。<a class="back" href="#tr89" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn90"><b>川の水が盛り上がり</b>：第二章でドゥフタハが歌った予言（注24）が、ここで実現します。クー・フリンの呼びかけの後の四行は、ドゥフタハの歌とほぼ同じ文句です。<a class="back" href="#tr90" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn91"><b>ルギド</b>（<span class="ga">Lugaid mac Nóis</span>）：マンスターの王で、クー・フリンの友人です。敵陣にいながら、両者のあいだの交渉役を務めます。原文の注記は、彼が「話し合いに来た」ことを補っています。<a class="back" href="#tr91" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn92"><b>三つの草</b>：原文 <span class="ga">gass biroir gass fochluchta gass trechlaim</span>。<span class="ga">biror</span> はクレソンです。ほかの二つは食用の野草か海草の一種と考えられますが、種類ははっきりしません。もてなしの決まり文句と解されます。<a class="back" href="#tr92" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn93"><b>友情は、おまえにとってありがたいものになるだろう</b>：原文 <span class="ga">Bid adas dait a Lugaid in chocélisi fil dait la hUltu dianom tisse bríg cach fir</span>。解釈の難しい一文です。ウラドの援軍が来れば、ウラドと親しいルギドは命拾いするだろう、という意味に解しました。<a class="back" href="#tr93" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn94"><b>毎晩わたしに食べ物を届けてくれるように</b>：原文は「彼らから毎晩食べ物が届くように」で、誰が届けるのかはっきりしません。医者たちとも、フェルグスの一隊とも読めます。<a class="back" href="#tr94" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn95"><b>とフェルグスは言った</b>：原文には話者の名がありません。内容から、フェルグスの言葉と解しました。<a class="back" href="#tr95" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn96"><b>同じ苦しみの中にいる</b>：原文 <span class="ga">Ní mór torbai dait or Conchobar indíu tonánic ar tinorcain in chétnae</span>。「わしらを打ちのめしたものが、今日もまた同じようにある」と解し、衰弱の呪いがまだ解けていないことを言うものとしました。<a class="back" href="#tr96" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn97"><b>クリウス</b>：前章でフェルグスの剣を盗んだ、アリルの御者です。<a class="back" href="#tr97" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn98"><b>前にも述べたように</b>：第十章の終わりで語られた行程と合流しています。「クアルンゲの略奪」の伝えは、ここで本筋に戻ります。<a class="back" href="#tr98" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn99"><b>二十一人の女奴隷に相当する財</b>：原文は <span class="ga">tri .uii. cumal</span>（「三たび七クワル」）。クワル（<span class="ga">cumal</span>）はもともと「女奴隷」を意味し、そのまま価値の単位としても使われました。<a class="back" href="#tr99" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn100"><b>若い主人に仕えるより</b>：原文 <span class="ga">celsine óctigernd</span>（「若い主君への臣従」）。コンホヴァルを指すと解されます。<a class="back" href="#tr100" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn101"><b>下衣を手入れしていた</b>：原文 <span class="ga">oc escaid a léine</span>。<span class="ga">escaid</span> の意味がはっきりせず、「下衣の虱を取っていた」とする解釈もあります。<a class="back" href="#tr101" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn102"><b>石臼を挽くことになる</b>：粉挽きは奴隷の仕事とされていました。奴隷を奪われれば、自由な身分の女たちがその仕事をしなければならなくなる、という理屈です。<a class="back" href="#tr102" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn103"><b>ブアンヴァハ</b>（<span class="ga">búanbach</span>）：フィドヘル（注42）に似た盤上の遊戯ですが、詳しい遊び方はわかっていません。<a class="back" href="#tr103" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn104"><b>メシェとケシェ</b>（<span class="ga">Méthe &amp; Cethe</span>）：地名です。メシェは第九章でクー・フリンが貂と鳥を打ち落とした場所（注77）と同じと考えられます。<a class="back" href="#tr104" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn105"><b>左側をこちらに向けています</b>：戦車の左側を相手に向けるのは、挑戦の意思表示です（注67）。<a class="back" href="#tr105" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn106"><b>乗っているのは一人だけ</b>：御者だけが乗った戦車、つまり主人のエタルコウォルが戻らなかったことを意味します。<a class="back" href="#tr106" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn107"><b>わしの腕が短いとでも思っているのか</b>：原文 <span class="ga">Is garit mo lorg latt</span>（「わしの棒はおまえには短いと見える」）。自分の庇護の力を見くびったのか、という意味です。エタルコウォルはフェルグスの庇護のもとにあったので、彼を殺すことはフェルグスの名誉を傷つけることになりました。<a class="back" href="#tr107" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn108"><b>大いなる猛犬に挑んだ子犬</b>：原文 <span class="ga">Ni tocrád dam dano in t-atechmatud ol Fergus glieid frisin coin móir nád n-árgarad</span>。メドヴの「子犬」という言葉を受けて、クー・フリンの名（猛犬）にかけて答えています。<span class="ga">nád n-árgarad</span> は「止められなかった」とも「（猛犬を）恐れなかった」とも読めます。<a class="back" href="#tr108" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn109"><b>取り決めのとおり</b>：原文のこの一文は、第十二章の取り決めの中身を補足する書き込みのような性格を持っています。誰の女たちが返されたのか、原文でははっきりしません。<a class="back" href="#tr109" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn110"><b>余白の詩</b>：この箇所の余白には、ブリアンという人物がアルバの王の養い子であったことを詠んだ、近世アイルランド語の四行詩が書き込まれています。本文とは関係がないため、訳では省きました。<a class="back" href="#tr110" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn111"><b>「そうはならない」</b>：原文はこの直後に、「クー・フリンが『ナト・クランタルが倒れたら』を歌ったのはこのときだという」という一文を置いています。その歌は、章の終わりにある四行の詩です。訳では重複を避け、章の終わりにのみ置きました。<a class="back" href="#tr111" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn112"><b>付け髭を塗りつけてくれ</b>：原文 <span class="ga">commail uilchi smerthain damsa</span>（「わたしに塗った髭をこすりつけよ」）。のちのロゥハとの戦いの場面でも、クー・フリンが草を使って髭を生やして見せる場面があります。<a class="back" href="#tr112" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn113"><b>剣で斬りかかった</b>：ナト・クランタルは、首をはねさせると約束して戻ってきたのに、約束を破って斬りかかったことになります。<a class="back" href="#tr113" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn114"><b>クイヴ、ダーン・ソヴァルヘ</b>（<span class="ga">Cuib, Dún Sobairche</span>）：クイヴは現在のダウン州の一帯、ダーン・ソヴァルヘは北アントリム海岸の要害（現在のダンセヴェリック）にあたると考えられます。クルフネ（<span class="ga">Cruithni</span>）は、ウラドの地に住んでいた古い民族です。<a class="back" href="#tr114" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn115"><b>牡牛は陣営へ連れていかれた</b>：クー・フリンは頭目ブディを討ちましたが、牡牛を取り戻すことはできませんでした。こうして、遠征の目的である褐色の牡牛は、ついにコナハト軍の手に落ちます。<a class="back" href="#tr115" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn116"><b>風刺詩人</b>（<span class="ga">cáinte</span>）：人を嘲る詩を作る詩人です。その嘲りの詩は相手の名誉を傷つけ、ときには体に害を及ぼすとさえ信じられていました。頼まれた贈り物を拒むことは、こうした詩人に風刺の口実を与えることになりました。<a class="back" href="#tr116" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn117"><b>ずっしりとした贈り物</b>：原文 <span class="ga">Is tolam .i. sét talman in sét se</span>。<span class="ga">tolam</span> に「重い」と「大地の」をかけた語呂合わせです。原文には「すなわち大地の宝」という注記が添えられています。<a class="back" href="#tr117" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn118"><b>フォルゲウェン</b>：第十章で、牡牛に付き従っていた牛飼いと同じ名前です。<a class="back" href="#tr118" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn119"><b>書き手の交替</b>：写本ではこの章のはじめから、本文の筆跡が改訂者 H のものに変わります（「底本と写本について」を参照）。H は、元の本文を消して書き直したり、新しい話を書き足したりしています。この章から第十八章にかけては、H の筆跡と元の書き手 M の筆跡が何度も入れ替わります。そのため、どの挿話がどちらの書き手によるものかは、箇所ごとに異なります。<a class="back" href="#tr119" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn120"><b>女の盗人</b>：原文 <span class="ga">dá banteolaid</span>。<span class="ga">teolaid</span> は「盗人」の意ですが、なぜ女の盗人が一騎打ちの相手として挙がっているのかはわかりません。<a class="back" href="#tr120" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn121"><b>邪魔をしないだろう</b>：原文 <span class="ga">conná fostba sib</span>。「おまえたちを引き留めないだろう」と解しました。<a class="back" href="#tr121" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn122"><b>エーラン族</b>：原文 <span class="ga">dunad Nerand</span>。マンスターの一族エーラン（<span class="ga">Érainn</span>）の陣と解しました。クー・ロイはこの一族の王です。<a class="back" href="#tr122" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn123"><b>フェル・ディアドの一騎打ち</b>：「牛捕り」の山場の一つで、クー・フリンが義兄弟フェル・ディアドと三日にわたって戦う話です。この写本では、その部分は欠損のため失われています。<a class="back" href="#tr123" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn124"><b>また衰弱に襲われる</b>：原文 <span class="ga">conos gabad a tindorcain doridisi</span>。「彼らの苦しみが再び彼らを捕らえた」と解しました。次の少年たちの話への前置きと考えられます。<a class="back" href="#tr124" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn125"><b>フィアフナ・フレフ</b>：これまでたびたび登場した語り手フィアハ（注57）の兄弟とされます。少年たちは衰弱の呪いを受けないので（注50）、援軍として駆けつけることができたのです。<a class="back" href="#tr125" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn126"><b>ロハドの女の戦い</b>（<span class="ga">Banchath Rochada</span>）：女（フィンダヴィル）をおとりにして勝った戦い、という意味の呼び名です。フィンダヴィルは、この章だけでもクー・フリン、道化、ロハドと、次々に褒美として差し出されています。<a class="back" href="#tr126" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn127"><b>一緒にいるのがたいへん</b>：原文 <span class="ga">Ní réid bith fris im longud l^ im ligi</span>。カウルの気性の荒さ、あるいは触れるだけで命取りになるという危うさを言うものと解されます。<a class="back" href="#tr127" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn128"><b>技の数々</b>：原文はここに <span class="ga">Turim na cless inso sís</span>（「以下、技の一覧」）という小見出しを置いて、技の名前だけを並べています。多くの技は、名前のほかに中身が伝わっておらず、訳語には推定が含まれます。同じ一覧は「ブリクリウの饗宴」や「クー・フリンの霊の戦車」にも少しずつ形を変えて出てきます。<a class="back" href="#tr128" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn129"><b>その武器に呪いあれ</b>：原文 <span class="ga">Ar cocele díb línaib amin mallacht a gascid fair</span>。ルギドは、フェル・バイトがクー・フリンとも自分とも親しい仲でありながら敵に回ったことを嘆いています。<a class="back" href="#tr129" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn130"><b>フォヘルド</b>（<span class="ga">Focherd</span>）：<span class="ga">focherd</span> は「（彼が）投げた」「一投」の意で、地名フォヘルド・ムルテヴネ（現在のラウズ州ファハート）の由来を語っています。地名の由来について、原文は二つの説を並べています。<a class="back" href="#tr130" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn131"><b>フェルグスの歌</b>：この歌は、とくに「友との約束を破った報い」（<span class="ga">rosiacht coll do chombár</span>）や「クローン・コランド」の行の解釈が定まりません。訳は大意です。<a class="back" href="#tr131" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn132"><b>おまえたちの仲間</b>：原文 <span class="ga">far céle</span>。クー・フリンを指しています。ルギドは皮肉を込めて、コナハト軍にとってのクー・フリンをこう呼んでいます。原文はここに <span class="ga">Comrac Lárine meic Nóis inso</span>（「以下、ノスの子ラーリネの戦い」）という小見出しを置いています。<a class="back" href="#tr132" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn133"><b>わたしが祝福を与えるまで</b>：原文 <span class="ga">coro secha bráth bennachtan fort</span>（「祝福の判決がおまえに下るまで」）。クー・フリン自身が祝福を口にしないかぎり傷は癒えない、という意味に解しました。この言葉が、第二十一章の伏線になっています。<a class="back" href="#tr133" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn134"><b>女は去っていった</b>：原文はここでは女の正体を明かしていません。ただし第二十章で、この女が女神モリーガン（注79）であることがはっきりします。この場面の小見出しは <span class="ga">Imacallaim na Mórrigna fri Coin Culaind</span>（「モリーガンとクー・フリンの問答」）です。<a class="back" href="#tr134" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn135"><b>ロッホ</b>（<span class="ga">Lóch</span>）：原文の小見出しには書き込みがあり、「大ロッホ、モ・フェウィシュの子。あるいはエモニシュの子、あるいはモ・フェヴィシュの子（フェヴェシュは母の名）」と、父の名についての異説を並べています。さらに、マンスターの王統につながる長い系譜も添えられています。訳では本文の「エモニシュの子」に従いました。<a class="back" href="#tr135" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn136"><b>草を髭に見せる</b>：この段落は、改訂者 H が書き足した部分です。前の段落（M の筆跡）の「髭を塗りつけてこしらえる」を、呪文による幻術として描き直しています。第十四章のナト・クランタルの場面（注112）とよく似ています。<a class="back" href="#tr136" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn137"><b>臆病者の扱いしか受けられません</b>：原文 <span class="ga">Conid cáin midlaig no ndlig</span>（「臆病者の掟しか求められない」）。武器を持たずに襲われた戦士は、自分の落ち度とみなされ、名誉の償い（<span class="ga">enecland</span>、「顔の値」）を請求できなかった、という法の考え方を反映しています。<a class="back" href="#tr137" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn138"><b>フォヘルド</b>：第十八章では、同じ地名の由来が「一投」（<span class="ga">focherd</span>）として説明されていました（注130）。ここでは「見事な技」（<span class="ga">fó cherd</span>）という別の語源説が語られています。<a class="back" href="#tr138" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn139"><b>同じ一人の師</b>：原文 <span class="ga">o énmummi forcetail</span>（「一人の教えの乳母から」）。スカータハのことを指しています。<a class="back" href="#tr139" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn140"><b>魚が喉を渇かせる</b>：原文 <span class="ga">Bíaid tart eisc sund indiu</span>。牛の大群が浅瀬を渡り、水をかき乱して飲み干してしまうので、魚も渇くだろう、という意味に解されます。地名アート・ダルテシュク（<span class="ga">Áth Darteisc</span>）の由来を語る語呂合わせですが、仕組みははっきりしません。<a class="back" href="#tr140" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn141"><b>『レガウナの牛捕り』</b>（<span class="ga">Táin Bó Regamna</span>）：「牛捕り」の前日譚の一つで、クー・フリンとモリーガンの最初の出会いを語る話です。この写本には収められていません。ここで言う「三つのこと」は、第十九章でクー・フリンが女に約束した三つの仕返し（肋骨、目、脚）を指します。同じ約束が、別の話にも語られていたのです。<a class="back" href="#tr141" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn142"><b>角のように硬い皮</b>（<span class="ga">conganchnes</span>）：刃を通さない、角質のような皮膚です。ガイ・ボルガは、こうした皮膚さえ貫く武器として描かれています。<a class="back" href="#tr142" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn143"><b>一歩下がってくれ</b>：原文 <span class="ga">Teilg traigid dam</span>（「わたしに一歩譲ってくれ」）。死にゆく戦士が、逃げる姿ではなく前に向かって倒れることを望んだ、と解されています。後ろに倒れれば、敵に背を向けて逃げたように見えるからです。<a class="back" href="#tr143" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn144"><b>三つの乳房</b>：女神が負った三つの傷（肋骨、目、脚）に対応しています。一つの乳を飲ませるごとに、クー・フリンの祝福の言葉が傷を一つずつ癒やしてゆきます。この場面の小見出しは <span class="ga">Slánugud na Mórrígna</span>（「モリーガンの癒やし」）です。<a class="back" href="#tr144" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn145"><b>神々と、神ならぬ者たち</b>（<span class="ga">dé &amp; andé</span>）：原文の書き込みは、「神々（<span class="ga">déi</span>）とは力ある者たち、神ならぬ者たち（<span class="ga">andéi</span>）とは耕す者たちのことである」と説明しています。中世の書き手が、古い異教の言い回しを解釈しようとしたものと考えられます。<a class="back" href="#tr145" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn146"><b>タルテシュクにおけるクー・フリンの先陣</b>：原文 <span class="ga">ríamdrong Con Culaind for Tarthesc</span>。<span class="ga">ríamdrong</span>（「先頭の一隊」）が何を指すのかははっきりしません。「牛捕り」の中の一挿話の呼び名と考えられます。<a class="back" href="#tr146" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn147"><b>三人のドルイドとその三人の妻</b>：原文 <span class="ga">Di druíd insin &amp; a teóra mná</span>。<span class="ga">Di</span> は「二人の」とも読めますが、六人の名が挙がっていることから、三人の男と三人の女と解しました。<a class="back" href="#tr147" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn148"><b>大ブレスレフ</b>（<span class="ga">Breslech Mór</span>）：「大殺戮」とも解される地名です。この地で、次章の大殺戮が繰り広げられることになります。<a class="back" href="#tr148" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn149"><b>バーナナハ、ボッカーナハ</b>（<span class="ga">bánánaig &amp; boccánaig</span>）：戦場に現れるとされた妖怪の類です。「白いもの」「山羊のようなもの」と解されることもありますが、どういう姿のものかはわかっていません。<a class="back" href="#tr149" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn150"><b>エスリウの子ルグ</b>（<span class="ga">Lug mac Ethlend</span>）：アイルランド神話の光と技芸の神で、トゥアタ・デー・ダナン（ダヌの神族）の一人です。クー・フリンの神の父とされます。第四章の系図に書いた「神ルグの子とする伝承」が、ここで本人の口から明かされます。<a class="back" href="#tr150" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn151"><b>ルグの歌</b>：原文の小見出しは <span class="ga">Éli Loga inso sís</span>（「以下、ルグの守りの歌」）です。<span class="ga">éle</span> は、守護や治癒を願う呪的な歌を指します。この韻文も難解なため、要旨のみを示しました。<a class="back" href="#tr151" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn152"><b>インボルグ</b>（<span class="ga">Imbolc</span>）：2月1日、春の始まりの祭りです。サウィン（11月1日）からインボルグまで、クー・フリンは三か月近く眠らずに戦いつづけていたことになります。<a class="back" href="#tr152" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn153"><b>少年たちの死</b>：この話は、第十七章のフィアフナと少年たちの話（注125）とよく似ています。同じ出来事の別の伝えが、二か所に残ったものと考えられます。この章の冒頭の一段落と、目覚めたクー・フリンにルグが語る話は、ほぼ同じ内容を繰り返しています。原文どおりに訳しました。<a class="back" href="#tr153" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn154"><b>紅に燃え立った</b>：原文 <span class="ga">dorigni rothmúal corcra o mulluch co talmain</span>。<span class="ga">rothmúal</span> は語義が確定せず、「紅の輪となった」「紅の光を放った」などと解されます。眠りで力を取り戻し、血色がよみがえった様子と解しました。<a class="back" href="#tr154" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn155"><b>おまえの命は彼らの手には握られていない</b>：今回の戦いでクー・フリンが命を落とすことはない、という保証の言葉です。ルグがとどまらないのは、名声をクー・フリン一人のものにしてやるためだ、と語られています。<a class="back" href="#tr155" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn156"><b>御者の戦装束</b>：原文の小見出しは <span class="ga">In carpat serda &amp; in Breslech mor Maige Murthemne inso</span>（「以下、大鎌の戦車と、マグ・ムルテヴネの大ブレスレフ」）です。この章の装束と変身の描写は、文体ががらりと変わり、形容詞を何重にも重ねる華やかな文体になっています。後の時代に書き足された部分と考えられています。訳では、重なる形容詞を一部まとめて訳しました。<a class="back" href="#tr156" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn157"><b>魔術師シモン</b>（<span class="ga">Simón druí</span>）：『使徒言行録』に登場する魔術師シモン（シモン・マグス）のことです。原文では「ドルイドのシモン」と呼ばれています。「ローマ人の王ダレイオス」も、歴史上の人物とは関係のない、中世の書き手の想像による取り合わせです。<a class="back" href="#tr157" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn158"><b>正気と分別を失わないように</b>：原文 <span class="ga">arnacha ndecrad a cond nach a chiall o doficed a lúth lathair</span>。戦いの激情で体が膨れ上がり、ねじれる（次の段落の変身）ので、肌着で締めつけておく必要があった、と解されます。<a class="back" href="#tr158" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn159"><b>約束の地</b>（<span class="ga">Tír Tairngire</span>）：海の彼方の異界の名で、「コンラの冒険」の楽しみの野（注3、コンラの章）と同じく、不死の国とされます。<a class="back" href="#tr159" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn160"><b>最初の変身</b>：原文 <span class="ga">cétríastartha</span>（「最初の歪み」）。第四章の少年時代の変身（注43）や、第十七章の描写（英雄の光）を、ここでは極端に誇張して描いています。<a class="back" href="#tr160" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn161"><b>赤い椀のようになった</b>：原文 <span class="ga">dorigni cúach cera da gnúis</span>。<span class="ga">cera</span> を「赤い」と解しましたが、「蝋の」と取る解釈もあります。<a class="back" href="#tr161" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn162"><b>大鎌のついた戦車</b>（<span class="ga">carpat serda</span>）：車輪や車体に鎌を取りつけた戦車です。古代のケルト人が実際にこうした戦車を使ったかどうかはわかっていません。ローマの著述家が東方の鎌戦車を記録していることから、中世の書き手が古典の知識をもとに描いたとも考えられています。戦車と馬の描写は、意味の重なる形容詞が延々と続くため、一部まとめて訳しました。<a class="back" href="#tr162" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn163"><b>雷の技</b>（<span class="ga">torandchless</span>）：一度の技で百人、二百人と倒す技と解されます。数を百ずつ増やしてゆく言い回しは、語り物の決まった型です。<a class="back" href="#tr163" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn164"><b>戦いの女神の輪</b>（<span class="ga">circul modba</span>）：原文 <span class="ga">modba</span> は <span class="ga">bodba</span>（「ヴォドヴの」）の誤記と考えられます。敵を囲い込む呪術的な輪と解されます。<a class="back" href="#tr164" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn165"><b>倒れた者の名</b>：原文は、同じ名の者たちを人数ごとにまとめて並べています。読みやすいように表にしました。名前の多くは、意味のある語（「硬い者」「黒い者」など）から作られた、型どおりの名と考えられます。<a class="back" href="#tr165" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn166"><b>美しい姿を見せようとした</b>：原文の小見出しは <span class="ga">Túarascbail delba Con Culaind so</span>（「以下、クー・フリンの姿の描写」）です。前章の恐ろしい変身と対になる、晴れやかな姿の描写です。<a class="back" href="#tr166" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn167"><b>七つの瞳</b>：第一章のフェデルムの予言にあった「勇者の七つの宝玉」（注10）が、ここで具体的に描かれています。七本の手足の指とあわせて、クー・フリンの人並み外れた体を示すしるしです。<a class="back" href="#tr167" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn168"><b>ドゥフタハの歌</b>：「ドイル・ウラド」は「ウラドの黒甲虫」の意で、ドゥフタハのあだ名です。歌の末尾は写本で二行が欠けており、「四方から軍勢を」のあとが失われています。<a class="back" href="#tr168" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn169"><b>互いに戦わせること</b>：原文 <span class="ga">annad ruba contsuidi</span>。「自分で殺せぬ者を、争わせて座り込ませる」とも解され、意味ははっきりしません。<a class="back" href="#tr169" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn170"><b>フェルグスの歌</b>：この歌の前半は、同じ写本の「ウラドの酩酊」（第十一話）の断片にも、ほぼ同じ形で引かれています。ドゥフタハの悪行として挙がる「娘たちを殺めた」「フィアハを殺した」は、ウシュリウの息子たちの悲劇を語る別の物語の出来事を指しています。後半の予言の連は、語義の不確かな語を多く含み、訳は大意です。<a class="back" href="#tr170" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn171"><b>母の姉妹の子</b>：原文 <span class="ga">meic sethar a máthar</span>（「母の姉妹の子」）。原文の小見出しは <span class="ga">Imroll Belaig Eóin inso</span>（「以下、ベラハ・エーインの投げ違い」）です。<a class="back" href="#tr171" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn172"><b>母は姉妹どうし</b>：つまり槍は、それぞれ自分の味方ではなく、敵方にいる従兄弟に当たったことになります。身内どうしが敵味方に分かれた悲劇を、「投げ違い」（<span class="ga">imroll</span>）という地名の由来として語っています。<a class="back" href="#tr172" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn173"><b>二頭を戦わせよう</b>：原文 <span class="ga">tabár in tarb aníar cosin tab ille co comairset</span>。コナハトの白角の牡牛を連れてきて、クアルンゲの褐色の牡牛と戦わせよう、という提案です。物語の結末（失われた部分）では、実際に二頭の牡牛が戦うことになります。<a class="back" href="#tr173" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn174"><b>タウンの冠</b>：原文 <span class="ga">Tuga im Thamun</span>（「タウンを覆うもの」）。地名か言い回しの由来を説くものと考えられますが、詳しいことはわかりません。王の身代わりに冠をかぶせられた道化が殺される話は、第十六章にも出てきました。<a class="back" href="#tr174" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn175"><b>捕虜を出す義理はない</b>：原文 <span class="ga">ni dlegar cimbid dom cheniul</span>。クー・フリンとの一騎打ちを、捕虜として差し出されることにたとえて断っています。<a class="back" href="#tr175" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn176"><b>わたしの保証のもとに</b>：原文 <span class="ga">is com glinni dothéig</span>。<span class="ga">glinne</span> は「保証、身の安全の誓い」で、クー・フリンがフェルグスの身の安全を保証している、という意味に解しました。<a class="back" href="#tr176" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn177"><b>一歩譲ってくれ</b>：原文 <span class="ga">Teilg traigid dam</span>。第二十章で、死にゆくロッホがクー・フリンに頼んだのと同じ言い回しです（注143）。ここでは、師であるフェルグスの面目を保つために、弟子のクー・フリンが退くことを求めています。この貸し借りが、失われた結末の決戦で返されることになります。原文の小見出しは <span class="ga">Comrac Fergusa fri Coin Culaind</span>（「フェルグスとクー・フリンの一騎打ち」）です。<a class="back" href="#tr177" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn178"><b>グレラハ・ドルド</b>（<span class="ga">Grellach Dolluid</span>）：地名です。現在のどこにあたるかははっきりしません。<a class="back" href="#tr178" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn179"><b>フェル・ディアドの父ダウァンの兄弟</b>：この一文は、改訂者 H による書き足しです。マンの話そのものも H の筆跡で書かれ、写本の欠損の直前まで続いています。フェル・ディアドの名がここで出てくるのは、失われた次の場面への橋渡しと考えられます。<a class="back" href="#tr179" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn180"><b>勇者の取り分</b>（<span class="ga">curadmír</span>）：宴で最もすぐれた勇士に与えられる、最上の肉の分け前です。それをめぐる争いを語るのが、この写本の第二話「ブリクリウの饗宴」です。<a class="back" href="#tr180" aria-label="本文へ戻る">↩</a></li>
+      <li id="tn181"><b>失われた結末</b>：この写本では、「牛捕り」のあとの葉が失われており（何葉分かは校訂版にも示されていません）、次に残る葉は「ダ・デルガの館の崩壊」の途中から始まります。結末部分は、同じ系統の版が十四世紀の写本『レカンの黄書』（<span class="ga">Yellow Book of Lecan</span>）などに残っています。その英訳としては Cecile O'Rahilly, <i class="ga">Táin Bó Cúailnge: Recension I</i> (Dublin 1976) があります。<a class="back" href="#tr181" aria-label="本文へ戻る">↩</a></li>
+    </ol>
+  </section>
+</article>
+
+<article class="tale" id="condla">
+  <div class="kicker">第七話</div>
+  <h2>コンラの冒険</h2>
+  <p class="orig">Echtra Condla Chaim meic Cuind Chetchathaig</p>
+  <p class="intro">王の息子が、自分にしか見えない異界の女に呼ばれ、水晶の舟で海の彼方へ去ってゆく話です。アイルランドに残る「異界行き」の物語のうち、最も古い層に属すると考えられています。冒頭は「なぜアルトは〈独りのアルト〉と呼ばれるのか」という問いの形を取っており、名の由来を説く話として語られています。</p>
+
+  <section class="persons" aria-labelledby="p-h">
+    <h3 class="label" id="p-h" style="font-family:var(--font-ui);font-weight:500;font-size:.8rem;letter-spacing:.14em;color:var(--muted)">登場人物</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>人物</th><th>説明</th></tr></thead>
+      <tbody>
+        <tr><td>百戦のコン<span class="ga">Cond Cétchathach</span></td><td>アイルランドの王。</td></tr>
+        <tr><td>赤のコンラ<span class="ga">Condla Rúad</span></td><td>コンの息子。この話の主人公。</td></tr>
+        <tr><td>アルト<span class="ga">Art</span></td><td>コンラの弟。兄が去ったのち「独りのアルト」と呼ばれる。</td></tr>
+        <tr><td>コラーン<span class="ga">Corán</span></td><td>コン王に仕えるドルイド。</td></tr>
+        <tr><td>異界の女</td><td>「生ける者たちの国」から来た女。コンラ以外の者には姿が見えない。名は語られない。</td></tr>
+        <tr><td>ボーアダグ<span class="ga">Boadag</span></td><td>異界の「楽しみの野」の王。話には登場せず、名前だけが語られる。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <div class="tree" role="figure" aria-label="コン王の家族">
+    <div class="cap">コン王の家族</div>
+    <ul><li><span class="who">百戦のコン</span>（王）
+      <ul>
+        <li><span class="who">赤のコンラ</span> <span class="fate">― 異界へ去る</span></li>
+        <li><span class="who">アルト</span> <span class="fate">― 「独りのアルト」と呼ばれる</span></li>
+      </ul>
+    </li></ul>
+  </div>
+
+  <div class="text">
+    <p class="open">なぜアルトは「独りのアルト」と呼ばれるのか。そのわけはこうである。</p>
+    <p>ある日、百戦のコンの子、赤のコンラは、父のかたわらにあってウシュネフの丘<sup class="fn" id="r1"><a href="#n1">1</a></sup>の頂にいた。すると、見慣れぬ衣をまとった一人の女が、こちらへやって来るのが見えた。</p>
+    <p>コンラは言った。「女よ、どこから来たのか。」</p>
+    <p>女は答えた。「わたしは生ける者たちの国から来ました。そこには死も罪も、咎もありません。わたしたちは尽きることのない宴を楽しみ、あくせく働くこともありません。争いもなく、穏やかに睦み合って暮らしています。わたしたちは大きな妖精塚に住んでいるので、妖精塚の民<sup class="fn" id="r2"><a href="#n2">2</a></sup>と呼ばれているのです。」</p>
+    <p>「誰と話しているのだ、若者よ」とコンは息子に言った。その女の姿は、コンラのほかには誰にも見えなかったのである。</p>
+    <p>女が答えた。</p>
+    <blockquote>
+      <p>「この子が話している相手は、若く美しい、生まれ正しい女。死も老いも知らぬ者です。わたしは赤のコンラを愛しました。わたしは彼を楽しみの野<sup class="fn" id="r3"><a href="#n3">3</a></sup>へ呼んでいるのです。そこではボーアダグが永遠の王として治め、王となってからというもの、その国には嘆きも悲しみもありません。</p>
+      <p>さあ、わたしと一緒においでなさい、赤のコンラよ。斑の首、燃える灯火のように赤い肌、黄金の髪の人よ。紅の顔がおまえを飾り、王者の姿を誉れあるものにしている。わたしの言葉に従うなら、おまえの姿はその若さも美しさも失うことなく、最後の審判の日まで衰えることはないでしょう。」</p>
+    </blockquote>
+    <p>コンは、コラーンという名のドルイド<sup class="fn" id="r4"><a href="#n4">4</a></sup>に向かって言った。女の姿は見えなかったが、女の言葉はその場の皆に聞こえていたのである。</p>
+    <blockquote>
+      <p>「コラーンよ、歌に長け、技に長けた者よ、おまえに頼む。わたしの思慮にも余り、わたしの力にも余る難事が降りかかった。王となってこのかた、こんな争いに見舞われたことはない。目に見えぬ姿がわたしに立ち向かい、無理やりわたしを圧している。女たちの呪い<sup class="fn" id="r5"><a href="#n5">5</a></sup>によって、わたしの美しい息子を、この王の手から奪い去ろうとしているのだ。」</p>
+    </blockquote>
+    <p>そこでドルイドは女の声に向かって呪歌を唱えた。そのため、もう誰にも女の声は聞こえなくなり、コンラにもその時から女の姿が見えなくなった。</p>
+    <p>けれども女は、ドルイドの力強い呪歌に退けられて去るとき、コンラに一つの林檎を投げ与えた。</p>
+    <p>コンラはそれから一か月のあいだ、一口の食べ物も、一滴の飲み物も口にしなかった。その林檎のほかには、どんな食べ物も食べる値打ちがないと思えたのである。そして、いくら食べても林檎は少しも減らず、いつまでも元のままだった。</p>
+    <p>やがてコンラの胸に、あの女への恋しさがつのった。</p>
+    <p class="scene" aria-hidden="true">＊＊＊</p>
+    <p>ひと月が満ちた日、コンラは父のかたわらにあってアルコミンの野にいた。すると、あの同じ女がやって来るのが見えた。女は言った。</p>
+    <blockquote>
+      <p>「コンラが座っているのは高い座です。けれどもそこは、はかない死すべき者たちのあいだ。おぞましい死を待つばかりの場所です。永遠に生きる者たちが、おまえを招いています。おまえはテフラ<sup class="fn" id="r6"><a href="#n6">6</a></sup>の民にとって英雄なのです。彼らは毎日、おまえを見ています。父祖の国の集いで、親しい人々に囲まれているおまえを。」</p>
+    </blockquote>
+    <p>女の声を聞くと、コンは家臣たちに言った。「ドルイドを呼べ。あの女の舌が、今日はまた解き放たれたようだ。」</p>
+    <p>すると女は言った。</p>
+    <blockquote>
+      <p>「百戦のコンよ、ドルイドの術を慕ってはなりません。その術が報いを得るのも、もう長くはないのですから。大いなる浜辺に、多くの驚くべき民を従えた一人の義人が現れます。まもなくその人の掟が来て、ドルイドたちの呪文を打ち砕くでしょう。黒く欺く悪魔の目の前で。」<sup class="fn" id="r7"><a href="#n7">7</a></sup></p>
+    </blockquote>
+    <p>コンは不思議に思った。女が来たときのほかは、コンラは誰にも口をきかなかったのである。</p>
+    <p>「コンラよ、あの女の言うことが心にしみたのか」とコンは言った。</p>
+    <p>コンラは答えた。「わたしにはつらいのです。わたしは自分の民を愛しています。それなのに、あの女への恋しさが胸を離れないのです。」</p>
+    <p>すると女が答えて言った。</p>
+    <blockquote>
+      <p>「おまえは、皆のもとを離れたいという憧れの波に、なおも抗っている<sup class="fn" id="r8"><a href="#n8">8</a></sup>。わたしの水晶の舟に乗れば、ボーアダグの妖精塚へたどり着けるでしょう。</p>
+      <p>もう一つの国があります。行くに劣らぬ国です。輝く太陽が沈んでゆくのが見えます。遠くとも、夜になる前には着くでしょう。</p>
+      <p>その国は、そこへ向かうすべての人の心を喜ばせます。そこに住むのは、女と乙女たちだけなのです。」<sup class="fn" id="r9"><a href="#n9">9</a></sup></p>
+    </blockquote>
+    <p>乙女が言い終えると、コンラは皆のもとから跳び出して、水晶の舟に乗り込んだ。それは頑丈で、磨き清められた小舟であった。</p>
+    <p>人々は、二人が遠ざかってゆくのを、目の届くかぎり見送った。二人は海原へ漕ぎ去り、その後ふたたび姿を見られることはなかった。どこへ行ったのか、誰も知らない。</p>
+    <p>人々が集いの場で物思いに沈んでいると、アルトがやって来るのが見えた。</p>
+    <p>コンは言った。「今日、アルトは独りになった。もう兄弟がいないのだから。」</p>
+    <p>コラーンが言った。「いまおっしゃったのは、運命を言い当てる言葉<sup class="fn" id="r10"><a href="#n10">10</a></sup>です。それが彼の終生の名となるでしょう。〈独りのアルト〉と。」</p>
+    <p>こうして、そのときからこの名がアルトについてまわることになったのである。</p>
+  </div>
+
+  <section class="notes" aria-labelledby="notes-h">
+    <h3 class="label" id="notes-h" style="font-family:var(--font-ui);font-weight:500;font-size:.8rem;letter-spacing:.14em;color:var(--muted)">注</h3>
+    <ol>
+      <li id="n1"><b>ウシュネフの丘</b>（<span class="ga">Usnech</span>）：アイルランド中部ミーズ地方の丘で、島の「へそ」とされた聖地です。王が集いを開く場所として、しばしば物語に登場します。<a class="back" href="#r1" aria-label="本文へ戻る">↩</a></li>
+      <li id="n2"><b>妖精塚の民</b>（<span class="ga">áes síde</span>）：<span class="ga">síd</span> は「塚」と「平和」の両方を意味する語です。女は「わたしたちは平和（<span class="ga">síd</span>）のうちに暮らし、大きな塚（<span class="ga">síd</span>）に住んでいる」と掛け言葉で語り、それを自分たちの呼び名の由来にしています。日本語ではこの掛け言葉を再現できないため、意味を取って訳しました。<a class="back" href="#r2" aria-label="本文へ戻る">↩</a></li>
+      <li id="n3"><b>楽しみの野</b>（<span class="ga">Mag Mell</span>）：アイルランドの物語に繰り返し現れる、海の彼方の異界の名です。<a class="back" href="#r3" aria-label="本文へ戻る">↩</a></li>
+      <li id="n4"><b>ドルイド</b>（<span class="ga">druí</span>）：キリスト教以前のアイルランドで、祭司・学者・呪術者を兼ねた人々です。<a class="back" href="#r4" aria-label="本文へ戻る">↩</a></li>
+      <li id="n5"><b>女たちの呪い</b>：原文は <span class="ga">tre thoathbandu … brectu ban</span>。<span class="ga">brechta ban</span> は「女たちの呪文」の意で、聖パトリクの祈りとされる「胸当て」にも、身を守るべき災いとして「女たちの呪文」が挙げられています。<span class="ga">toathbandu</span> は語義が確定しておらず、「邪悪な業」「死をもたらす術」などの解釈があります。本文では両者をまとめて「呪い」としました。<a class="back" href="#r5" aria-label="本文へ戻る">↩</a></li>
+      <li id="n6"><b>テフラ</b>（<span class="ga">Tethra</span>）：神話で、海の彼方に住む異形の一族フォウォレ（<span class="ga">Fomóire</span>）の王とされる人物です。ここでは死者の国、あるいは異界の主を指すと解されます。<a class="back" href="#r6" aria-label="本文へ戻る">↩</a></li>
+      <li id="n7"><b>義人の予言</b>：ドルイドの術がやがて「義人」の掟に打ち砕かれるという予言は、聖パトリクによるキリスト教の到来を指すと読むのが通説です。異教の物語をキリスト教の視点から書き直した痕跡と考えられます。この段の韻文は文法が非常に圧縮されており、とくに「その術が報いを得るのも、もう長くはない」「大いなる浜辺に」（<span class="ga">is bec rosoich for messu ar Trág Máir</span>）は解釈が割れます。訳は大意を取ったものです。<a class="back" href="#r7" aria-label="本文へ戻る">↩</a></li>
+      <li id="n8"><b>なおも抗っている</b>：原文 <span class="ga">tathud airunsur</span> は難読で、「抗っている」「身を委ねようとしている」の両様に読まれています。ここでは、コンラが故郷を離れがたく思っているという直前の文脈に合わせました。<a class="back" href="#r8" aria-label="本文へ戻る">↩</a></li>
+      <li id="n9"><b>女と乙女だけの国</b>：異界が女だけの国として描かれるのは、同じ写本に断片が残る「ブランの航海」とも共通するモチーフです。<a class="back" href="#r9" aria-label="本文へ戻る">↩</a></li>
+      <li id="n10"><b>運命を言い当てる言葉</b>（<span class="ga">búadfocol</span>）：文字どおりには「勝利の言葉」で、口にしたことがそのまま定まってしまう、効力のある言葉を指します。「独りのアルト」は <span class="ga">Art Óenfer</span>（直訳「一人の男アルト」）です。<a class="back" href="#r10" aria-label="本文へ戻る">↩</a></li>
+    </ol>
+  </section>
+</article>
+
+<footer class="colophon">
+  底本：R. I. Best and Osborn Bergin (eds), <i class="ga">Lebor na hUidre: Book of the Dun Cow</i> (Dublin: Royal Irish Academy 1929)、CELT 電子版 G301900。写本はダブリン、ロイヤル・アイリッシュ・アカデミー所蔵 MS 1229（23 E 25）。<br>
+  訳と注は底本の本文に基づく試訳です。韻文（<span class="ga">rosc</span>）の箇所には、解釈の定まらない語句が含まれます。
+</footer>
+</div>
+
+</body>
+</html>

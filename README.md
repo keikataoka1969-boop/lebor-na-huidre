@@ -4,6 +4,7 @@
 
 - 公開ページ：https://keikataoka1969-boop.github.io/lebor-na-huidre/
 - 収録：第一話「クアルンゲの牛捕り（Táin Bó Cúailnge）」全二十五章（写本の欠損まで）、第二話「ブリクリウの饗宴（Fled Bricrenn）」全十七章（写本の欠損まで）、第三話「ダ・デルガの館の崩壊（Togail Bruidne Da Derga）」全二十章（冒頭の欠損のあとから）、第四話「クー・フリンの病（Serglige Con Culaind）」全十四章、第五話「マール・ドゥーンの航海（Immram curaig Máele Dúin）」全十九章（写本の欠損まで）、第六話「エーダインへの求婚（Tochmarc Étaíne）」全十二章（前後に欠損）、第七話「コンラの冒険（Echtra Condla）」、第八話「クー・フリンの霊の戦車（Siaburcharpat Con Culaind）」全七章、第九話「エオヒズの死とリー・バン（Aided Echach meic Maireda）」全九章、第十話「アダウナーンの幻視（Fís Adamnáin）」全十二章、第十一話「ウラドの酩酊（Mesca Ulad）」全七章（冒頭の欠損のあとから）、第十二話「フリディシュの牛捕り（Táin Bó Flidais）」全五章（冒頭の欠損のあとから）
+- その他の作品（写本の順）：順次追加中
 
 底本：R. I. Best and Osborn Bergin (eds), *Lebor na hUidre: Book of the Dun Cow* (Dublin: Royal Irish Academy, 1929)／CELT: Corpus of Electronic Texts, G301900
 
